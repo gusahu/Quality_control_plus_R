@@ -6,7 +6,7 @@ Control Estadístico de Procesos es una asignatura que aborda los conceptos asoc
 ## Logro general de aprendizaje
 Plantear y resolver problemas asociados a la gestión de calidad y el mejoramiento continuo de procesos y en particular al control estadístico de procesos y la metodología Seis Sigma en un ambiente industrial, tanto para empresas productoras de bienes como de servicios.
 
-## Unidesde de aprendizaje
+## Unidades de aprendizaje
 - Unidad I Fundamentos de la Gestión de la Calidad.
 - Unidad II Metodlogías Estadísticas Aplicadas a Procesos.
 - Unidad III Control Estadístico de Procesos.
