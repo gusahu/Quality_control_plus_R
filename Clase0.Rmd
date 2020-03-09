@@ -39,8 +39,9 @@ output:
 - Incorpora los conceptos de calidad, mejora continua y la variabilidad de los procesos y sus causas.
 
 
+Un Ingeniero es alguien que resuelve probelmas de interés para la sociedad mediante la aplicación eficiente de principios cientificos. Los ingenieros llevan a cabo esta tarea perfeccionando un producto o un proceso existente o bien diseñando un producto o proceso nuevo que satisfaga las necesidades de los consumidores.
 
-Un Ingeniero es alguien que resuelve probelmas de inter ́es para la sociedad mediante la aplicaci ́on eficiente de principios cientificos. Los ingenieros llevan a cabo esta tarea perfeccionando un producto o un proceso existente o bien disenhando un producto o proceso nuevo que satisfaga las necesidades de los consumidores.
 El "Metodo de la Ingenieria" es el enfoque aplicado para formular y resolver estos problemas.
+
 
 
