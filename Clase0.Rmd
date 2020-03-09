@@ -1,0 +1,46 @@
+---
+title: "Control Estadístico de Procesos"
+author: "MSc Gustavo Ahumada"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+## Unidades de Aprendizaje
+
+- Unidad I Fundamentos de la Gestión de la Calidad.
+- Unidad II Metodlogías Estadísticas Aplicadas a Procesos.
+- Unidad III Control Estadístico de Procesos.
+- Unidad IV Metodología Seis Sigma
+
+
+## Evaluaciones 
+- Solemne I $20\%$ 22 de Abril.
+- Solemne II $30\%$ 29 de Mayo.
+- Solemne III $30\%$ 26 de Junio.
+- Problem set $20\%$.
+
+## Bibliografía
+- Control Estadístico de Calidad y 6 Sigma; Gutierrez, H; De la Vara, R.; Mc Graw Hill; 3 Ed. 2009.
+- Probabilidad y Estadística Aplicada a la Ingenieria. Montgomery, D.; 2 Ed. Limusa Wiley.
+- Control Estadístico de Calidad. Montgomery, D.; 3 Ed. Limusa Wiley.
+- Quality Control with R. Cano, E.; Moguerza, J.; Prieto, M. 1 Ed. Springer. 2015.
+- Six Sigma with R. Cano, E.; Moguerza, J.; Redchuck, A. 1 Ed. Springer. 2013.
+
+<P style="page-break-before: always">
+\newpage
+
+## Que es el Control Estadístico de Procesos?
+
+- Aborda los conceptos asociados a la gestion de la calidad y el mejoramiento continuo de procesos, mediante la aplicación de metodologías como el control estadistco de procesos (CEP) y Seis Sigma.
+- Incorpora los conceptos de calidad, mejora continua y la variabilidad de los procesos y sus causas.
+
+
+
+Un Ingeniero es alguien que resuelve probelmas de inter ́es para la sociedad mediante la aplicaci ́on eficiente de principios cientificos. Los ingenieros llevan a cabo esta tarea perfeccionando un producto o un proceso existente o bien disenhando un producto o proceso nuevo que satisfaga las necesidades de los consumidores.
+El "Metodo de la Ingenieria" es el enfoque aplicado para formular y resolver estos problemas.
+
+
