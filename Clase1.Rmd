@@ -1,0 +1,35 @@
+---
+title: "Control Estadístico de Procesos"
+author: "Gustavo Ahumada"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+# Variables aleatorias discretas y distribuciones de probabilidad
+
+
+## Variable aleatoria discreta
+Una variable aletatoria discreta asume cada uno de sus valorescon cierta probabilidad. Cuando dos dados son lanzados, la probabilidad de que su suma sea $7$, escrita $f(x)= P(X=x)$, es igual $1/6$. La función que asigna la probabilidad a los valores de las variables aleatorias es llamada \textbf{función de densidad de probabilidad (pdf)} o \textbf{distribución de probabilidad}. Toda pdf debe satisfacer las siguientes condiciones:
+
+1. $f(x)\geq 0$.
+2. $\sum_{x}f(x)=1$.
+3. $P(X=x)=f(x)$.
+
+Hay muchos problemas en los cuales  deseamos calcular la probabilidad de que el valor observado de una variable aleatoria $X$ sea mayor o igual que algún número real $x$. Al escribir  $F(X)=P(X	\leq x)$ para cualquier número real $x$, definimos la \textbf{distribución acumulada (cdf)} $F(X)$ de una variable aleatoria discreta $X$ con distribución $f(x)$. Se define como:
+
+$F(X)=P(X	\leq x)=\sum_{t\leq x}f(x)$ para $-\infty<x\infty$.
+
+Tiene las siguientes propiedades:
+
+1. $0\leq F(X)\leq 1$.
+2. Si $a<b$, entonces $F(a)<F(b)$ para cualquier números reales $a$ y $b$. Por lo tanto, $F(X)$ es una función no decreciente de $x$.
+3. $lim_{x\rightarrow\infty} F(X)=1$.
+4. $lim_{x\rightarrow -\infty} F(X)=0$.
+
+
+
+
