@@ -47,3 +47,5 @@ El "Metodo de la Ingenieria" es el enfoque aplicado para formular y resolver est
 ## Repaso Estadístico
 
 
+
+
