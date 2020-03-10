@@ -1763,7 +1763,7 @@ summary {
 <li><span class="math inline">\(P(X=x)=f(x)\)</span>.</li>
 </ol>
 <p>Hay muchos problemas en los cuales deseamos calcular la probabilidad de que el valor observado de una variable aleatoria <span class="math inline">\(X\)</span> sea mayor o igual que algún número real <span class="math inline">\(x\)</span>. Al escribir <span class="math inline">\(F(X)=P(X \leq x)\)</span> para cualquier número real <span class="math inline">\(x\)</span>, definimos la  <span class="math inline">\(F(X)\)</span> de una variable aleatoria discreta <span class="math inline">\(X\)</span> con distribución <span class="math inline">\(f(x)\)</span>. Se define como:</p>
-<p><span class="math inline">\(F(X)=P(X \leq x)=\sum_{t\leq x}f(x)\)</span> para <span class="math inline">\(-\infty&lt;x\infty\)</span>.</p>
+<p><span class="math inline">\(F(X)=P(X \leq x)=\sum_{t\leq x}f(x)\)</span> para <span class="math inline">\(-\infty&lt;x&lt;\infty\)</span>.</p>
 <p>Tiene las siguientes propiedades:</p>
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(0\leq F(X)\leq 1\)</span>.</li>
@@ -1771,11 +1771,61 @@ summary {
 <li><span class="math inline">\(lim_{x\rightarrow\infty} F(X)=1\)</span>.</li>
 <li><span class="math inline">\(lim_{x\rightarrow -\infty} F(X)=0\)</span>.</li>
 </ol>
+<p> Lanzar una moneda equilibrada tres veces y sea las variable aleatoria <span class="math inline">\(X\)</span> el número de caras observadas en los tres intentos.</p>
+<p> El espacio muestral para el experimento es:</p>
+<p><span class="math inline">\(S= \{TTT, HTT, THT, HHT, TTH, HTH, THH, HHH\}\)</span></p>
+<p>La variable aleatoria <span class="math inline">\(X\)</span> puede tomar los valores de <span class="math inline">\(0,1,2,\)</span> y <span class="math inline">\(3\)</span> con probabilidades <span class="math inline">\(\frac{1}{8}\)</span>, <span class="math inline">\(\frac{3}{8}\)</span>, <span class="math inline">\(\frac{3}{8}\)</span>, y <span class="math inline">\(\frac{1}{8}\)</span>, respectivamente. Definir la cdf para <span class="math inline">\(X\)</span>, <span class="math inline">\(F(x)=P(X \leq x)\)</span> como sigue:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6OCwibmNvbCI6NH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEzMVEyNHJDTUJDZEp1MWFDK3JDZm9jQkZmd0N2OEFuWDJPYlhZdDFJbTFFSC8xeWRkSjJvQWJad0dUbW5NemxUTGFiM1RMYlpRQWdRQ1lTaEtRd0ZuUkZFTVBZK3h1QS9QRXMyWVFzaGU1RS8vaGhIblBSQnh6bWhlK2Y4cGdUQSs5TkJzSVQxQ2ZUVVBEZGl1L0kwY21pS2ZUaUhTN2Y0WW9ocW9QUlJSTTBIdGYycXJpNVZ5YnVuYkkwVkpCWHVtRUZUR2FGZGxyOTFsUlA2QkdVak96WmxSYXBTUGcvVDRMaXFBNkkyUVc5a21LZUh5NTRuSy85Z01GZlQvbzRIY1J4TjFJOCsxWkozK3JMNEYrSmhyVlhlbStxSGt4cDQzWmhkYTVMZEx3SnNZMXkxbW5PeTNKYk1kUHVCbzhYY3Q4MDRtRUNBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["moneda1"],"name":[1],"type":["int"],"align":["right"]},{"label":["moneda2"],"name":[2],"type":["int"],"align":["right"]},{"label":["moneda3"],"name":[3],"type":["int"],"align":["right"]},{"label":["n.heads"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"0","3":"0","4":"0"},{"1":"1","2":"0","3":"0","4":"1"},{"1":"0","2":"1","3":"0","4":"1"},{"1":"1","2":"1","3":"0","4":"2"},{"1":"0","2":"0","3":"1","4":"1"},{"1":"1","2":"0","3":"1","4":"2"},{"1":"0","2":"1","3":"1","4":"2"},{"1":"1","2":"1","3":"1","4":"3"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[8]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnJhY3Rpb25zKFQxKVxuXG5gYGAifQ== -->
+<pre class="r"><code>fractions(T1)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoibi5oZWFkc1xuICAwICAgMSAgIDIgICAzIFxuMS84IDMvOCAzLzggMS84IFxuIn0= -->
+<pre><code>n.heads
+  0   1   2   3 
+1/8 3/8 3/8 1/8 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChUMSwgeGxhYiA9IFwieFwiLCB5bGFiID0gXCJQKFg9eClcIiwgeWF4dCA9IFwiblwiLCBtYWluID0gXCJQREYgcGFyYSBYXCIpICtcbmF4aXMoMiwgYXQgPWMoMS84LCAzLzgpLCBsYWJlbHMgPSBjKFwiMS84XCIsIFwiMy84XCIpLCBsYXMgPSAxKVxuYGBgIn0= -->
+<pre class="r"><code>plot(T1, xlab = &quot;x&quot;, ylab = &quot;P(X=x)&quot;, yaxt = &quot;n&quot;, main = &quot;PDF para X&quot;) +
+axis(2, at =c(1/8, 3/8), labels = c(&quot;1/8&quot;, &quot;3/8&quot;), las = 1)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChlY2RmKG4uaGVhZHMpLCBtYWluID0gXCJDREYgcGFyYSBYXCIsIHlsYWIgPSBcIkYoWClcIiwgeGxhYiA9IFwieFwiLFxuICAgICB5YXh0ID0gXCJuXCIpICsgXG4gIGF4aXMoMiwgYXQgPSBjKDEvOCwgNC84LCA3LzgsIDEpLCBsYWJlbHMgPSBjKFwiMS84XCIsIFwiNC84XCIsIFwiNy84XCIsIFwiMVwiKSxcbiAgICAgICBsYXMgPSAxKSArXG4gIHNlZ21lbnRzKDEsIDEvOCwgNC84LCBsdHkgPSAyKSArXG4gIHRleHQoMi42LCAyLjUvOCwgXCJQKFg9MSkgPSBGKDEpLUYoMClcIikgXG4gIHBhcihvcGFyKVxuICBcbmBgYCJ9 -->
+<pre class="r"><code>plot(ecdf(n.heads), main = &quot;CDF para X&quot;, ylab = &quot;F(X)&quot;, xlab = &quot;x&quot;,
+     yaxt = &quot;n&quot;) + 
+  axis(2, at = c(1/8, 4/8, 7/8, 1), labels = c(&quot;1/8&quot;, &quot;4/8&quot;, &quot;7/8&quot;, &quot;1&quot;),
+       las = 1) +
+  segments(1, 1/8, 4/8, lty = 2) +
+  text(2.6, 2.5/8, &quot;P(X=1) = F(1)-F(0)&quot;) 
+  par(opar)
+  </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ29udHJvbCBFc3RhZMOtc3RpY28gZGUgUHJvY2Vzb3MiCmF1dGhvcjogIkd1c3Rhdm8gQWh1bWFkYSIKb3V0cHV0OgogIHBkZl9kb2N1bWVudDogZGVmYXVsdAogIGh0bWxfZG9jdW1lbnQ6CiAgICBkZl9wcmludDogcGFnZWQKICB0aGVtZTogdW5pdGVkCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdAotLS0KCiMgVmFyaWFibGVzIGFsZWF0b3JpYXMgZGlzY3JldGFzIHkgZGlzdHJpYnVjaW9uZXMgZGUgcHJvYmFiaWxpZGFkCgoKIyMgVmFyaWFibGUgYWxlYXRvcmlhIGRpc2NyZXRhClVuYSB2YXJpYWJsZSBhbGV0YXRvcmlhIGRpc2NyZXRhIGFzdW1lIGNhZGEgdW5vIGRlIHN1cyB2YWxvcmVzY29uIGNpZXJ0YSBwcm9iYWJpbGlkYWQuIEN1YW5kbyBkb3MgZGFkb3Mgc29uIGxhbnphZG9zLCBsYSBwcm9iYWJpbGlkYWQgZGUgcXVlIHN1IHN1bWEgc2VhICQ3JCwgZXNjcml0YSAkZih4KT0gUChYPXgpJCwgZXMgaWd1YWwgJDEvNiQuIExhIGZ1bmNpw7NuIHF1ZSBhc2lnbmEgbGEgcHJvYmFiaWxpZGFkIGEgbG9zIHZhbG9yZXMgZGUgbGFzIHZhcmlhYmxlcyBhbGVhdG9yaWFzIGVzIGxsYW1hZGEgXHRleHRiZntmdW5jacOzbiBkZSBkZW5zaWRhZCBkZSBwcm9iYWJpbGlkYWQgKHBkZil9IG8gXHRleHRiZntkaXN0cmlidWNpw7NuIGRlIHByb2JhYmlsaWRhZH0uIFRvZGEgcGRmIGRlYmUgc2F0aXNmYWNlciBsYXMgc2lndWllbnRlcyBjb25kaWNpb25lczoKCjEuICRmKHgpXGdlcSAwJC4KMi4gJFxzdW1fe3h9Zih4KT0xJC4KMy4gJFAoWD14KT1mKHgpJC4KCkhheSBtdWNob3MgcHJvYmxlbWFzIGVuIGxvcyBjdWFsZXMgIGRlc2VhbW9zIGNhbGN1bGFyIGxhIHByb2JhYmlsaWRhZCBkZSBxdWUgZWwgdmFsb3Igb2JzZXJ2YWRvIGRlIHVuYSB2YXJpYWJsZSBhbGVhdG9yaWEgJFgkIHNlYSBtYXlvciBvIGlndWFsIHF1ZSBhbGfDum4gbsO6bWVybyByZWFsICR4JC4gQWwgZXNjcmliaXIgICRGKFgpPVAoWAlcbGVxIHgpJCBwYXJhIGN1YWxxdWllciBuw7ptZXJvIHJlYWwgJHgkLCBkZWZpbmltb3MgbGEgXHRleHRiZntkaXN0cmlidWNpw7NuIGFjdW11bGFkYSAoY2RmKX0gJEYoWCkkIGRlIHVuYSB2YXJpYWJsZSBhbGVhdG9yaWEgZGlzY3JldGEgJFgkIGNvbiBkaXN0cmlidWNpw7NuICRmKHgpJC4gU2UgZGVmaW5lIGNvbW86CgokRihYKT1QKFgJXGxlcSB4KT1cc3VtX3t0XGxlcSB4fWYoeCkkIHBhcmEgJC1caW5mdHk8eFxpbmZ0eSQuCgpUaWVuZSBsYXMgc2lndWllbnRlcyBwcm9waWVkYWRlczoKCjEuICQwXGxlcSBGKFgpXGxlcSAxJC4KMi4gU2kgJGE8YiQsIGVudG9uY2VzICRGKGEpPEYoYikkIHBhcmEgY3VhbHF1aWVyIG7Dum1lcm9zIHJlYWxlcyAkYSQgeSAkYiQuIFBvciBsbyB0YW50bywgJEYoWCkkIGVzIHVuYSBmdW5jacOzbiBubyBkZWNyZWNpZW50ZSBkZSAkeCQuCjMuICRsaW1fe3hccmlnaHRhcnJvd1xpbmZ0eX0gRihYKT0xJC4KNC4gJGxpbV97eFxyaWdodGFycm93IC1caW5mdHl9IEYoWCk9MCQuCgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ29udHJvbCBFc3RhZMOtc3RpY28gZGUgUHJvY2Vzb3MiCmF1dGhvcjogIkd1c3Rhdm8gQWh1bWFkYSIKb3V0cHV0OgogIHBkZl9kb2N1bWVudDogZGVmYXVsdAogIGh0bWxfZG9jdW1lbnQ6CiAgICBkZl9wcmludDogcGFnZWQKICB0aGVtZTogdW5pdGVkCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdAotLS0KCiMgVmFyaWFibGVzIGFsZWF0b3JpYXMgZGlzY3JldGFzIHkgZGlzdHJpYnVjaW9uZXMgZGUgcHJvYmFiaWxpZGFkCgoKIyMgVmFyaWFibGUgYWxlYXRvcmlhIGRpc2NyZXRhClVuYSB2YXJpYWJsZSBhbGV0YXRvcmlhIGRpc2NyZXRhIGFzdW1lIGNhZGEgdW5vIGRlIHN1cyB2YWxvcmVzY29uIGNpZXJ0YSBwcm9iYWJpbGlkYWQuIEN1YW5kbyBkb3MgZGFkb3Mgc29uIGxhbnphZG9zLCBsYSBwcm9iYWJpbGlkYWQgZGUgcXVlIHN1IHN1bWEgc2VhICQ3JCwgZXNjcml0YSAkZih4KT0gUChYPXgpJCwgZXMgaWd1YWwgJDEvNiQuIExhIGZ1bmNpw7NuIHF1ZSBhc2lnbmEgbGEgcHJvYmFiaWxpZGFkIGEgbG9zIHZhbG9yZXMgZGUgbGFzIHZhcmlhYmxlcyBhbGVhdG9yaWFzIGVzIGxsYW1hZGEgXHRleHRiZntmdW5jacOzbiBkZSBkZW5zaWRhZCBkZSBwcm9iYWJpbGlkYWQgKHBkZil9IG8gXHRleHRiZntkaXN0cmlidWNpw7NuIGRlIHByb2JhYmlsaWRhZH0uIFRvZGEgcGRmIGRlYmUgc2F0aXNmYWNlciBsYXMgc2lndWllbnRlcyBjb25kaWNpb25lczoKCjEuICRmKHgpXGdlcSAwJC4KMi4gJFxzdW1fe3h9Zih4KT0xJC4KMy4gJFAoWD14KT1mKHgpJC4KCkhheSBtdWNob3MgcHJvYmxlbWFzIGVuIGxvcyBjdWFsZXMgIGRlc2VhbW9zIGNhbGN1bGFyIGxhIHByb2JhYmlsaWRhZCBkZSBxdWUgZWwgdmFsb3Igb2JzZXJ2YWRvIGRlIHVuYSB2YXJpYWJsZSBhbGVhdG9yaWEgJFgkIHNlYSBtYXlvciBvIGlndWFsIHF1ZSBhbGfDum4gbsO6bWVybyByZWFsICR4JC4gQWwgZXNjcmliaXIgICRGKFgpPVAoWAlcbGVxIHgpJCBwYXJhIGN1YWxxdWllciBuw7ptZXJvIHJlYWwgJHgkLCBkZWZpbmltb3MgbGEgXHRleHRiZntkaXN0cmlidWNpw7NuIGFjdW11bGFkYSAoY2RmKX0gJEYoWCkkIGRlIHVuYSB2YXJpYWJsZSBhbGVhdG9yaWEgZGlzY3JldGEgJFgkIGNvbiBkaXN0cmlidWNpw7NuICRmKHgpJC4gU2UgZGVmaW5lIGNvbW86CgokRihYKT1QKFgJXGxlcSB4KT1cc3VtX3t0XGxlcSB4fWYoeCkkIHBhcmEgJC1caW5mdHk8eDxcaW5mdHkkLgoKVGllbmUgbGFzIHNpZ3VpZW50ZXMgcHJvcGllZGFkZXM6CgoxLiAkMFxsZXEgRihYKVxsZXEgMSQuCjIuIFNpICRhPGIkLCBlbnRvbmNlcyAkRihhKTxGKGIpJCBwYXJhIGN1YWxxdWllciBuw7ptZXJvcyByZWFsZXMgJGEkIHkgJGIkLiBQb3IgbG8gdGFudG8sICRGKFgpJCBlcyB1bmEgZnVuY2nDs24gbm8gZGVjcmVjaWVudGUgZGUgJHgkLgozLiAkbGltX3t4XHJpZ2h0YXJyb3dcaW5mdHl9IEYoWCk9MSQuCjQuICRsaW1fe3hccmlnaHRhcnJvdyAtXGluZnR5fSBGKFgpPTAkLgoKClx0ZXh0YmZ7RWplbXBsbyAxfSBMYW56YXIgdW5hIG1vbmVkYSBlcXVpbGlicmFkYSB0cmVzIHZlY2VzICB5IHNlYSBsYXMgdmFyaWFibGUgYWxlYXRvcmlhICRYJCBlbCBuw7ptZXJvIGRlIGNhcmFzIG9ic2VydmFkYXMgZW4gbG9zIHRyZXMgaW50ZW50b3MuIAoKXHRleHRiZntTb2x1Y2nDs259IEVsIGVzcGFjaW8gbXVlc3RyYWwgcGFyYSBlbCBleHBlcmltZW50byBlczoKCiRTPSBce1RUVCwgSFRULCBUSFQsIEhIVCwgVFRILCBIVEgsIFRISCwgSEhIXH0kCgpMYSB2YXJpYWJsZSBhbGVhdG9yaWEgJFgkIHB1ZWRlIHRvbWFyIGxvcyB2YWxvcmVzIGRlICQwLDEsMiwkIHkgJDMkIGNvbiBwcm9iYWJpbGlkYWRlcyAkXGZyYWN7MX17OH0kLCAkXGZyYWN7M317OH0kLCAkXGZyYWN7M317OH0kLCB5ICRcZnJhY3sxfXs4fSQsIHJlc3BlY3RpdmFtZW50ZS4gRGVmaW5pciBsYSBjZGYgcGFyYSAkWCQsICRGKHgpPVAoWAlcbGVxIHgpJCBjb21vIHNpZ3VlOgoKCmBgYHtyfQpvcGFyIDwtIHBhcihuby5yZWFkb25seSA9IFRSVUUpCmxpYnJhcnkoTUFTUykgCnBhcihtZnJvdz1jKDEsMiksIHB0eSA9ICJzIikKUyA8LSBleHBhbmQuZ3JpZChtb25lZGExID0gMDoxLCBtb25lZGEyID0gMDoxLCBtb25lZGEzID0gMDoxKQpuLmhlYWRzIDwtIGFwcGx5KFMsIDEsIHN1bSkKY2JpbmQoUywgbi5oZWFkcykKYGBgCgpgYGB7cn0KVDEgPC0gdGFibGUobi5oZWFkcykvbGVuZ3RoKG4uaGVhZHMpCmZyYWN0aW9ucyhUMSkKYGBgCgoKYGBge3J9CnBsb3QoVDEsIHhsYWIgPSAieCIsIHlsYWIgPSAiUChYPXgpIiwgeWF4dCA9ICJuIiwgbWFpbiA9ICJQREYgcGFyYSBYIikgKwpheGlzKDIsIGF0ID1jKDEvOCwgMy84KSwgbGFiZWxzID0gYygiMS84IiwgIjMvOCIpLCBsYXMgPSAxKQpgYGAKCgpgYGB7cn0KcGxvdChlY2RmKG4uaGVhZHMpLCBtYWluID0gIkNERiBwYXJhIFgiLCB5bGFiID0gIkYoWCkiLCB4bGFiID0gIngiLAogICAgIHlheHQgPSAibiIpICsgCiAgYXhpcygyLCBhdCA9IGMoMS84LCA0LzgsIDcvOCwgMSksIGxhYmVscyA9IGMoIjEvOCIsICI0LzgiLCAiNy84IiwgIjEiKSwKICAgICAgIGxhcyA9IDEpICsKICBzZWdtZW50cygxLCAxLzgsIDQvOCwgbHR5ID0gMikgKwogIHRleHQoMi42LCAyLjUvOCwgIlAoWD0xKSA9IEYoMSktRigwKSIpIAogIHBhcihvcGFyKQogIApgYGAKCgoKCgo=</div>
 
 
 

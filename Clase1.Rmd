@@ -21,7 +21,7 @@ Una variable aletatoria discreta asume cada uno de sus valorescon cierta probabi
 
 Hay muchos problemas en los cuales  deseamos calcular la probabilidad de que el valor observado de una variable aleatoria $X$ sea mayor o igual que algún número real $x$. Al escribir  $F(X)=P(X	\leq x)$ para cualquier número real $x$, definimos la \textbf{distribución acumulada (cdf)} $F(X)$ de una variable aleatoria discreta $X$ con distribución $f(x)$. Se define como:
 
-$F(X)=P(X	\leq x)=\sum_{t\leq x}f(x)$ para $-\infty<x\infty$.
+$F(X)=P(X	\leq x)=\sum_{t\leq x}f(x)$ para $-\infty<x<\infty$.
 
 Tiene las siguientes propiedades:
 
@@ -29,6 +29,49 @@ Tiene las siguientes propiedades:
 2. Si $a<b$, entonces $F(a)<F(b)$ para cualquier números reales $a$ y $b$. Por lo tanto, $F(X)$ es una función no decreciente de $x$.
 3. $lim_{x\rightarrow\infty} F(X)=1$.
 4. $lim_{x\rightarrow -\infty} F(X)=0$.
+
+
+\textbf{Ejemplo 1} Lanzar una moneda equilibrada tres veces  y sea las variable aleatoria $X$ el número de caras observadas en los tres intentos. 
+
+\textbf{Solución} El espacio muestral para el experimento es:
+
+$S= \{TTT, HTT, THT, HHT, TTH, HTH, THH, HHH\}$
+
+La variable aleatoria $X$ puede tomar los valores de $0,1,2,$ y $3$ con probabilidades $\frac{1}{8}$, $\frac{3}{8}$, $\frac{3}{8}$, y $\frac{1}{8}$, respectivamente. Definir la cdf para $X$, $F(x)=P(X	\leq x)$ como sigue:
+
+
+```{r}
+opar <- par(no.readonly = TRUE)
+library(MASS) 
+par(mfrow=c(1,2), pty = "s")
+S <- expand.grid(moneda1 = 0:1, moneda2 = 0:1, moneda3 = 0:1)
+n.heads <- apply(S, 1, sum)
+cbind(S, n.heads)
+```
+
+```{r}
+T1 <- table(n.heads)/length(n.heads)
+fractions(T1)
+```
+
+
+```{r}
+plot(T1, xlab = "x", ylab = "P(X=x)", yaxt = "n", main = "PDF para X") +
+axis(2, at =c(1/8, 3/8), labels = c("1/8", "3/8"), las = 1)
+```
+
+
+```{r}
+plot(ecdf(n.heads), main = "CDF para X", ylab = "F(X)", xlab = "x",
+     yaxt = "n") + 
+  axis(2, at = c(1/8, 4/8, 7/8, 1), labels = c("1/8", "4/8", "7/8", "1"),
+       las = 1) +
+  segments(1, 1/8, 4/8, lty = 2) +
+  text(2.6, 2.5/8, "P(X=1) = F(1)-F(0)") 
+  par(opar)
+  
+```
+
 
 
 
