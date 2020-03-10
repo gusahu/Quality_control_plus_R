@@ -20,3 +20,10 @@ Plantear y resolver problemas asociados a la gestión de calidad y el mejoramien
 - Desarrollo de experiencias de laboratorio computación
 - Presentaciones orales, individuales y grupales.
 - Estudio de casos
+
+## Bibliografía
+- Control Estadístico de Calidad y 6 Sigma; Gutierrez, H; De la Vara, R.; Mc Graw Hill; 3 Ed. 2009.
+- Probabilidad y Estadística Aplicada a la Ingenieria. Montgomery, D.; 2 Ed. Limusa Wiley.
+- Control Estadístico de Calidad. Montgomery, D.; 3 Ed. Limusa Wiley.
+- Quality Control with R. Cano, E.; Moguerza, J.; Prieto, M. 1 Ed. Springer. 2015.
+- Six Sigma with R. Cano, E.; Moguerza, J.; Redchuck, A. 1 Ed. Springer. 2013.
