@@ -165,7 +165,7 @@ c & = \left(\frac{-1}{4}+\frac{3}{4}+\frac{1}{2}\right) - \left(\frac{1}{32}+\fr
 d. El siguiente codigo genera la **pdf** y la **cdf** de $X$.
 ```{r}
 f <- function(x) {
-  y <- 3/4 + (1 - x^2)
+  y <- 3/4 * (1 - x^2)
   y[x < -1 | x > 1] <- 0
   return(y)
 }
@@ -182,12 +182,9 @@ F <- function(x) {
 
 ```{r}
 library(ggplot2)
-p1 <- ggplot(data.frame(x = c(-2, 2)), aes(x = x)) 
-p1 +  stat_function(fun = f) + labs(x = "x", y = "f(x)", tittle = "PDF para X") 
-
-p2 <- ggplot(data.frame(x = c(-2, 2)), aes(x = x))
-p2 + stat_function(fun = F) + labs(x = "x", y = "F(x)", tittle = "CDF para X")
-
+graf <-ggplot(data.frame(x = c(-2, 2)), aes(x = x)) 
+graf + stat_function(fun = f) + labs(x = "x", y = "f(x)", tittle = "PDF para X") 
+graf + stat_function(fun = F) + labs(x = "x", y = "F(x)", tittle = "CDF para X")
 ```
 
 
