@@ -9,7 +9,7 @@ output:
   html_notebook: default
 ---
 
-# Variables aleatorias discretas y distribuciones de probabilidad
+# Variables aleatorias discretas y continuas
 
 
 ## Variable aleatoria discreta
@@ -39,6 +39,13 @@ $S= \{TTT, HTT, THT, HHT, TTH, HTH, THH, HHH\}$
 
 La variable aleatoria $X$ puede tomar los valores de $0,1,2,$ y $3$ con probabilidades $\frac{1}{8}$, $\frac{3}{8}$, $\frac{3}{8}$, y $\frac{1}{8}$, respectivamente. Definir la cdf para $X$, $F(x)=P(X	\leq x)$ como sigue:
 
+\begin{equation} 
+f(n) = \left \{ \begin{matrix} 0 & \mbox{si }x<0,
+\\ 1/8 & \mbox{si }0\leq x< 1,
+\\ 4/8 & \mbox{si }1\leq x< 2,
+\\ 7/8 & \mbox{si }2\leq x< 3,
+\\ 1 & \mbox{si }x\ge 3 \end{matrix}\right. \nonumber
+\end{equation} 
 
 ```{r}
 opar <- par(no.readonly = TRUE)
@@ -69,6 +76,123 @@ plot(ecdf(n.heads), main = "CDF para X", ylab = "F(X)", xlab = "x",
   segments(1, 1/8, 4/8, lty = 2) +
   text(2.6, 2.5/8, "P(X=1) = F(1)-F(0)") 
 ```
+
+
+## Variable aleatoria continua
+Una variable aleatoria se llama **variable aleatoria continua** si puede tomar valores en una escala continua. A menudo los posibles valores de una variable continua son precisamente los mismos valores el espacio muestral continuo. POr ejemplo, la medición de la distancia que cierta marca de automóvil recorre en una pista de prueba con 5 litros de gasolina.
+
+Una variable aleatoria continua tiene una probabilidad cero de tomar *exactamente* cualquiera de sus valores. Por lo tanto, su distribución de probabilidad no puede dar una forma tabular. Este tipo de variables aleatorias se caracterizan por:
+
+- Toman valores en un intervalo (abierto o cerrado), es decir en un continuo.
+- No tiene sentido calcular la probabilidad de que la v.a. adopte un valor particular, ya que es cero.
+- Pero calculamos probabilidades en intervalos.
+- Estas probabilidades son siempre ·reas bajo curvas, estas curvas son las funciones de densidad.
+
+La función de densidad de una variable aleatoria es una función que determinará una curva bajo la cual se calcularán las áreas = probabilidades en un intervalo.
+
+**Definición**: Sea $X$ una variable aleatoria continua $x$ un número perteneciente al rango posible de valores de $X$, la función $f(x)$ es una **función de densidad de probabilidad** definida en el conjunto de los números reales $\mathbb{R}$, si
+
+1. $f(x)\ge 0$, para todo $x \in \mathbb{R}$.
+2. $\int_{-\infty}^{\infty}f(x)dx=1$.
+3. $P(a<X>b)=\int_{a}^{b}f(x)dx$.
+
+**Definición**: **La dustribución acumulada (cdf)** $F(X)$ de una variable aleatoria $X$ con función de densidad $f(x)$ es
+
+ \begin{equation}
+ F(x) = P(X\leq x) = \int_{-\infty}^{\infty}f(t)dt \quad para \quad -\infty<x<\infty \nonumber
+ \end{equation}.
+ 
+ 
+ Dada la anterior definición, Siempre se pueden calcular probabilidades en un intervalo, y hay, por lo tanto dos maneras de hacerlo que son equivalentes: Sean dos valores, $a<b$
+ 
+ \begin{equation}
+ P(a<X>b)=\int_{a}^{b}f(x)dx \quad para \quad -\infty<x<\infty \nonumber
+ \end{equation}
+ \begin{equation}
+ P(a<X>b)=F_{x}(b)-F_{x}(a) \quad para \quad -\infty<x<\infty \nonumber
+ \end{equation}
+ 
+ Es decir, directamente integrando la funciÛn de densidad o bien utilizando la cdf.
+ 
+ 
+ **Ejemplo**. Suponer que $X$ es una variable aletoria continua con **pdf** $f(x)$, donde
+\begin{equation} 
+f(x) = \left \{ \begin{matrix} c(1-x^{2}) & \mbox{si}-1<x\leq 1,
+\\ 0 & \mbox{en otros casos.}\end{matrix}\right. \nonumber
+\end{equation} 
+ 
+a. Encontrar la costante $c$ que $f(x)$ es una **pdf** de la variable aleatoria $X$.
+b. Encontrar la **cdf** para X.
+c. Calcular $P(-0.5\le X\le 1)$.
+d. Gráficar la **pdf** y **cdf**.
+
+**Solución**
+a. Empleando la propiedad $2$ de la definición de **pdf** 
+\begin{equation}
+1 = \int_{-\infty}^{\infty}f(x)dx \nonumber
+\end{equation}
+
+\begin{equation} 
+\begin{split}
+1 & = c\left(x - \frac{x^{3}}{3})\right|_0^1 \\
+  & = c\left(1 - \frac{1}{3} - -1 - \frac{-1}{3}  \right) \\
+  & = c\left(\frac{2}{3} -\frac{-2}{3}  \right) \\
+c & = \frac34 \nonumber
+\end{split}
+\end{equation}  
+
+b. Empleando la definición de **cdf** se verifica que
+
+\begin{equation}
+ F(x) = \left \{\begin{matrix} 0 & \mbox{si }x\le -1,
+\\ \int_{-1}^{x} \frac34(1-t^2)dt) = \frac{-x^3}{4}+\frac{3x}{4}+\frac12 & \mbox{si } -1 < x\le 1,
+\\ 1 & \mbox{si } x>1. \end{matrix}\right. \nonumber
+ \end{equation}.
+ 
+c.  Empleando la definición de distribución acumulada para la **pdf** de una vriable continua, tenemos
+
+\begin{equation} 
+\begin{split}
+P(-0.5\le X\le 1) & = F(1) - F(-0.5) \\
+  & = \left(\frac{-1^3}{4}+\frac{3*1}{4}+\frac{1}{2}\right) - \left(-\frac{-0.5^3}{4}+\frac{3*-0.5}{4}+\frac{1}{2}\right) \\
+  & = c\left(\frac{2}{3} -\frac{-2}{3}  \right) \\
+c & = \left(\frac{-1}{4}+\frac{3}{4}+\frac{1}{2}\right) - \left(\frac{1}{32}+\frac{-3}{8}+\frac{1}{2}\right) \\
+  & = c\left(\frac{2}{3} -\frac{-2}{3}  \right) \\
+  & = 1- \frac{5}{32}=\frac{27}{32} = 0.84375  \nonumber
+\end{split}
+\end{equation}  
+
+d. El siguiente codigo genera la **pdf** y la **cdf** de $X$.
+```{r}
+f <- function(x) {
+  y <- 3/4 + (1 - x^2)
+  y[x < -1 | x > 1] <- 0
+  return(y)
+}
+```
+
+```{r}
+F <- function(x) {
+  y <- -x^3/4 + 3 * x/4 + 1/2
+  y[x <= -1] <- 0
+  y[x > 1] <- 1
+  return(y)
+}
+```
+
+```{r}
+library(ggplot2)
+p1 <- ggplot(data.frame(x = c(-2, 2)), aes(x = x)) 
+p1 +  stat_function(fun = f) + labs(x = "x", y = "f(x)", tittle = "PDF para X") 
+
+p2 <- ggplot(data.frame(x = c(-2, 2)), aes(x = x))
+p2 + stat_function(fun = F) + labs(x = "x", y = "F(x)", tittle = "CDF para X")
+
+```
+
+
+
+
 
 
 
