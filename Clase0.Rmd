@@ -44,8 +44,50 @@ Un Ingeniero es alguien que resuelve probelmas de interés para la sociedad medi
 El "Metodo de la Ingenieria" es el enfoque aplicado para formular y resolver estos problemas.
 
 
-## Repaso Estadístico
+## Software para el control de calidad
+Las tecnicas aplicadas en el control de calidad están basadas en datos relacionados con nuestros procesos. El adquisición de datos y su posterior tratamiento derían ser una parte importante de la planificación del control de calidad, como también el conjunto de actividades que estarán basadas en estos datos. Una vez se posee los datos, se necesitan herramientas computacionales apropiadas para su análisis. La aplicación de métodos estadísticos al control de calidad requiere el uso de *software* especializado.
+
+[**R**](https://www.r-project.org/) es un *software* libre para computación estadística que incluye un lenguaje de progración ampliamente utilizado la academía y en los departamentos de investigación.
+
+## Un ejemplo intuitivo
+En cierto proceso de producción de pellets, la densidad de éstos es una característica cualitativa crítica de acuerdo a las necesidades de los consumidores. La especificación técnica establece que la densidad de un pallet es considerada acepatable si es mayor a $10.5g/cm^3$. Una muestra de un  pallet es tomada y medida, siguiendo un proceso de inspecciób estandarizado, después de cada hora de proceso continuo. 
 
 
+```{r}
+pdensity <- c(10.6817, 10.6040, 10.5709, 10.7858, 10.7668, 10.8101, 10.6905, 10.6079, 10.5724, 10.7736, 11.0921, 11.1023, 11.0934, 10.8530, 10.6774, 10.6712, 10.6935, 10.5669, 10.8002, 10.7607, 10.5470, 10.5555, 10.5705, 10.7723)
+```
 
+```{r}
+data.frame(pdensity)
+```
+
+**¿Que se podría decir acerca de la calidad del producto y el proceso de control?** Una verificación rapida de los datos indica que todos los productos están acorde a las especificaciones; debido a que ningún data puntual se encuentra por debajo de $10.5g/cm^3$. Para determinar los limtites de control se debería seguir:
+
+\begin{equation}
+\begin{split}
+UCL & = \mu + (3* \sigma) \\
+LCL & = \mu - (3* \sigma) \nonumber
+\end{split}
+\end{equation}
+
+
+```{r}
+library(qcc)
+qcc(data = pdensity, type = "xbar.one")
+```
+
+```{r}
+library(qcc) 
+qcc(pdensity,
+type = "xbar.one",
+restore.par = FALSE,
+data.name = "Densidad de los pellets", xlab = "Hora",
+ylab = expression("Densidad gr/"*m^3), axes.las = 1)
+abline(h = 10.5, col = "red",
+lwd = 2)
+text(x = 12,
+y = 10.5,
+labels = "Especificación técnica = 10.5", 
+pos = 3)
+```
 
