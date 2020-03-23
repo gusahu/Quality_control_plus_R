@@ -78,6 +78,42 @@ plot(ecdf(n.heads), main = "CDF para X", ylab = "F(X)", xlab = "x",
 ```
 
 
+### Valor esperado
+Una de las más importantes ideal acerca de resumier la información provista en una **pdf** es el valor esperado. Dada una variable aleatoria $X$ con una **pdf** $f(x)$, el **valor esperado** de la variable aleatoria $X$, escrito $E(X)$, es
+\begin{equation} 
+\mu = E(X) = \sum_{x}xf(x)  \nonumber
+\end{equation} 
+$E(X)$ peude ser denotada como $\mu$, porque $E(X)$ es la media de una variable aleatoria $X$.
+
+**Ejemplo.** Un inspector de calidad muestrea un lote que contiene siete componentes; el lote contiene cuatro componentes buenos y tres defectuosos. El inspector toma una muestra de tres componenetes. Encunetre el valor esperado del número de componentes buenos en esta muestra.
+
+**Solución.** Sea $X$ el número de componentes buenos en la muestra. La distribuión de probabilidad de $X$ es
+\begin{equation} 
+f(x) = \frac{\displaystyle\binom{4}{x} \displaystyle\binom{3}{3-x}}{\displaystyle\binom{7}{3}}, \quad x=0,1,2,3.  \nonumber
+\end{equation} 
+
+Unos simples cálculos dan $f(0)=1/35, f(1)=12/35,f(2)=18/35, f(3)=4/35$. Por lo tanto,
+\begin{equation} 
+E(X) = (0)\displaystyle\binom{1}{35} + (1)\displaystyle\binom{12}{35} + (2)\displaystyle\binom{18}{35} + (3)\displaystyle\binom{4}{35} = \frac{12}{7}=1.7.   \nonumber
+\end{equation} 
+
+```{r}
+x <- c(0,1,2,3)
+px <- c(0.029,0.343,0.514,0.114)
+EX <- sum(x*px)
+MP <- weighted.mean(x, px)
+c(EX, MP)
+```
+
+
+### Varianza
+El segundo momento de una alrededor de la meida es llamado la **varianza** de la distribución de $X$, o simplemente la varianza de $X$:
+\begin{equation} 
+\sigma^{2}_{x} = E[(X-\mu)]^2 = \sum_{x}(x-\mu)^{2}f(x)   \nonumber
+\end{equation}
+Ña raíz cuadrada de la varianza, $\sigma$, se llama **desviación estándar** de $X$.
+
+
 ## Variable aleatoria continua
 Una variable aleatoria se llama **variable aleatoria continua** si puede tomar valores en una escala continua. A menudo los posibles valores de una variable continua son precisamente los mismos valores el espacio muestral continuo. POr ejemplo, la medición de la distancia que cierta marca de automóvil recorre en una pista de prueba con 5 litros de gasolina.
 
@@ -188,8 +224,53 @@ graf + stat_function(fun = F) + labs(x = "x", y = "F(x)", tittle = "CDF para X")
 ```
 
 
+### Valor esperado
+Para variables aleatorias continuas, el definición asociada con la esperanza de una variable aleatoria $X$ o una función, digase $g(x)$, de $X$ son identicas a que para las variables aleatorias discretas, excepto que las sumatorias son reemplezadas con integrales. El **valor esperado** de una variable aleatoria continua $X$ es
+\begin{equation} 
+E(X) = \int_{-\infty}^{\infty} xf(x)dx.	   \nonumber
+\end{equation}
 
+### Varianza
+\begin{equation} 
+Var(X) = \sigma^{2}_{x} = E[(X- \mu)]^2 = \int_{-\infty}^{\infty} (x- \mu)^2f(x) dx.	   \nonumber
+\end{equation}
 
+**Ejemplo.** Dada la función
+\begin{equation} 
+f(x) = k, \quad -1<x<1    \nonumber
+\end{equation}
+de la variable aleatoria X,
+a. Encontrar el valor de $k$ pra hacer $f(x)$ una **pdf**. Emplear este $k$ para la parte (c) y (d).
+
+b. Gráficar la **pdf** con ggplot2.
+
+c. Encontrar la media de la distribución
+
+d. Encontar la varianza de la distribución.
+
+**Solución**
+
+a. Desde $\int_{-\infty}^{\infty} xf(x)dx$ debería ser 1 para que $f(x)$ sea una **pdf**, establecemos $\int_{-1}^{1} kdx = 1$ 
+
+\begin{equation} 
+\int_{-1}^{1} kdx = 1    \nonumber
+\end{equation}
+\begin{equation} 
+2k= 1; \quad k = \frac{1}{2}    \nonumber
+\end{equation}
+
+b. Codigo para el gráfico
+```{r}
+x <- seq(-1, 1, length = 500)
+y <- dunif(x, -1, 1)
+DF <- data.frame(fx = y)
+previous_theme <- theme_set(theme_bw())
+ggplot(data = DF, aes(x = x, y = fx)) +
+  geom_area(fill = "skyblue3") +
+  labs(x = "x", y = "f(x)") +
+  ylim(c(0, 1)) +
+  theme_set(previous_theme)
+```
 
 
 
