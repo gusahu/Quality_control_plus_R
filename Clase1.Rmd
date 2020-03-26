@@ -13,7 +13,7 @@ output:
 
 
 ## Variable aleatoria discreta
-Una variable aletatoria discreta asume cada uno de sus valorescon cierta probabilidad. Cuando dos dados son lanzados, la probabilidad de que su suma sea $7$, escrita $f(x)= P(X=x)$, es igual $1/6$. La función que asigna la probabilidad a los valores de las variables aleatorias es llamada \textbf{función de densidad de probabilidad (pdf)} o \textbf{distribución de probabilidad}. Toda pdf debe satisfacer las siguientes condiciones:
+Una variable aleatoria discreta asume cada uno de sus valores cierta probabilidad. Cuando dos dados son lanzados, la probabilidad de que su suma sea $7$, escrita $f(x)= P(X=x)$, es igual $1/6$. La función que asigna la probabilidad a los valores de las variables aleatorias es llamada \textbf{función de densidad de probabilidad (pdf)} o \textbf{distribución de probabilidad}. Toda pdf debe satisfacer las siguientes condiciones:
 
 1. $f(x)\geq 0$.
 2. $\sum_{x}f(x)=1$.
@@ -79,15 +79,15 @@ plot(ecdf(n.heads), main = "CDF para X", ylab = "F(X)", xlab = "x",
 
 
 ### Valor esperado
-Una de las más importantes ideal acerca de resumier la información provista en una **pdf** es el valor esperado. Dada una variable aleatoria $X$ con una **pdf** $f(x)$, el **valor esperado** de la variable aleatoria $X$, escrito $E(X)$, es
+Una de las más importantes ideal acerca de resumir la información provista en una **pdf** es el valor esperado. Dada una variable aleatoria $X$ con una **pdf** $f(x)$, el **valor esperado** de la variable aleatoria $X$, escrito $E(X)$, es
 \begin{equation} 
 \mu = E(X) = \sum_{x}xf(x)  \nonumber
 \end{equation} 
 $E(X)$ peude ser denotada como $\mu$, porque $E(X)$ es la media de una variable aleatoria $X$.
 
-**Ejemplo.** Un inspector de calidad muestrea un lote que contiene siete componentes; el lote contiene cuatro componentes buenos y tres defectuosos. El inspector toma una muestra de tres componenetes. Encunetre el valor esperado del número de componentes buenos en esta muestra.
+**Ejemplo.** Un inspector de calidad muestreo un lote que contiene siete componentes; el lote contiene cuatro componentes buenos y tres defectuosos. El inspector toma una muestra de tres componentes. Encuentre el valor esperado del número de componentes buenos en esta muestra.
 
-**Solución.** Sea $X$ el número de componentes buenos en la muestra. La distribuión de probabilidad de $X$ es
+**Solución.** Sea $X$ el número de componentes buenos en la muestra. La distribución de probabilidad de $X$ es
 \begin{equation} 
 f(x) = \frac{\displaystyle\binom{4}{x} \displaystyle\binom{3}{3-x}}{\displaystyle\binom{7}{3}}, \quad x=0,1,2,3.  \nonumber
 \end{equation} 
@@ -111,7 +111,7 @@ El segundo momento de una alrededor de la meida es llamado la **varianza** de la
 \begin{equation} 
 \sigma^{2}_{x} = E[(X-\mu)]^2 = \sum_{x}(x-\mu)^{2}f(x)   \nonumber
 \end{equation}
-Ña raíz cuadrada de la varianza, $\sigma$, se llama **desviación estándar** de $X$.
+La raíz cuadrada de la varianza, $\sigma$, se llama **desviación estándar** de $X$.
 
 
 ## Variable aleatoria continua
@@ -132,7 +132,7 @@ La función de densidad de una variable aleatoria es una función que determinar
 2. $\int_{-\infty}^{\infty}f(x)dx=1$.
 3. $P(a<X>b)=\int_{a}^{b}f(x)dx$.
 
-**Definición**: **La dustribución acumulada (cdf)** $F(X)$ de una variable aleatoria $X$ con función de densidad $f(x)$ es
+**Definición**: **La distribución acumulada (cdf)** $F(X)$ de una variable aleatoria $X$ con función de densidad $f(x)$ es
 
  \begin{equation}
  F(x) = P(X\leq x) = \int_{-\infty}^{\infty}f(t)dt \quad para \quad -\infty<x<\infty \nonumber
@@ -148,16 +148,16 @@ La función de densidad de una variable aleatoria es una función que determinar
  P(a<X>b)=F_{x}(b)-F_{x}(a) \quad para \quad -\infty<x<\infty \nonumber
  \end{equation}
  
- Es decir, directamente integrando la funciÛn de densidad o bien utilizando la cdf.
+ Es decir, directamente integrando la función de densidad o bien utilizando la cdf.
  
  
- **Ejemplo**. Suponer que $X$ es una variable aletoria continua con **pdf** $f(x)$, donde
+ **Ejemplo**. Suponer que $X$ es una variable aleatoria continua con **pdf** $f(x)$, donde
 \begin{equation} 
 f(x) = \left \{ \begin{matrix} c(1-x^{2}) & \mbox{si}-1<x\leq 1,
 \\ 0 & \mbox{en otros casos.}\end{matrix}\right. \nonumber
 \end{equation} 
  
-a. Encontrar la costante $c$ que $f(x)$ es una **pdf** de la variable aleatoria $X$.
+a. Encontrar la constante $c$ que $f(x)$ es una **pdf** de la variable aleatoria $X$.
 b. Encontrar la **cdf** para X.
 c. Calcular $P(-0.5\le X\le 1)$.
 d. Gráficar la **pdf** y **cdf**.
@@ -225,7 +225,7 @@ graf + stat_function(fun = F) + labs(x = "x", y = "F(x)", tittle = "CDF para X")
 
 
 ### Valor esperado
-Para variables aleatorias continuas, el definición asociada con la esperanza de una variable aleatoria $X$ o una función, digase $g(x)$, de $X$ son identicas a que para las variables aleatorias discretas, excepto que las sumatorias son reemplezadas con integrales. El **valor esperado** de una variable aleatoria continua $X$ es
+Para variables aleatorias continuas, el definición asociada con la esperanza de una variable aleatoria $X$ o una función, digase $g(x)$, de $X$ son iguales para las variables aleatorias discretas, excepto que las sumatorias son reemplazadas con integrales. El **valor esperado** de una variable aleatoria continua $X$ es
 \begin{equation} 
 E(X) = \int_{-\infty}^{\infty} xf(x)dx.	   \nonumber
 \end{equation}
@@ -240,13 +240,13 @@ Var(X) = \sigma^{2}_{x} = E[(X- \mu)]^2 = \int_{-\infty}^{\infty} (x- \mu)^2f(x)
 f(x) = k, \quad -1<x<1    \nonumber
 \end{equation}
 de la variable aleatoria X,
-a. Encontrar el valor de $k$ pra hacer $f(x)$ una **pdf**. Emplear este $k$ para la parte (c) y (d).
+a. Encontrar el valor de $k$ para hacer $f(x)$ una **pdf**. Emplear este $k$ para la parte (c) y (d).
 
 b. Gráficar la **pdf** con ggplot2.
 
 c. Encontrar la media de la distribución
 
-d. Encontar la varianza de la distribución.
+d. Encontrar la varianza de la distribución.
 
 **Solución**
 
@@ -273,6 +273,94 @@ ggplot(data = DF, aes(x = x, y = fx)) +
 ```
 
 
+
+# Distribuciones de probabilidad univariada
+
+En esta sección examinamos las distribuciones de probabilidad univariadas que son empleadas frucuentemente para modelar fénomenos aleatorios. Primero, introducimos las distribuciones de probabilidad discreta, seguido por las distribuciones de probabilidad continuas. Las distribiciones discretas pueden ser empleadas para modelar número de fallos hasta encontrar un seis en el lanzamiento de un dado, el número de estudiantes con una nota de siete en una clase, o el número de taxis que pasan por una calle. Las distribuciones continuas son usadas para modelar variables tales como peso, estatura, y tiempo.
+
+## Distribuciones de probabilidad univaridas discretas
+
+Cuando existen un número contable de elementos en un espacio muestral para un solo experimento, una **distribución discreta de probabilidad** es el resultado. La probabilidad para la ocurrencia de un valor dado de una variable aleatoria puede ser igual para cada valor o puede ser más o menos probable para ciertos valores, lo cual depende de la estructura del experimento.
+
+
+### Distribución uniforme discreta
+La más simple de todas las distrbuciones de probabilidad discreta es una en la cual la variable aleatoria toma cada uno de sus valores con una misma probabilidad. Esta distribución de probabilidad es conocida como **distribución uniforme discreta**.
+
+**Definición**: Si la variable aletaria $X$ toma valores $x_{1}, x_{2},..., x_{n},$ con idénticas probabilidades, entonces la distribución uniforme discreta está dada por
+\begin{equation} 
+f(x;n) = \frac{1}{n}, \quad x=x_{1}, x_{2},..., x_{n},	   \nonumber
+\end{equation}
+
+**Teorema** La media y la varianza de la distribución uniforme discreta $f(x;n)$ son
+
+\begin{equation} 
+E(X) = \mu = \frac{\sum_{i=1}^{n}x_{i}}{n}, \quad y \quad  \sigma^{2}=\frac{\sum_{i=1}^{n}(x_{i}- \mu)^{2}}{n}	   \nonumber
+\end{equation}
+
+**Ejemplo**. Un foco se selecciona al azar de una caja que contiene un foco de 40 watts, uno de 60 watts, uno de 75 watts, uno de 100 watts y uno de 120 watts. Escribir la función de probabilidad para la variable aletoria  que representa la selección aleatoria de un foco y determinar la media y la varianza de esa variable aleatoria.
+
+**Solución**. La variable aleatoria $X$ puede asumir el siguiente conjunto de valore $S=\{40, 60, 75, 100, 120\}$. La función de densidad de probabilidad para la variable aleatoria $X$ es
+
+\begin{equation} 
+P(X = x/n=5) = 1/5 \quad para \quad x = 40, 60, 75, 100, 120. 	   \nonumber
+\end{equation}
+
+Los calculos aritmeticos son realizados con el siguinete codigo
+
+```{r}
+Focos <- c(40, 60, 75, 100, 120)
+n <- length(Focos)
+media_focos <- (1/n) * sum(Focos)
+var_focos <- (1/n) * sum((Focos - media_focos)^{2})
+resultado <- c(media_focos, var_focos)
+resultado
+```
+
+
+### Distribuciones Bernoulli y Binomial
+Cuando la misma moneda es lanzada $n$ veces por la misma persona bajo las mismas condiciones, por tal razón que cada lanzamiento de la monera resultará en uno dos posibles resultados (cara o sello), y que la probabilidad de obtener un cara en cualquier intento es una constante $\frac{1}{2}$. Lanzar una moneda una sola vez es un ejemplo de un **proceso Bernoulli**. Cada ensayo se llama **experimento Bernoulli** con solamente dos posible resultados. Los resultados son mutuamente excluyentes y exhaustivos; por ejemplo, exito o fracaso, cierto o falso, vivo o muerto, hombre o mejur, etc. Una variable aleatoria Bernulli, $X$, puede tomar tomar dos valores, donde $X (exito) = 1$ y $X (fracaso) = 0$. La probabilidad que $X$ sea un exito es $p$, y la probabildad de que $X$ sea un fracaso es de $1-p$. La **pdf**, la media y la varianza de la distribución de una variable aleatoria Bernoulli son:
+
+\begin{equation} 
+\begin{split}
+f(X = x/p) = & p^{x}(1-p)^{1-x}, x=0,1 \\
+E(X) & = p \\
+Var(X) & = p(1-p) \nonumber
+\end{split}
+\end{equation}
+
+**Proceso Bernoulli**
+Si se habla con exactitud, el proceso de Bernoulli debe tener las siguientes propiedad:
+1. El experimento consiste en $n$ pruebas que se repiten.
+2. Cada prueba produce un resultado que se puede clasificar con éxito o fracaso.
+3. La probabilidad de un éxito, que denota por $p$, permanece constante en cada prueba.
+4. Las pruebas que se repiten son independientes.
+
+El número de $X$ éxitos en $n$ experimentos de Bernoulli se denomina **variable aleatoria binomial**. La distribución de probabilidad de esta variable aleatoria discreta se llama **distribución binomial**, y sus valores se denotarán como $b(x;n,p)$, pues depended de número de pruebas y de la probabilidad de éxito en una prueba dada
+
+**Definición**. Un experimento de <bernoulli puede terner como resultado un éxito con probabilidad de $p$ y fracaso con probabilidad $q = 1-p$. Entonces la distribución de probabilidad de la variable aleatoria binomial $X$, el núermo de éxtios en $n$ pruebas independientes, es
+\begin{equation} 
+b(x;n,p) = \binom{n}{x}p^{x}q^{n-x}, \quad x=0,1,2,...,n.
+\end{equation} 
+
+**Teorema**. La media y la varianza de la distribución binomial $b(x;n,p)$ son 
+\begin{equation} 
+E(X) = \mu = np \quad y \quad \sigma^{2} = npq.
+\end{equation} 
+
+El codigo para crear las gráficas que representen la **pdf** y la **cdf** para una variablr aleatoria binomial $b(x;8.0.3)$ se presenta a continuación
+
+```{r}
+opar <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2), pty = "s")
+x <- 0:8
+px <- dbinom(x, 8, 0.3)
+plot(x, px, type = "h", xlab = "x", ylab = "P(X = x)",
+    main = "PDF de X~Binomial(8, 0.3)") 
+xs <- rep(0:8, round(dbinom(0:8, 8, 0.3)*100000, 0))
+plot(ecdf(xs), main = "CDF de X~Binomial(8, 0.3)",
+    ylab = expression(P(X<=x)), xlab = "x" )
+par(opar)
+```
 
 
 
