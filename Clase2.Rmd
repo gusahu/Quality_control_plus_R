@@ -150,7 +150,7 @@ p(x;\lambda t) = \frac{e^{-\lambda t}(\lambda t)^{x}}{x!}, \quad x=0,1,2,..., \n
 \end{equation} 
 donde $\lambda$ es el número promedio de resultados por unidad de tiempo o región y $e = 2.71828...$
 
-**Teorema*. La media y la varianza de la distribución de Poisson $p(x;\lambda t)$ tiene el valor $\lambda t$.
+**Teorema**. La media y la varianza de la distribución de Poisson $p(x;\lambda t)$ tiene el valor $\lambda t$.
 
 El siguiente código representa una función de densidad y una función de distribución acumulada para una distribución $p(\lambda = 1)$
 
@@ -166,5 +166,114 @@ plot(ecdf(xs), main = "CDF de X~Poisson(1)",
     ylab = expression(P(X<=x)), xlab = "x" )
 par(opar)
 ```
+
+**Ejemplo**. En un proceso de fabricación donde se manufacturan productos de vidrio ocurren defectos o burbujas, lo que deja ocasionalmente a la pieza indeseada para su venta. Se sabe que, en promedio, un de cada 1000 casos de estos artículos que se producen tiene una o más burbujas. ¿Cuál es la probabilidad de que una muestra aleatoria de 800 tenga menos de siete articulos con burbujas?
+
+**Solución**. Éste es en esencia un experimento binomial con $n=800$ y $p=0.001$. Como $p$ es muy cercano a cero y $n$ es bastante grande, haremos la aproximación con la distribución de Poisson utilizado
+
+\begin{equation} 
+\mu = (800)(0.001)=8. \nonumber
+\end{equation} 
+De aquí, si $X$ representa el número de burbujas, tenemos
+
+\begin{equation} 
+P(X<7) = \sum_{x=0}^{6}b(x;8000,0.001)=\sum_{x=0}^{6}p(x;8)=0.3134. \nonumber
+\end{equation} 
+
+
+**Ejemplo**. Las llamadas telefonicas a el número local $911$ son conocidas por seguir una distribución de Poisson con una media de dos llamadas por minuto. Calcular las probabilidad que:
+
+a. Habrán cero llamadas durante un periodo de un minuto.
+b. Habrán menos de cinco llamadas durante un periodo de un minuto.
+c. Habrán menos de seis llamadas en una hora.
+
+**Solución**
+a. $P(X=0/ \lambda=2) = \frac{e^{-2}(2)^{0}}{0!}=0.1353$
+```{r}
+dpois(x = 0, lambda = 2)
+```
+
+b. Notar que $P(X<5)=P(X\leq4)$.
+$P(X \leq4/ \lambda=2) = \sum_{x=0}^{4}\frac{e^{-2}(2)^{x}}{x!}=e^{-2}1+2+ \frac{2^2}{2!}+ \frac{2^3}{3!} + \frac{2^4}{4!}=0.9473$
+```{r}
+ppois(q = 4, lambda = 2)
+```
+
+c. NOtar que el periodo de tiempo cambia de un minuto a una hora (60 minutos). Consecuentemente, el número promedio de llamadas en una hora es $2*(60)=120$
+$(X \leq5/ \lambda=120$.
+$P(X \leq4/ \lambda=2) = \sum_{x=0}^{5}\frac{e^{-120}(120)^{x}}{x!}=0$
+```{r}
+ppois(q = 5, lambda = 120)
+```
+
+
+
+### Distribución Geométrica
+La Distribución geométrica, como la distribución binomial, está basada en el proceso de Bernoulli; sin embargo, ésta no fija el número de intentos a priori al experimento. La distribución geométrica calcula la probabilidad que el primer éxito ocurra después de $n$ fallos en vez de calcular la probabilidad de obsevar $x$ exitos en $n$ intentos.
+
+**Definición**. Si pruebas independientes repetidas pueden tener como resultado un éxito con probabilidad $p$ y un fracaso con probabilidad $q=1-p$, entonces la distribución de la variable aleatoria $X$, el número de las prueba en el que ocurre el primer éxito, es
+\begin{equation} 
+g(x;p) = pq^{x-1}, \quad x=1,2,3..., \nonumber
+\end{equation} 
+
+
+**Teorema**. La media y la varianza de una variable aleatoria que sigue una distribución geométrica son 
+\begin{equation} 
+\mu = \frac{1}{p}, \quad \sigma^{2}= \frac{1-p}{p^2}. \nonumber
+\end{equation}
+
+```{r}
+opar <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2), pty = "s")
+x <- 0:15
+px <- dgeom(x, 0.3)
+plot(x, px, type = "h", xlab = "x", ylab = "P(X = x)",
+    main = "PDF de X~Geométrica(0.3)") 
+xs <- rep(0:15, round(dgeom(0:15, 0.1)*100000, 0))
+plot(ecdf(xs), main = "CDF de X~Gométrica(0.3)",
+    ylab = expression(P(X<=x)), xlab = "x" )
+par(opar)
+```
+
+
+
+### Distribución Binomial negativa
+
+**Definición**. Si pruebas independientes repetidas pueden tener como resultado un éxtio con probabilidad $p$ y un fracaso con probabilidad $1-p$, entonces la disgribcuión de la vartiable aleatoria $X$, el número de la prueba en la que ocurre el *k-ésimo* éxito, es
+\begin{equation} 
+b*(x;k,p) = \binom{x-1}{k-1}p^{k}q^{x-k}, \quad x=k, k+1,k+2,..., \nonumber
+\end{equation} 
+
+**Ejemplo**. Encuentre la probabilidad de que una persona que lanza tres monedas obtenga sólo caras o sólo cruces por seguna vex en el quinto lanzamiento.
+
+**Solución**. AL utilizar la distribución binomial negativa con $x=5$, $k=2$ y $p=1/4$, tenemos
+\begin{equation} 
+b^{*}  \left(5;2, \frac{1}{4} \right) = \binom{4}{1} \binom{1}{4}^{2} \binom{3}{4}^{3} = \binom{3}{4}^{3} = \frac{4!}{1!3!}* \frac{3^{3}}{4^{5}}=\frac{27}{256}. \nonumber
+\end{equation} 
+
+ 
+**Media y varianza de las distribución binomial negativa**
+\begin{equation} 
+\mu = k \frac{1}{p}, \quad \sigma^{2}= k \frac{1}{p^2}. \nonumber
+\end{equation}
+
+
+```{r}
+opar <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2), pty = "s")
+x <- 0:20
+px <- dnbinom(x, size = 6, 0.5)
+plot(x, px, type = "h", xlab = "x", ylab = "P(X = x)",
+    main = "PDF de X~Binomial_N(6, 0.5)") 
+#xs <- rep(0:15, round(dnbinom(0:20, size = 6, 0.5)*100000, 0))
+plot(ecdf(xs), main = "CDF de X~Binomial_N(6, 0.5)",
+    ylab = expression(P(X<=x)), xlab = "x" )
+par(opar)
+```
+
+
+
+
+
 
 
