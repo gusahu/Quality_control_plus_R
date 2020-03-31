@@ -236,7 +236,6 @@ par(opar)
 ```
 
 
-
 ### Distribución Binomial negativa
 
 **Definición**. Si pruebas independientes repetidas pueden tener como resultado un éxtio con probabilidad $p$ y un fracaso con probabilidad $1-p$, entonces la disgribcuión de la vartiable aleatoria $X$, el número de la prueba en la que ocurre el *k-ésimo* éxito, es
@@ -265,15 +264,8 @@ x <- 0:20
 px <- dnbinom(x, size = 6, 0.5)
 plot(x, px, type = "h", xlab = "x", ylab = "P(X = x)",
     main = "PDF de X~Binomial_N(6, 0.5)") 
-#xs <- rep(0:15, round(dnbinom(0:20, size = 6, 0.5)*100000, 0))
+xs <- rep(0:20, round(dnbinom(0:20, size = 6, 0.5)*100000, 0))
 plot(ecdf(xs), main = "CDF de X~Binomial_N(6, 0.5)",
     ylab = expression(P(X<=x)), xlab = "x" )
 par(opar)
 ```
-
-
-
-
-
-
-

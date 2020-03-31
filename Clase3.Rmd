@@ -1,0 +1,103 @@
+---
+title: "Control Estadístico de Procesos"
+author: "Gustavo Ahumada"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+
+### Distribción hipergeométrica
+
+La distribución hipergeométrica no requiere independencia y se basa en el muestre que se realiza **sin reemplezo**. Las aplicaciones de la distribución hipergeométrica se encuentran en muchas áreas, con gran uso en muestreo de aceptación y garantía de calidad. Obviamente, para muchos de estos campos de muestreo se realiza a expensas del artículo de que se prueba. Es decir, el artículo se destruye y por ello no se puede reemplazar en la muestra.
+
+En general, nos interesa la probabilidad de seleccionar $x$ éxitos de los $k$ artículos considerados como éxito y $n-k$ fracasos de los $N-k$ artículos que se consideran fracasos cuando se selecciona  se selecciona una muestra aleatoria de tamaño $n$ de $N$ artículos. Esto se conoce como **experimento hipergeométrico**.
+
+**Definición**. La dist. de probabilidad de la variable aleatoria hipergeométrica $X$, el número de éxtios en una muestra aleatoria de tamaño $n$ que se selecciona de $N$ artículos de los que $k$ son **éxito** y $N-K$ **fracaso**, es
+
+\begin{equation} 
+h(x;N,n,k) =\frac{\binom{k}{x} \binom{N-k}{n-x}}{\binom{N}{n}} \quad x=0,1,2...,n. \nonumber
+\end{equation} 
+
+```{r}
+opar <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2), pty = "s")
+x <- 0:10
+m <- 15
+n <- 10 # N = m+n
+k<- 10
+px <- dhyper(x, m,n,k) # ?dhyper para mas información de esta distribución
+plot(x, px, type = "h", xlab = "x", ylab = "P(X = x)",
+    main = "PDF de X~Hyper(15, 10, 10)") 
+xs <- rep(x, round(dhyper(x,m,n,k)*100000, 0))
+plot(ecdf(xs), main = "CDF de X~Hyper(15, 10, 10)",
+    ylab = expression(P(X<=x)), xlab = "x" )
+par(opar)
+```
+
+
+
+## Distribuciones de probabilidad univaridas continuas
+Si los posibles resultados de una solo experimento se encuentran en un rango de valores, una distribución univariada será necesaria para modelas los resultados.
+
+### Distribución uniforme continua
+
+Una distribuciones continuas más simple en la estadística es la **distribución uniforme continua**. Esta distribución se carcateriza por una función de densidad que es "plana", y por lo tanto la probabilidad es uniforme en un intervalo cerrado, digamos $[a,b]$.
+
+**Definición**. La función de densidad de la variable aleatoria uniforme continua $X$ en el intervalo $[a,b]$ es
+
+\begin{equation} 
+f(x;a,b) = \frac{1}{b-a}, \quad a \leq x \leq b \nonumber
+\end{equation} 
+
+**Teorema**. La media y la varianza de la distribución uniforme son
+
+\begin{equation} 
+\mu =  \frac{a+b}{2} \quad y \quad \sigma^{2} = \frac{(b-a)^{2}}{12} \nonumber
+\end{equation} 
+
+
+```{r}
+opar <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2), pty = "s")
+x <- 2:6
+px <- dunif(x, min = 2, max = 6)
+plot(x, px, type = "h", xlab = "x", ylab = "P(X = x)",
+    main = "PDF de X~Uniforme_C(2, 6)") 
+#xs <- rep(2:6, round(dunif(x, min = 2, max = 6)*100000, 0,))
+plot(ecdf(xs), main = "CDF de X~Uniforme_C(2, 6)",
+    ylab = expression(P(X<=x)), xlab = "x")
+par(opar)
+```
+
+
+### Distribución Normal (Gaussiana)
+
+La distribución continua de probabilidad más importante en todo el campo de la estadística es la **distribucón bnormal**. Este es debido al hecho que muchas poblaciones numericas tiene distribuciones que pueden ser aproximadas con una distribución normal. Ejemplo de las distribuciones que siguen una aproximación normal incluyen las caracteristicas fisicas como el peso y la estatura de una especia particular.
+
+
+**Definición**. La función de densidad de la variable aleatoria normal $X$, con media $\mu$ y varianza $\sigma^2$, es
+
+\begin{equation} 
+n(x;\mu , \sigma^2) =  \frac{1}{\sqrt{2 \pi \sigma}} e^{-(1/2)[(x-\mu)/\sigma]^{2}} \quad -\infty < x < \infty \nonumber
+\end{equation}
+\begin{equation} 
+donde \quad \pi = 3.14159... \quad y \quad e = 2.71828.... \nonumber
+\end{equation}
+
+```{r}
+opar <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2), pty = "s")
+x <- seq(-3, +3, by=.1)
+px <- dnorm(x, mean = 0, sd = 1)
+plot(x, px, type = "l", xlab = "x", ylab = "P(X = x)",
+    main = "PDF de X~Normal(0, 1)") 
+xs <- rep(x, round(dnorm(x, mean = 0, sd = 1)*100000))
+plot(ecdf(xs), main = "CDF de X~Normal(0, 1)",
+    ylab = expression(P(X<=x)), xlab = "x")
+par(opar)
+```
+
