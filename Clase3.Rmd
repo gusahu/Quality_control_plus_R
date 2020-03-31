@@ -39,7 +39,6 @@ par(opar)
 ```
 
 
-
 ## Distribuciones de probabilidad univaridas continuas
 Si los posibles resultados de una solo experimento se encuentran en un rango de valores, una distribución univariada será necesaria para modelas los resultados.
 
