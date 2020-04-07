@@ -75,7 +75,7 @@ par(opar)
 
 ### Distribución Normal (Gaussiana)
 
-La distribución continua de probabilidad más importante en todo el campo de la estadística es la **distribucón bnormal**. Este es debido al hecho que muchas poblaciones numericas tiene distribuciones que pueden ser aproximadas con una distribución normal. Ejemplo de las distribuciones que siguen una aproximación normal incluyen las caracteristicas fisicas como el peso y la estatura de una especia particular.
+La distribución continua de probabilidad más importante en todo el campo de la estadística es la **distribucón bnormal**. Esto es debido al hecho que muchas poblaciones numericas tiene distribuciones que pueden ser aproximadas con una distribución normal. Ejemplo de las distribuciones que siguen una aproximación normal incluyen las caracteristicas fisicas como el peso y la estatura de una especia particular.
 
 
 **Definición**. La función de densidad de la variable aleatoria normal $X$, con media $\mu$ y varianza $\sigma^2$, es
@@ -86,6 +86,10 @@ n(x;\mu , \sigma^2) =  \frac{1}{\sqrt{2 \pi \sigma}} e^{-(1/2)[(x-\mu)/\sigma]^{
 \begin{equation} 
 donde \quad \pi = 3.14159... \quad y \quad e = 2.71828.... \nonumber
 \end{equation}
+\begin{equation} 
+E[X] = \mu \quad y \quad Var[X] = \sigma^{2} \nonumber
+\end{equation}
+
 
 ```{r}
 opar <- par(no.readonly = TRUE)
@@ -99,4 +103,102 @@ plot(ecdf(xs), main = "CDF de X~Normal(0, 1)",
     ylab = expression(P(X<=x)), xlab = "x")
 par(opar)
 ```
+
+
+La **cdf** para una variable aleatoria normal, $X$, con media, $\mu$, y desviación estandar, $\sigma$, es 
+\begin{equation} 
+F(x) = P(X \leq x) = \frac{1}{\sqrt(2\pi \sigma^{2})} \int_{-\infty}^{x} e^-{{(x-\mu)^{2}}{2\sigma^{2}}} dx \nonumber
+\end{equation}
+
+Una variable normal con $\mu = 0$ y $\sigma=1$ frecuentemente es denotada $Z$, es llamada variable aleatoria **normal estándar**. La **cdf** para la distribución estándar es calculada para la primera estandarización de la variable aleatoria $X$, donde $X~N(\mu, \sigma)$, empleando 
+\begin{equation}
+Z = \frac{X-\mu}{\sigma} \sim N(0,1). \nonumber
+\end{equation}
+
+
+\begin{equation}
+F(x) = P(X \leq x) = P\left(Z \leq \frac{X-\mu}{\sigma} \right) = \frac{1}{\sqrt(2\pi)} \int_{-\infty}^{\frac{x-\mu}{\sigma}}  e^-{\frac{x^{2}}{2}} dx. \nonumber
+\end{equation}
+
+**Ejemplo** Los resultados en una prueba estandarizada sigue una distribución normal con una media de $100$ y una desviación estándar de $10$.
+a. ¿Cual es la probabilidad que un individuo seleccionado aleatoriamente tenga un resultado entre $90$ y $115$?
+b. ¿Cual es el resultado que uno necesita para estar en el $10%$ con mejores notas de la clase?
+c. Encontrar la constante $c$ tal que $P(100 \leq X \leq c)=0.10$.
+
+**Solución**
+a. Tenemos que $P(90 \leq X \leq 115) = P(X \leq 115)-P(X \leq 90)$. 
+Para encontrar $P(X \leq 115)$ y $P(X \leq 90)$, uno puede estándarizar empleando la definición anterior. Esto es,
+
+\begin{equation}
+P(X \leq 115) = P\left(Z \leq \frac{115-100}{10} \right) P(X \leq 1.5) \nonumber
+\end{equation}
+ y 
+\begin{equation}
+P(X \leq 90) = P\left(Z \leq \frac{90-100}{10} \right) P(X \leq 1.0) \nonumber
+\end{equation}
+
+Consecuentemente tenemos,
+
+\begin{equation}
+\begin{split}
+P(90 \leq X \leq 115) & = P(-1.0 \leq Z \leq 1.5) \\
+& = P(X \leq 1.5) - P(X \leq -1.0) \\
+& = 0.9332 - 0.1587 = 0.7745. \nonumber
+\end{split}
+\end{equation}
+
+La probabilidad de seleccionar un individuo con un resultado entre $90$ y $115$ es $0.7754$.
+
+```{r}
+pnorm(115, 100, 10) - pnorm(90, 100, 10) 
+```
+
+b. Encontrar el valor $c$ tal que $90\%$ del área este a su ozquierda es equivalente a encontar el valor $c$ tal que el $10\%$  de sus área está a la derecha. Esto es, el valor $c$ que satisface $P(X \leq c) = 0.9$ es equivalente a encontrar el valor $c$ tal que $P(X	\geq c)= 0.10$ desde que la función $qnorm()$ se refiere al área la izquierda de un valor dado por defecto, resolvemos
+
+\begin{equation}
+P(X \leq c) = P\left(Z = \frac{X-100}{10} \leq \frac{X
+c-100}{10}  \right) = 0.90 \quad para \quad c. \nonumber
+\end{equation}
+
+Empleando $qnorm(0.9)$, encontramos el valor $Z$ $(1.2816)$ tal que $90\%$ del área en la distribución este a la izquierda de ese valor. Consecuentemente, estar en el $10\%$ superior, uno necesita estar a más de $1.2816$ desviaciones estándar por encima de la media:
+
+\begin{equation}
+\frac{c-100}{10} = 1.2816 \Longrightarrow c = 112.816. \nonumber
+\end{equation}
+
+Para estar en el $10\%$, uno necesita una calificación igual o superior $112.8155$.
+
+```{r}
+qnorm(0.90, 100, 10)
+```
+
+
+c. $P(105 \leq X \leq c)=0.10$ es la igual a decir
+\begin{equation}
+P(X \leq c) = 0.10 + P(X \leq 105)= 0.10 + P\left(Z \leq \frac{105-100}{10} \right) \nonumber
+\end{equation}
+
+Empleando $pnorm(0.5)$,
+\begin{equation}
+P\left(Z \leq \frac{105-100}{10} \right) = P(Z \leq 0.5) = 0.6915. \nonumber
+\end{equation}
+
+Esto sigue que $P(X \leq c)=0.7915$. Empleando $pnorm(0.7915)$ da $0.8116$:
+
+\begin{equation}
+P(X \leq c) = P\left(Z \leq \frac{X-100}{10} \leq \frac{c-100}{10} \right) = 0.7915 \nonumber
+\end{equation}
+\begin{equation}
+esto \quad se \quad encuentra \quad resolviendo \quad \frac{c-100}{10} = 0.8116 \Longrightarrow c = 108.116. \nonumber
+\end{equation}
+
+Notar que un valor $Z$ de $0.8116$ tiene un $79.15\%$ de su área a la izquierda de dicho valor.
+
+```{r}
+qnorm(0.1 + pnorm(105, 100, 10), 100, 10)
+```
+
+
+
+
 
