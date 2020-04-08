@@ -19,7 +19,7 @@ Una variable aleatoria discreta asume cada uno de sus valores cierta probabilida
 2. $\sum_{x}f(x)=1$.
 3. $P(X=x)=f(x)$.
 
-Hay muchos problemas en los cuales  deseamos calcular la probabilidad de que el valor observado de una variable aleatoria $X$ sea mayor o igual que algún número real $x$. Al escribir  $F(X)=P(X	\leq x)$ para cualquier número real $x$, definimos la \textbf{distribución acumulada (cdf)} $F(X)$ de una variable aleatoria discreta $X$ con distribución $f(x)$. Se define como:
+Hay muchos problemas en los cuales  deseamos calcular la probabilidad de que el valor observado de una variable aleatoria $X$ sea menor o igual que algún número real $x$. Al escribir  $F(X)=P(X	\leq x)$ para cualquier número real $x$, definimos la \textbf{distribución acumulada (cdf)} $F(X)$ de una variable aleatoria discreta $X$ con distribución $f(x)$. Se define como:
 
 $F(X)=P(X	\leq x)=\sum_{t\leq x}f(x)$ para $-\infty<x<\infty$.
 
@@ -31,7 +31,7 @@ Tiene las siguientes propiedades:
 4. $lim_{x\rightarrow -\infty} F(X)=0$.
 
 
-\textbf{Ejemplo 1} Lanzar una moneda equilibrada tres veces  y sea las variable aleatoria $X$ el número de caras observadas en los tres intentos. 
+\textbf{Ejemplo 1} Lanzar una moneda equilibrada tres veces y sea la variable aleatoria $X$ el número de caras observadas en los tres intentos. 
 
 \textbf{Solución} El espacio muestral para el experimento es:
 
@@ -85,7 +85,7 @@ Una de las más importantes ideal acerca de resumir la información provista en 
 \end{equation} 
 $E(X)$ peude ser denotada como $\mu$, porque $E(X)$ es la media de una variable aleatoria $X$.
 
-**Ejemplo.** Un inspector de calidad muestreo un lote que contiene siete componentes; el lote contiene cuatro componentes buenos y tres defectuosos. El inspector toma una muestra de tres componentes. Encuentre el valor esperado del número de componentes buenos en esta muestra.
+**Ejemplo.** Un inspector de calidad muestrea un lote que contiene siete componentes; el lote contiene cuatro componentes buenos y tres defectuosos. El inspector toma una muestra de tres componentes. Encuentre el valor esperado del número de componentes buenos en esta muestra.
 
 **Solución.** Sea $X$ el número de componentes buenos en la muestra. La distribución de probabilidad de $X$ es
 \begin{equation} 
@@ -107,7 +107,7 @@ c(EX, MP)
 
 
 ### Varianza
-El segundo momento de una alrededor de la meida es llamado la **varianza** de la distribución de $X$, o simplemente la varianza de $X$:
+El segundo momento de una variable aleatoria alrededor de la media es llamado la **varianza** de la distribución de $X$, o simplemente la varianza de $X$:
 \begin{equation} 
 \sigma^{2}_{x} = E[(X-\mu)]^2 = \sum_{x}(x-\mu)^{2}f(x)   \nonumber
 \end{equation}
@@ -115,14 +115,14 @@ La raíz cuadrada de la varianza, $\sigma$, se llama **desviación estándar** d
 
 
 ## Variable aleatoria continua
-Una variable aleatoria se llama **variable aleatoria continua** si puede tomar valores en una escala continua. A menudo los posibles valores de una variable continua son precisamente los mismos valores el espacio muestral continuo. POr ejemplo, la medición de la distancia que cierta marca de automóvil recorre en una pista de prueba con 5 litros de gasolina.
+Una variable aleatoria se llama **variable aleatoria continua** si puede tomar valores en una escala continua. A menudo los posibles valores de una variable continua son precisamente los mismos valores el espacio muestral continuo. Por ejemplo, la medición de la distancia que cierta marca de automóvil recorre en una pista de prueba con 5 litros de gasolina.
 
 Una variable aleatoria continua tiene una probabilidad cero de tomar *exactamente* cualquiera de sus valores. Por lo tanto, su distribución de probabilidad no puede dar una forma tabular. Este tipo de variables aleatorias se caracterizan por:
 
 - Toman valores en un intervalo (abierto o cerrado), es decir en un continuo.
 - No tiene sentido calcular la probabilidad de que la v.a. adopte un valor particular, ya que es cero.
 - Pero calculamos probabilidades en intervalos.
-- Estas probabilidades son siempre ·reas bajo curvas, estas curvas son las funciones de densidad.
+- Estas probabilidades son siempre áreas bajo curvas, estas curvas son las funciones de densidad.
 
 La función de densidad de una variable aleatoria es una función que determinará una curva bajo la cual se calcularán las áreas = probabilidades en un intervalo.
 
@@ -170,8 +170,8 @@ a. Empleando la propiedad $2$ de la definición de **pdf**
 
 \begin{equation} 
 \begin{split}
-1 & = c\left(x - \frac{x^{3}}{3})\right|_0^1 \\
-  & = c\left(1 - \frac{1}{3} - -1 - \frac{-1}{3}  \right) \\
+1 & = c\left(x - \frac{x^{3}}{3} \right)|_{-1}^{1} \\
+  & = c\left(1 - \frac{1}{3} - (-1 - \frac{-1}{3})  \right) \\
   & = c\left(\frac{2}{3} -\frac{-2}{3}  \right) \\
 c & = \frac34 \nonumber
 \end{split}
@@ -207,6 +207,7 @@ f <- function(x) {
 }
 ```
 
+
 ```{r}
 F <- function(x) {
   y <- -x^3/4 + 3 * x/4 + 1/2
@@ -215,6 +216,7 @@ F <- function(x) {
   return(y)
 }
 ```
+
 
 ```{r}
 library(ggplot2)
@@ -225,7 +227,7 @@ graf + stat_function(fun = F) + labs(x = "x", y = "F(x)", tittle = "CDF para X")
 
 
 ### Valor esperado
-Para variables aleatorias continuas, el definición asociada con la esperanza de una variable aleatoria $X$ o una función, digase $g(x)$, de $X$ son iguales para las variables aleatorias discretas, excepto que las sumatorias son reemplazadas con integrales. El **valor esperado** de una variable aleatoria continua $X$ es
+Para variables aleatorias continuas, la definición asociada con la esperanza de una variable aleatoria $X$ o una función, digase $g(x)$, de $X$ son iguales para las variables aleatorias discretas, excepto que las sumatorias son reemplazadas con integrales. El **valor esperado** de una variable aleatoria continua $X$ es
 \begin{equation} 
 E(X) = \int_{-\infty}^{\infty} xf(x)dx.	   \nonumber
 \end{equation}
@@ -240,6 +242,7 @@ Var(X) = \sigma^{2}_{x} = E[(X- \mu)]^2 = \int_{-\infty}^{\infty} (x- \mu)^2f(x)
 f(x) = k, \quad -1<x<1    \nonumber
 \end{equation}
 de la variable aleatoria X,
+
 a. Encontrar el valor de $k$ para hacer $f(x)$ una **pdf**. Emplear este $k$ para la parte (c) y (d).
 
 b. Gráficar la **pdf** con ggplot2.
@@ -256,10 +259,10 @@ a. Desde $\int_{-\infty}^{\infty} xf(x)dx$ debería ser 1 para que $f(x)$ sea un
 \int_{-1}^{1} kdx = 1    \nonumber
 \end{equation}
 \begin{equation} 
-2k= 1; \quad k = \frac{1}{2}    \nonumber
+kx |_{-1}^{1} = 1; \quad 2k = 1 \quad k = \frac{1}{2}    \nonumber
 \end{equation}
 
-b. Codigo para el gráfico
+b. Código para el gráfico
 ```{r}
 x <- seq(-1, 1, length = 500)
 y <- dunif(x, -1, 1)
