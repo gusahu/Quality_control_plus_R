@@ -21,7 +21,7 @@ Cuando existen un número contable de elementos en un espacio muestral para un s
 ### Distribución uniforme discreta
 La más simple de todas las distribuciones de probabilidad discreta es una en la cual la variable aleatoria toma cada uno de sus valores con una misma probabilidad. Esta distribución de probabilidad es conocida como **distribución uniforme discreta**.
 
-**Definición**: Si la variable aletarga $X$ toma valores $x_{1}, x_{2},..., x_{n},$ con idénticas probabilidades, entonces la distribución uniforme discreta está dada por
+**Definición**: Si la variable aleatoria $X$ toma valores $x_{1}, x_{2},..., x_{n},$ con idénticas probabilidades, entonces la distribución uniforme discreta está dada por
 \begin{equation} 
 f(x;n) = \frac{1}{n}, \quad x=x_{1}, x_{2},..., x_{n},	   \nonumber
 \end{equation}
@@ -53,7 +53,7 @@ resultado
 
 
 ### Distribuciones Bernoulli y Binomial
-Cuando la misma moneda es lanzada $n$ veces por la misma persona bajo las mismas condiciones, por tal razón que cada lanzamiento de la monera resultará en uno dos posibles resultados (cara o sello), y que la probabilidad de obtener un cara en cualquier intento es una constante $\frac{1}{2}$. Lanzar una moneda una sola vez es un ejemplo de un **proceso Bernoulli**. Cada ensayo se llama **experimento Bernoulli** con solamente dos posible resultados. Los resultados son mutuamente excluyentes y exhaustivos; por ejemplo, exito o fracaso, cierto o falso, vivo o muerto, hombre o mejur, etc. Una variable aleatoria Bernulli, $X$, puede tomar tomar dos valores, donde $X (exito) = 1$ y $X (fracaso) = 0$. La probabilidad que $X$ sea un exito es $p$, y la probabildad de que $X$ sea un fracaso es de $1-p$. La **pdf**, la media y la varianza de la distribución de una variable aleatoria Bernoulli son:
+Cuando la misma moneda es lanzada $n$ veces por la misma persona bajo las mismas condiciones, por tal razón que cada lanzamiento de la monera resultará en uno dos posibles resultados (cara o sello), y que la probabilidad de obtener un cara en cualquier intento es una constante $\frac{1}{2}$. Lanzar una moneda una sola vez es un ejemplo de un **proceso Bernoulli**. Cada ensayo se llama **experimento Bernoulli** con solamente dos posible resultados. Los resultados son mutuamente excluyentes y exhaustivos; por ejemplo, exito o fracaso, cierto o falso, vivo o muerto, hombre o mujer, etc. Una variable aleatoria Bernoulli, $X$, puede tomar tomar dos valores, donde $X (exito) = 1$ y $X (fracaso) = 0$. La probabilidad que $X$ sea un exito es $p$, y la probabildad de que $X$ sea un fracaso es de $1-p$. La **pdf**, la media y la varianza de la distribución de una variable aleatoria Bernoulli son:
 
 \begin{equation} 
 \begin{split}
@@ -65,21 +65,25 @@ Var(X) & = p(1-p) \nonumber
 
 **Proceso Bernoulli**
 Si se habla con exactitud, el proceso de Bernoulli debe tener las siguientes propiedad:
+
 1. El experimento consiste en $n$ pruebas que se repiten.
+
 2. Cada prueba produce un resultado que se puede clasificar con éxito o fracaso.
+
 3. La probabilidad de un éxito, que denota por $p$, permanece constante en cada prueba.
+
 4. Las pruebas que se repiten son independientes.
 
-El número de $X$ éxitos en $n$ experimentos de Bernoulli se denomina **variable aleatoria binomial**. La distribución de probabilidad de esta variable aleatoria discreta se llama **distribución binomial**, y sus valores se denotarán como $b(x;n,p)$, pues depended de número de pruebas y de la probabilidad de éxito en una prueba dada
+El número de $X$ éxitos en $n$ experimentos de Bernoulli se denomina **variable aleatoria binomial**. La distribución de probabilidad de esta variable aleatoria discreta se llama **distribución binomial**, y sus valores se denotarán como $b(x;n,p)$, pues depende de número de pruebas y de la probabilidad de éxito en una prueba dada.
 
-**Definición**. Un experimento de <bernoulli puede terner como resultado un éxito con probabilidad de $p$ y fracaso con probabilidad $q = 1-p$. Entonces la distribución de probabilidad de la variable aleatoria binomial $X$, el núermo de éxtios en $n$ pruebas independientes, es
+**Definición**. Un experimento de Bernoulli puede tener como resultado un éxito con probabilidad de $p$ y fracaso con probabilidad $q = 1-p$. Entonces la distribución de probabilidad de la variable aleatoria binomial, $X$, el número de éxitos en $n$ pruebas independientes, es
 \begin{equation} 
-b(x;n,p) = \binom{n}{x}p^{x}q^{n-x}, \quad x=0,1,2,...,n.
+b(x;n,p) = \binom{n}{x}p^{x}q^{n-x}, \quad x=0,1,2,...,n. \nonumber
 \end{equation} 
 
 **Teorema**. La media y la varianza de la distribución binomial $b(x;n,p)$ son 
 \begin{equation} 
-E(X) = \mu = np \quad y \quad \sigma^{2} = npq.
+E(X) = \mu = np \quad y \quad \sigma^{2} = npq. \nonumber
 \end{equation} 
 
 El código para crear las gráficas que representen la **pdf** y la **cdf** para una variable aleatoria binomial $b(x;8.0.3)$ se presenta a continuación
@@ -99,12 +103,13 @@ par(opar)
 
 
 **Ejemplo**. **Simulación proceso Bernoulli** Considerar el problema de simular $m$ muestras repetidas de $n$ procesos de Bernoulli.
+
 a. Escribir la función que generará $m$ repetidas muestras de $n$ procesos de Bernoulli cada una con un probabilidad de ocurrencia de $p$. La función debería crear un histograma con los valores teoricos superpuestos sobre los valores simulados.
 
 b. Emplear la función para generar un muestra de tamaño $n=5$ con $p=0.5$ para simular la distribución binomial. 
 
-
 a. **Solución**: Creamos la función $simular.bino()$ 
+
 ```{r}
 simular.bino <- function(samples = 10000, n =20, pi = 0.5)
 {
@@ -132,15 +137,18 @@ b. **Solución**
 set.seed(31)
 simular.bino(samples = 1000, n = 5, pi = 0.5)
 ```
-En la figura anterior tenemos un histograma de $1000$ muestras simuladas donde $n = 5 $ y $p=0.5$ superpuesta sobre la distribución teorica para una variable aletatoria que sigue una distribución $b(n=5, p=0.5)$.
+En la figura anterior tenemos un histograma de $1000$ muestras simuladas donde $n = 5$ y $p=0.5$ superpuesta sobre la distribución teorica para una variable aletatoria que sigue una distribución $b(n=5, p=0.5)$.
 
 
 ### Distribución de Poisson
-Loa experimentos que dan valores números de una variable aleatoria $X$, el número de resultados que ocurren durante un intervalo dado o en un región específica, se laman **experimentos de Poisson**. El intervalo dado puede tener cualquier longitud, como un minuto, un día, una semana, un mes, o incluso un año. Por lo tanto, podemos representar mediante un proceso de Poisson un variable aleatoria $X$ que represente el número de llamadas telefonicas reportando casos de Covid-19 por durante una hora en un hospital, el número de días que una escuela está cerrada por la temporada de invierno o el número de juegos de la futbol que están suspendidos debido a la lluvia.
+Los experimentos que asignan a una variable aleatoria, $X$, el número de resultados que ocurren durante un intervalo dado o en un región específica, se llaman **experimentos de Poisson**. El intervalo dado puede tener cualquier longitud, como un minuto, un día, una semana, un mes, o incluso un año. Por lo tanto, podemos representar mediante un proceso de Poisson mediante una  variable aleatoria $X$ que represente el número de llamadas telefonicas durante una hora que reportan casos de Covid-19 en un hospital, el número de días que una escuela está cerrada por la temporada de invierno o el número de juegos de la futbol que están suspendidos debido a la lluvia.
 
 Un experimento de Poisson se deriva del **proceso de Poisson** y posee las siguientes propiedades:
-1. El número de resultados que ocurre en un intervalo o región específica es independiente del numero que ocurre en cualquier otro intervalo o región del espacio disyunto.
-2. La probabilidad de que ocurra un solo resultado en un intervalo muy corto es proporcional a la longitud del intervalo o al tamaña de la región y ni depende del número de resultados que ocurren fuera de este intervalo.
+
+1. El número de resultados que ocurre en un intervalo o región específica es independiente del número que ocurre en cualquier otro intervalo o región del espacio disyunto.
+
+2. La probabilidad de que ocurra un solo resultado en un intervalo muy corto es proporcional a la longitud del intervalo o al tamaño de la región y no depende del número de resultados que ocurren fuera de este intervalo.
+
 3. La probabilidad de que ocurra más de un resultado en un intervalo corto o que caiga en tal región pequeña es insignificante.
 
 
@@ -167,17 +175,12 @@ plot(ecdf(xs), main = "CDF de X~Poisson(1)",
 par(opar)
 ```
 
-**Ejemplo**. En un proceso de fabricación donde se manufacturan productos de vidrio ocurren defectos o burbujas, lo que deja ocasionalmente a la pieza indeseada para su venta. Se sabe que, en promedio, un de cada 1000 casos de estos artículos que se producen tiene una o más burbujas. ¿Cuál es la probabilidad de que una muestra aleatoria de 800 tenga menos de siete articulos con burbujas?
+**Ejemplo**.Durante un experimento de laboratorio el número promedio de partículas radiactivas que pasan a través de un contador en un milisegundo es cuatro. ¿Cuál es la probabilidad de que seis partículas entren al contador en un milisegundo?
 
-**Solución**. Éste es en esencia un experimento binomial con $n=800$ y $p=0.001$. Como $p$ es muy cercano a cero y $n$ es bastante grande, haremos la aproximación con la distribución de Poisson utilizado
-
-\begin{equation} 
-\mu = (800)(0.001)=8. \nonumber
-\end{equation} 
-De aquí, si $X$ representa el número de burbujas, tenemos
+**Solución**. Al usar la distribución de Poisson con $x=6$ y $\lambda t = 4$, encontramos que 
 
 \begin{equation} 
-P(X<7) = \sum_{x=0}^{6}b(x;8000,0.001)=\sum_{x=0}^{6}p(x;8)=0.3134. \nonumber
+p(6;4) = \frac{e^{-4}4^{6}}{6!} = \sum_{x=0}^{6}p(x;4) - \sum_{x=0}^{5}p(x;4) = 0.8893-0.7851 = 0.1042  \nonumber
 \end{equation} 
 
 
@@ -188,7 +191,7 @@ b. Habrán menos de cinco llamadas durante un periodo de un minuto.
 c. Habrán menos de seis llamadas en una hora.
 
 **Solución**
-a. $P(X=0/ \lambda=2) = \frac{e^{-2}(2)^{0}}{0!}=0.1353$
+a. $P(X=0/ \lambda t=2) = \frac{e^{-2}(2)^{0}}{0!}=0.1353$
 ```{r}
 dpois(x = 0, lambda = 2)
 ```
@@ -200,8 +203,9 @@ ppois(q = 4, lambda = 2)
 ```
 
 c. NOtar que el periodo de tiempo cambia de un minuto a una hora (60 minutos). Consecuentemente, el número promedio de llamadas en una hora es $2*(60)=120$
-$(X \leq5/ \lambda=120$.
-$P(X \leq4/ \lambda=2) = \sum_{x=0}^{5}\frac{e^{-120}(120)^{x}}{x!}=0$
+$(X \leq5 | \lambda=120)$.
+
+$P(X \leq5 | \lambda=2) = \sum_{x=0}^{5}\frac{e^{-120}(120)^{x}}{x!}=0$
 ```{r}
 ppois(q = 5, lambda = 120)
 ```
@@ -211,7 +215,7 @@ ppois(q = 5, lambda = 120)
 ### Distribución Geométrica
 La Distribución geométrica, como la distribución binomial, está basada en el proceso de Bernoulli; sin embargo, ésta no fija el número de intentos a priori al experimento. La distribución geométrica calcula la probabilidad que el primer éxito ocurra después de $n$ fallos en vez de calcular la probabilidad de obsevar $x$ exitos en $n$ intentos.
 
-**Definición**. Si pruebas independientes repetidas pueden tener como resultado un éxito con probabilidad $p$ y un fracaso con probabilidad $q=1-p$, entonces la distribución de la variable aleatoria $X$, el número de las prueba en el que ocurre el primer éxito, es
+**Definición**. Si pruebas independientes repetidas pueden tener como resultado un éxito con probabilidad $p$ y un fracaso con probabilidad $q=1-p$, entonces la distribución de la variable aleatoria $X$, el número de las prueba después de que ocurre el primer éxito, es
 \begin{equation} 
 g(x;p) = pq^{x-1}, \quad x=1,2,3..., \nonumber
 \end{equation} 
@@ -238,16 +242,16 @@ par(opar)
 
 ### Distribución Binomial negativa
 
-**Definición**. Si pruebas independientes repetidas pueden tener como resultado un éxtio con probabilidad $p$ y un fracaso con probabilidad $1-p$, entonces la disgribcuión de la vartiable aleatoria $X$, el número de la prueba en la que ocurre el *k-ésimo* éxito, es
+**Definición**. Si pruebas independientes repetidas pueden tener como resultado un éxito con probabilidad $p$ y un fracaso con probabilidad $1-p$, entonces la distribución de la variable aleatoria $X$, el número de la prueba en la que ocurre el *k-ésimo* éxito, es
 \begin{equation} 
 b*(x;k,p) = \binom{x-1}{k-1}p^{k}q^{x-k}, \quad x=k, k+1,k+2,..., \nonumber
 \end{equation} 
 
-**Ejemplo**. Encuentre la probabilidad de que una persona que lanza tres monedas obtenga sólo caras o sólo cruces por seguna vex en el quinto lanzamiento.
+**Ejemplo**. Encuentre la probabilidad de que una persona que lanza tres monedas obtenga sólo caras o sólo cruces por segunda vez en el quinto lanzamiento.
 
 **Solución**. AL utilizar la distribución binomial negativa con $x=5$, $k=2$ y $p=1/4$, tenemos
 \begin{equation} 
-b^{*}  \left(5;2, \frac{1}{4} \right) = \binom{4}{1} \binom{1}{4}^{2} \binom{3}{4}^{3} = \binom{3}{4}^{3} = \frac{4!}{1!3!}* \frac{3^{3}}{4^{5}}=\frac{27}{256}. \nonumber
+b^{*}  \left(5;2, \frac{1}{4} \right) = \binom{4}{1} \left(\frac{1}{4} \right)^{2} \left(\frac{3}{4} \right)^{3} = \left(\frac{3}{4} \right)^{3} = \frac{4!}{1!3!}* \frac{3^{3}}{4^{5}}=\frac{27}{256}. \nonumber
 \end{equation} 
 
  

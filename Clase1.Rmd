@@ -276,4 +276,28 @@ ggplot(data = DF, aes(x = x, y = fx)) +
 ```
 
 
+c. La media de la distribución empleando la definición de valor esperado
+
+\begin{equation} 
+E[X] = \mu x = \int_{-1}^{1} \frac{1}{2} xdx     \nonumber
+\end{equation}
+\begin{equation} 
+E[X] = \mu x = \frac{x^{2}}{4}|_{-1}^{1} = 0  \nonumber
+\end{equation}
+
+d. La varianza de la distribución empleando la definición de varianza
+
+\begin{equation} 
+Var[X] = \sigma^{2}_{x} = E[(X- \mu)^{2}] = \int_{-1}^{1} (x- \mu)^{2}f(x)dx     \nonumber
+\end{equation}
+\begin{equation} 
+E[X] = \mu x = \frac{x^{3}}{6}|_{-1}^{1} = \frac{1}{3}  \nonumber
+\end{equation}
+
+
+
+
+
+
+
 
