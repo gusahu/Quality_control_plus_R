@@ -200,7 +200,7 @@ f(x,y) = \mathbb{P}[(X,Y) \in A] & =  P(X+Y \leq 1)  \\
 
 c. Necesitamos encontrar $f(x,y)$, donde $y=1$. Primero, encontramos que 
 \begin{equation} 
-h(1) = \sum^{2}_{x=0}f(x,1) = frac{3}{14} + frac{3}{14} + 0 = frac{3}{7}. \nonumber
+h(1) = \sum^{2}_{x=0}f(x,1) = \frac{3}{14} + \frac{3}{14} + 0 = \frac{3}{7}. \nonumber
 \end{equation}
 
 Ahora tenemos,
