@@ -200,13 +200,13 @@ f(x,y) = \mathbb{P}[(X,Y) \in A] & =  P(X+Y \leq 1)  \\
 
 c. Necesitamos encontrar $f(x,y)$, donde $y=1$. Primero, encontramos que 
 \begin{equation} 
-h(1) = \sum^{2}_{x=0}f(x,1) = frac{3}{14} + frac{3}{14} + 0 = frac{3}{7}.
+h(1) = \sum^{2}_{x=0}f(x,1) = frac{3}{14} + frac{3}{14} + 0 = frac{3}{7}. \nonumber
 \end{equation}
 
 Ahora tenemos,
 
 \begin{equation} 
-f(x|1) = \frac{f(x,1)}{h(1)} = \frac{7}{3}f(x,1), \quad x = 0,1,2.
+f(x|1) = \frac{f(x,1)}{h(1)} = \frac{7}{3}f(x,1), \quad x = 0,1,2. \nonumber
 \end{equation}
 
 Por lo tanto,
@@ -233,10 +233,33 @@ $\mathbb{P}(X = 0 | Y = 1) = f(0,1) = \frac{1}{2}$.
 Por lo tanto, si se sabe que uno de los dos repuestos seleccionados es de color rojo, tenemos una probabilidad igual a $\frac{1}{2}$ de que el otro repuesto no sea azul.
 
 
+**Definición**. Sean $X$ y $Y$ dos variables aleatorias, discretas o continuas, con distribución de probabilidad conjunta $f(x,y)$ y distribuciones marginales $g(x)$ y $h(y)$, respectivamente. Se dice que las variables aleatorias $X$ y $Y$ son **estadísticamente independientes** si y sólo si
 
+\begin{equation} 
+f(x,y) = g(x)h(y)
+\end{equation}
 
+para todo $(x,y)$ dentro de sus rangos.
 
+**Ejemplo**. Demostrar que las variables aleatorias del ejemplo anterior no son estadísticamente independientes.
 
+**Solución**. Considerar el punto $(0,1)$. De la tabla anterior encontramos que las tres probabilidades $f(0,1)$, $g(0)$ y $h(1)$ son 
+
+\begin{equation} 
+\begin{split}
+f(0,1) & = \frac{3}{4},  \\ 
+g(0) & = \sum^{2}_{y=0}f(0,y) = \frac{3}{28} + \frac{3}{14} + \frac{1}{28} = \frac{5}{14}, \\ 
+h(1) & = \sum^{2}_{x=0}f(x,1) = \frac{3}{14} + \frac{3}{14} + 0 = \frac{3}{7} \nonumber
+\end{split}
+\end{equation}
+
+Claramente,
+
+\begin{equation} 
+f(0,1) \neq g(0)h(1), \nonumber
+\end{equation}
+
+y por lo tanto $X$ y $Y$ no son estadísticamente independientes.
 
 
 
