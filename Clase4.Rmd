@@ -12,14 +12,14 @@ output:
 # Distribuciones de probabilidad multivariada
 
 
-## Distribión conjunta de dos variables aleatorias
-Nuestro estudio de variables aleatorias y sus distribuciones de probabilidad en las secciones anteriores se restringen al espacio muestral unidimensional, en los que registramos los resultados de un experimento como los valores que toma una sola variable aleatoria. Habrá situaciones, sin embargo, donde podemos encontrar que es deseable registrar los resultados simultáneos de diversas variables aleatorias. Por ejemplo, podemos medir el tiempo de ensamblaje de un automobil **T** y el número de trabajadores **N** de un taller mecanico, que dan lugar a un espacio muestral bidimensional que consiste en los resultados $(t,n)$.  de 
+## Distribución conjunta de dos variables aleatorias
+Nuestro estudio de variables aleatorias y sus distribuciones de probabilidad en las secciones anteriores se restringen al espacio muestral unidimensional, en los que registramos los resultados de un experimento como los valores que toma una sola variable aleatoria. Habrá situaciones, sin embargo, donde podemos encontrar que es deseable registrar los resultados simultáneos de diversas variables aleatorias. Por ejemplo, podemos medir el tiempo de ensamblaje de un automobil **T** y el número de trabajadores **N** de un taller mecanico, que dan lugar a un espacio muestral bidimensional que consiste en los resultados $(t,n)$. 
 
 ### Distribución de probabilidad conjunta para variables aleatorias discretas
 
 Si $X$ y $Y$ son dos variables aleatorias discretas, la distribución de probabilidad para sus ocurrencias simultáneas se puede representar mediante una función con valores $f(x,y)$ para cualquier par de valores $(x,y)$ dentro del rango de valores de $X$ y $Y$.
 
-**Definición**. La función $f(x,y)$ es una **distribución de probabilidad conjunta** o **función de masa de probabilidad** de las variables aleatorias discretas $X$ y $Y$ si
+**Definición**. La función $f(x,y)$ es una **distribución de probabilidad conjunta** o **función de masa de probabilidad** de las variables aleatorias discretas $X$ y $Y$ si:
 
 1. $f(x,y)	\geq 0$ para toda $(x,y)$,
 
@@ -114,7 +114,7 @@ f_{Y}(y) = \int^{\infty}_{-\infty}f_{X,Y}(x,y)dx, -\infty < y < \infty, -\infty 
 **Ejemplo**. Dada la siguiente función de probabilidad conjunta (pdf) para variables aleatorias continuas
 
 \begin{equation} 
-f_{X,Y}(x,y) = \left \{ \begin{matrix} 1 & \mbox{si}1 \quad si \quad 0 \leq x \leq 1, 0 \leq y \leq 1, \\ 0 & \mbox{en otros casos.}\end{matrix}\right. \nonumber
+f_{X,Y}(x,y) = \left \{ \begin{matrix} 1 & \mbox{si} \quad \quad 0 \leq x \leq 1, 0 \leq y \leq 1, \\ 0 & \mbox{en otros casos.}\end{matrix}\right. \nonumber
 \end{equation}
 
 a. Encontrar $F_{X,Y}(x=0.6, y= 0.8)$.
@@ -125,12 +125,12 @@ c. Encontrar $f_{X}(x)$.
 
 a. 
 \begin{equation} 
-F_{X,Y}(x=0.6, y= 0.8) =  \int^{0.6}_{0}\int^{0.8}_{0}f_{X,Y}(x,y) dxdy = \int^{0.6}_{0}\int^{0.8}_{0}1 dxdy = \int^{0.6}_{0} 0.8 dy = 0.48.  \nonumber
+F_{X,Y}(x=0.6, y= 0.8) =  \int^{0.6}_{0}\int^{0.8}_{0}f_{X,Y}(x,y) dxdy = \int^{0.6}_{0}\int^{0.8}_{0}1 dxdy = \int^{0.6}_{0} 0.8 dx = 0.48.  \nonumber
 \end{equation}
 
 b. 
 \begin{equation} 
-\mathbb{P}(0.25 \leq X \leq 0.75, 0.1 \leq Y \leq 0.9) = \int^{0.75}_{0.25}\int^{0.9}_{0.1}f_{X,Y}(x,y) dxdy = \int^{0.75}_{0.25}\int^{0.9}_{0.1} 1 dxdy = \int^{0.75}_{0.25}0.8dy = 0.40.    \nonumber
+\mathbb{P}(0.25 \leq X \leq 0.75, 0.1 \leq Y \leq 0.9) = \int^{0.75}_{0.25}\int^{0.9}_{0.1}f_{X,Y}(x,y) dxdy = \int^{0.75}_{0.25}\int^{0.9}_{0.1} 1 dxdy = \int^{0.75}_{0.25}0.8dx = 0.40.    \nonumber
 \end{equation}
 
 c. 
@@ -143,13 +143,13 @@ f_{X}(x) = \int^{1}_{0}f_{X,Y}(x,y) dy = 1, \quad 0 \leq x \leq 1    \nonumber
 
 **Definición**. Sean $X$ y $Y$ dos variables aleatorias, discretas o continuas. La **distribución condicional**  de la variable aleatoria Y, dado que $X=x$, es 
 \begin{equation} 
-f(x|y) = \frac{f(x,y)}{g(x)}, \quad g(x)>0.   \nonumber
+f(y|x) = \frac{f(x,y)}{g(x)}, \quad g(x)>0.   \nonumber
 \end{equation}
 
 De manera similar se define la distribución condicional de $X$, dado que $Y = y$, como:
 
 \begin{equation} 
-f(y|x) = \frac{f(x,y)}{h(y)}, \quad h(y)>0.   \nonumber
+f(x|y) = \frac{f(x,y)}{h(y)}, \quad h(y)>0.   \nonumber
 \end{equation}
 
 Si se desea encontrar la probabilidad de que la variable aleatoria discreta $X$ se encuentra entre $a$ y $b$ cuando se sabe que la variable aleatoria discreta $Y = y$, evaluamos
