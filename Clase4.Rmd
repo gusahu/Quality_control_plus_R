@@ -1,5 +1,5 @@
 ---
-title: "Control Estadístico de Procesos"
+title: "Distribuciones multivariada y probabilidad condicional"
 author: "Gustavo Ahumada"
 output:
   pdf_document: default
