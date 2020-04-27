@@ -236,7 +236,7 @@ Por lo tanto, si se sabe que uno de los dos repuestos seleccionados es de color 
 **Definición**. Sean $X$ y $Y$ dos variables aleatorias, discretas o continuas, con distribución de probabilidad conjunta $f(x,y)$ y distribuciones marginales $g(x)$ y $h(y)$, respectivamente. Se dice que las variables aleatorias $X$ y $Y$ son **estadísticamente independientes** si y sólo si
 
 \begin{equation} 
-f(x,y) = g(x)h(y)
+f(x,y) = g(x)h(y) \nonumber
 \end{equation}
 
 para todo $(x,y)$ dentro de sus rangos.

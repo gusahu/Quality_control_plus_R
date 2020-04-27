@@ -1,0 +1,117 @@
+---
+title: "Solución Taller 1: Distribuciones de probabilidad"
+author: "Gustavo Ahumada"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+# 1. Distribución Binomial.
+
+La probabilidad de que un paciente se recupere de **Covid-19** es de $0.4$. Si se sabe que 10 personas contraen la enfermedad,
+
+a. ¿cuál es la probabilidad de que sobrevivan al menos 8?
+
+b. ¿cuál es la probabilidad de que sobrevivan entre 2 a 5?
+
+c. ¿cuál es la probabilidad de que sobrevivan exactamente 6?
+
+d. Encontrar la media y la varianza de la variable aleatoria binomial.
+
+ 
+**Solución**
+Sea $X$ el número de personas que sobreviven
+
+a.
+\begin{equation}
+\begin{split}
+P(X\geq 8) & = 1- p(X < 8) = 1 - \sum^{8}_{0}b(x;8,0.4) = 1 - 0.9983  \\
+& = 0.00167 \nonumber
+\end{split}  
+\end{equation}
+
+```{r}
+1 - pbinom(8,10,0.4) 
+```
+
+
+b. 
+\begin{equation}
+\begin{split}
+P(2 \leq X \leq 5) & = \sum^{5}_{2}b(x;10,0.4) \\
+& = \sum^{5}_{0}b(x;10,0.4) - \sum^{2}_{0}b(x;10,0.4) = 0.8337614 - 0.1672898 \\
+& = 0.6664716 \nonumber
+\end{split}  
+\end{equation}
+
+```{r}
+pbinom(5,10,0.4)- pbinom(2,10,0.4) 
+```
+
+
+c. \begin{equation}
+\begin{split}
+P(X = 6) & = b(6;10,0.4) = \sum^{6}_{0}b(x;10,0.4) - \sum^{5}_{0}b(x;10,0.4) \\
+& = 0.9452381 - 0.8337614 = 0.1114767  \nonumber
+\end{split}  
+\end{equation}
+
+```{r}
+pbinom(6,10,0.4) - pbinom(5,10,0.4) 
+```
+
+
+# 2. Distribución de Poisson
+
+El estudio de un inventario determinada que, en promedio, las demandas de un artículo particular en un almacén se realizan cinco veces al día. ¿Cuál es la probabilidad de que en un día dado se pida este artículo
+
+a. más de cinco veces?
+
+b. ninguna vez?
+
+
+**Solución**
+Sea $X$ el número de veces que se solicita dicho artículo
+
+a.  \begin{equation}
+\begin{split}
+P(X > 5) & = 1- P(X \neq 5) = 1- \sum^{5}_{0}p(x;5)  \\
+& = 1- 0.6159607 = 0.3840393  \nonumber
+\end{split}  
+\end{equation}
+
+```{r}
+ 1- ppois(5,5)
+```
+
+b.  \begin{equation}
+\begin{split}
+P(X = 0) & = p(0;5)  \\
+& = 0.0067  \nonumber
+\end{split}  
+\end{equation}
+
+```{r}
+ppois(0,5)
+```
+
+# 3. Binomial negativa
+La probabilidad de que una persona, que vive en la ciudad de Antofagasta, tenga un perro se estima en $0.3$. Encontrar la probabilidad de que la décima  persona entrevistada al azar en esta ciudad sea la quinta que tiene un perro.
+
+
+**Solución**
+
+Al utilizar la distribución binomial con $x=10$, $k=5$, y $p=0.3$, tenemos
+
+\begin{equation} 
+b*(10;5,0.3) = \binom{9}{4}(0.3)^{5}(0.7)^{5} = 0.0515  \nonumber
+\end{equation}
+
+```{r}
+dnbinom(5,5,0.3)
+```
+
+
+
