@@ -52,7 +52,7 @@ conforme $n \longrightarrow \infty$, es la distribución normal estándar $n(z;0
 knitr::include_graphics("fig3.jpeg")
 ```
 
-**Solución**: La distribución muestral de $\bar X$ será aproximadamente normal, con $\mu_{\bar X}=800$ y $\sigma_{\bar X}=40/\sqrt[]{16}=10$. La probabilidad que se desea está dada por el área de la región sombreada de la figura de arriba.
+**Solución**: La distribución muestral de $\bar X$ será aproximadamente normal, con $\mu_{\bar X}=800$ y $\sigma_{\bar X}=40/\sqrt[]{16}=10$. La probabilidad que se desea está dada por el área de la región sombreada de la Figura 1.
 
 En correspondencia con $\bar x = 775$, encontramos que 
 
@@ -66,6 +66,11 @@ y por lo tanto
 P(\bar X < 775) = P(Z < -2.5) = 0.0062.  \nonumber
 \end{equation}
 
+Calculo en R
+```{r}
+pnorm(775, 800, 10)
+```
+
 
 ```{r pressure, echo=FALSE, fig.cap="Área de distribución tamaño de las piezas", out.width = '85%'}
 knitr::include_graphics("fig4.jpeg")
@@ -78,33 +83,33 @@ Una aplicación muy importante del teorema central del límite es determinar los
 
 **Ejempllo**: Un proceso manufacturero produce partes de componente cilíndricos para la industria automotriz. Este proceso debe producir partes que tenga una media de 5 milímetros. Se lleva a cabo un experimento en el que $100$ partes elaboradas por el proceso se seleccionan al azar y se mide el diámetro de cada una de ellas. Se sabe que la desviación estándar de la población es $\sigma = 0.1$. El experimento indica un diámetro promedio de la muestra $\bar x = 5.027$ milímetros. ¿ Esta información de la muestra parece apoyar o refutar la conjetura del ingeniero?
 
-**Solución**: Si los datos apoyan o rechazan la conjetura depende de la probabilidad de que los datos similares a los obtenidos en este experimento $(\bar x = 5.027)$ pueden ocurrir con facilidad cunado $\mu = 5.0$ (ver figura de arriba). Entonces, ¿qué tan probable es que se observe una $\bar x \geq 5.027$ con $n=100$ si la media de la población es $\mu = 5.0$? Si esta probabilidad sugiere que $\bar x = 5.027$, la conjetura no se rechaza. Si la probabilidad es bastante baja, se puede argumentar que los datos no apoyan la conjetura $\mu = 5.0$. La probabilidad que elijamos calcular está dada por $Pr[|\bar X - 5| \geq 0.027]$.
+**Solución**: Si los datos apoyan o rechazan la conjetura depende de la probabilidad de que los datos similares a los obtenidos en este experimento $(\bar x = 5.027)$ pueden ocurrir con facilidad cuando $\mu = 5.0$ (ver Figura 2). Entonces, ¿qué tan probable es que se observe una $\bar x \geq 5.027$ con $n=100$ si la media de la población es $\mu = 5.0$? Si esta probabilidad sugiere que $\bar x = 5.027$, la conjetura no se rechaza. Si la probabilidad es bastante baja, se puede argumentar que los datos no apoyan la conjetura $\mu = 5.0$. La probabilidad que elijamos calcular está dada por $Pr[|\bar X - 5| \geq 0.027]$.
 
 En otra palabras, si la media  $\mu$ es $5.0$, ¿cuál es a probabilidad de que $\bar X$ se desvíe a los más en $0.027$ milímetros?
 
 \begin{equation} 
 \begin{split}
 Pr[|\bar X - 5| \geq 0.027] & = Pr[(\bar X - 5) \geq 0.027] + Pr[(\bar X - 5) \leq 0.027] \\
-& = 2P\left(\frac{\bar X - 5.0}{0.1/\sqrt(100)} \right) \geq 2.7.\nonumber
+& = 2P\left(\frac{\bar X - 5.0}{0.1/\sqrt{100}} \right) \geq 2.7.\nonumber
 \end{split}  
 \end{equation}
 
 Aquí simplemente estandarizamos $\bar X$ de acuerdo con el teorema del límite central.
 
-Si la *conjetura* $\mu = 5.0$ *es cierta*, $\frac{\bar X - 5.0}{0.1/\sqrt(100)}$ es $N(0,1)$. Así
+Si la *conjetura* $\mu = 5.0$ *es cierta*, $\frac{\bar X - 5.0}{0.1/\sqrt{100}}$ es $N(0,1)$. Así
 
 \begin{equation} 
-2P\left(\frac{\bar X - 5.0}{0.1/\sqrt(100)} \right) \geq 2.7 = 2P(Z \geq 2.7) = 2(0.0035) = 0.007.\nonumber
+2P\left(\frac{\bar X - 5.0}{0.1/\sqrt{100}} \right) \geq 2.7 = 2P(Z \geq 2.7) = 2(0.0035) = 0.007.\nonumber
 \end{equation}
 
-De esta manera se experimente una $\bar x$ que está a $0.027$ milímetros de la media en sólo siete de $1000$ experimentos. Como resultado, este experimento con $\bar = 5.027$ ciertamente no proporciona un soporte a la conjetura que $\mu = 5.0$.
+De esta manera se experimente una $\bar x$ que está a $0.027$ milímetros de la media en sólo siete de $1000$ experimentos. Como resultado, este experimento con $\bar x = 5.027$ ciertamente no proporciona un soporte a la conjetura que $\mu = 5.0$.
 
 
 ### Distribución muestral de la disferencia entre dos promedios
 
 Una aplicación mucho más interesante incluye dos poblaciones. Un cientifico o ingeniero se interesa en un experimento comparativo en el cual se tiene dos métodos de producción, $1$ y $2$. La base de comparación es $\mu_{1} - \mu_{2}$, la diferencia de las medias poblacionalees.
 
-Suponga que tenemos dos poblaciones, la primera con media $\mu_{1}$ y varianza $\sigma^{2}_{1}$,la segunda con media $\mu_{2}$ y varianza $\sigma^{2}_{2}$. Tenemos $\bar X_{1}$ la media de una aleatoria de tamaño $n_{1}$ proveniente de la primera población, y $\bar X_{2}$ la media de una aleatoria de tamaño $n_{2}$ proveniente de la segunda población, independiente de la muestra de la primera población. ¿ Qué podemos decir con respecto al muestreo de la diferencia $\bar X_{1} - \bar X_{2}$ para muestras repetidas de tamaño $n_{1}$ y $n_{2}$? De acuerdo con el teorema del limite central, la variables $\bar X_{1}$ y $\bar X_{2}$ están distribuidas aproximadamente de forma normal con medias de $\mu_{1}$ y $\mu_{2}$ y varianza $\sigma^{2}_{2}/n_{1}$ y $\sigma^{2}_{2}/n_{2}$, respectivamente. Esta aproximación mejora con el incremento de $n_{1}$ y $n_{2}$. Al elegir muestras independientes de las dos poblaciones las variables $\bar X_{1}$ y $\bar X_{2}$ serán independientes, por lo tanto podemos concluir que $\bar X_{1} - \bar X_{2}$ está distribuida aproximadamente normal con media 
+Suponga que tenemos dos poblaciones, la primera con media $\mu_{1}$ y varianza $\sigma^{2}_{1}$,la segunda con media $\mu_{2}$ y varianza $\sigma^{2}_{2}$. Tenemos $\bar X_{1}$ la media de una muestra aleatoria de tamaño $n_{1}$ proveniente de la primera población, y $\bar X_{2}$ la media de una muestra aleatoria de tamaño $n_{2}$ proveniente de la segunda población, independiente de la muestra de la primera población. ¿Qué podemos decir con respecto al muestreo de la diferencia $\bar X_{1} - \bar X_{2}$ para muestras repetidas de tamaño $n_{1}$ y $n_{2}$? De acuerdo con el teorema del limite central, la variables $\bar X_{1}$ y $\bar X_{2}$ están distribuidas aproximadamente de forma normal con medias de $\mu_{1}$ y $\mu_{2}$ y varianza $\sigma^{2}_{2}/n_{1}$ y $\sigma^{2}_{2}/n_{2}$, respectivamente. Esta aproximación mejora con el incremento de $n_{1}$ y $n_{2}$. Al elegir muestras independientes de las dos poblaciones las variables $\bar X_{1}$ y $\bar X_{2}$ serán independientes, por lo tanto podemos concluir que $\bar X_{1} - \bar X_{2}$ está distribuida aproximadamente normal con media 
 
 \begin{equation} 
 \mu_{\bar X_{1}-\bar X_{2}} = \mu_{\bar X_{1}} - \mu_{\bar X_{2}} = \mu_{1} - \mu_{2} \nonumber
@@ -131,7 +136,7 @@ Z = \frac{(\bar X_{1} - \bar X_{2}) - (\mu_{1} - \mu_{2})}{\sqrt{(\frac{\sigma^{
 es aproximadamente una variable normal estándar.
 
 
-**Ejemplo**: Las bombillas del fabricante **A** tienen una duración media de $6.5$ años y una desviación estándar de $0.9$ años, mientras que las del fabricante **B** tienen una diración media de $6.0$ años y una desviación estándar de $0.8$ años. ¿Cuál es la probabilidad de que una muestra aleatoria de 36 bombillas del fabricante **A** tengan una duración media que sea menos de un años más que la duración media de una muestra de 49 bombillas del fabricante **B**?
+**Ejemplo**: Las bombillas del fabricante **A** tienen una duración media de $6.5$ años y una desviación estándar de $0.9$ años, mientras que las del fabricante **B** tienen una duración media de $6.0$ años y una desviación estándar de $0.8$ años. ¿Cuál es la probabilidad de que una muestra aleatoria de 36 bombillas del fabricante **A** tengan una duración media que sea al menos de un años más que la duración media de una muestra de 49 bombillas del fabricante **B**?
 
 **Solución**:
 La información suministrada es la siguiente
@@ -168,6 +173,20 @@ y de aquí se tiene
 P(\bar X_{1} - \bar X_{1} \geq 1.0) = P(Z \geq 2.65) = 1-P(Z < 2.65) = 1-0.9960 = 0.0040.  \nonumber
 \end{equation}
 
+
+Calculo en R
+```{r}
+1 - pnorm(1, 0.5, 0.189)
+```
+
+```{r}
+x <- pnorm(40.5, 50, 5)
+y <- pnorm(48, 50, 5)
+z <- y -x
+x
+y
+z
+```
 
 
 
