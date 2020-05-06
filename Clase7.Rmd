@@ -1,5 +1,5 @@
 ---
-title: "Distribuciones fundamentales de muestreo"
+title: "Estimación de una y dos muestras"
 author: "Gustavo Ahumada"
 output:
   pdf_document: default
