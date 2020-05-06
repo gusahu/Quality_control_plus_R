@@ -46,7 +46,7 @@ La siguiente propiedad deseable de un estimador es la **consistencia**. La consi
 Una secuencia de estimadores $\hat{\theta_{n}}$ (definidos para todo $n$) es un estimador **consistente** del parámetro $\theta$ para todo $\theta \in \Theta$ si
 
 \begin{equation} 
-\displaystyle\lim_{x \to{}\infty}{P(|\hat{\theta_{n}}-\theta| \geq \epsilon)} = 0, \quad para \quad todo \quad \epsilon>0. \nonumber
+\displaystyle\lim_{n \to{}\infty}{P(|\hat{\theta_{n}}-\theta| \geq \epsilon)} = 0, \quad para \quad todo \quad \epsilon>0. \nonumber
 \end{equation}
 
 Una secuencia de estimadores **convergen en probabilidad** a el parámetro $\theta$, donde $\theta$ es el parámetro de la secuencia consistente de estimadores estimados. En términos prácticos, esto implica que la varianza de de un estimador consistente disminuye cuando $n$ aumenta y que el valor esperado de $\hat{\theta_{n}}$ tiende a $\theta$ tanto como $n$ incrementa.
@@ -79,7 +79,7 @@ Notar que la media y la desviación estándar de *stem1* $(5.33,2.5166)$ son tot
 
 ## Estimación por intervalo
 
-UNa estimación por intervalo de un parámetro poblacional $\theta$ es un intervalo de la forma $\hat{\theta_{L}}<\theta<\hat{\theta_{U}}$, donde $\hat{\theta_{L}}$ y $\hat{\theta_{U}}$ dependen del valor de la estadística $\hat{\Theta}$. Así, una muestra de calificaciones de la PSU para estudiantes de una clase podría generar un intervalo de $530$ a $550$, dependerán de la media muestral calculada $\bar x$ y de la distribución de $\bar X$ A medida que el tamaño de la muestra aumenta, sabemos que $\sigma^{2}_{n} = \sigma^{2}/n$ disminuye, y en consecuencia es probable que nuestra estimación esté cercana al parámetro $\mu$, lo que tiene como resultado un intervalo más pequeño. De esta manera el intervalo estimado indica, por su longitud, la precisión de la estimación puntual. Un ingeniero obtendrá una idea de la proporción de la población de artículos defectuosos al tomar una muestray calcular la proporción de de defectuosos de la muestra. Pero una estimación por intervalo podría ser más informativa.
+UNa estimación por intervalo de un parámetro poblacional $\theta$ es un intervalo de la forma $\hat{\theta}_{L}<\theta<\hat{\theta}_{U}$, donde $\hat{\theta}_{L}$ y $\hat{\theta_{U}}$ dependen del valor de la estadística $\hat{\Theta}$. Así, una muestra de calificaciones de la PSU para estudiantes de una clase podría generar un intervalo de $530$ a $550$, dependerán de la media muestral calculada $\bar x$ y de la distribución de $\bar X$ A medida que el tamaño de la muestra aumenta, sabemos que $\sigma^{2}_{n} = \sigma^{2}/n$ disminuye, y en consecuencia es probable que nuestra estimación esté cercana al parámetro $\mu$, lo que tiene como resultado un intervalo más pequeño. De esta manera el intervalo estimado indica, por su longitud, la precisión de la estimación puntual. Un ingeniero obtendrá una idea de la proporción de la población de artículos defectuosos al tomar una muestray calcular la proporción de de defectuosos de la muestra. Pero una estimación por intervalo podría ser más informativa.
 
 Debido a que muestras distintas por lo general darán valores diferentes de $\hat{\Theta}$ y, por lo tanto, valores distintos $\hat{\theta_{L}}$ y $\hat{\theta_{U}}$, estos puntos extremos del intervalo son valores de las variables aleatorias correspondientes a $\hat{\Theta_{L}}$ y $\hat{\Theta_{U}}$. De la distribución muestral de $\hat{\Theta}$ seremos capaces de determinar $\hat{\theta_{L}}$ y $\hat{\theta_{U}}$ de modo que $P(\hat{\Theta_{L}}< \theta < \hat{\Theta_{U}})$ sea igual a algún valor fraccional positivo que queremos especificar. Si por ejemplo, encontramos $\hat{\theta_{L}}$ y $\hat{\theta_{U}}$ tales que 
 
@@ -94,11 +94,6 @@ para $0 < \alpha < 1$, tenemos entonces una probabilidad de $1 - \alpha$ de sele
 La distribución muestral de $\bar X$ está centrada en $\mu$ y en la mayoría de las aplicaciones la varianza es más pequeña que la de cualquiera otros estimadores de $\mu$. Así, la media muestra se utilizará como una esitimación puntual para la media de la población $\mu$. Rocordar que $\sigma^{2}_{\bar X} = \sigma^{2}/n$, por lo que una muestra grande dará un valor de $\bar X$ que proviene de una distribución de muestreo con varianza pequeña. De aquí que $\bar x$ se una estimación muy precisa de $\mu$ cuando $n$ es grande.
 
 Ahora consideremos la estimación por intervalos de $\mu$. Si la muestra seleccionada proviene de una población normal, a falta de ésta, si $n$ es suficientemente grande, podemos establecer un intervalo de confianza para $\mu$ al considerar la distribución muestral de $\bar X$. Siguiendo el teorema del límite central, podemos esperar que la distribución muestral $\bar X$ esté distribuida de forma aproximadamente normal como media $\mu_{\bar X}=\mu$ y desvaición estándar $\sigma_{\bar X}=\sigma/\sqrt{n}$. Al escribir $z_{\alpha/2}$ para el valor $z$ por arriba del cual encontramos un área de $\alpha/2$, podemos ver la siguiente gráfica que 
-
-
-```{r pressure2, echo=FALSE, fig.cap="", out.width = '85%'}
-knitr::include_graphics("fig7.jpeg")
-```
 
 \begin{equation} 
 P(-z_{\alpha/2}< Z< z_{\alpha/2}) = 1- \alpha, \nonumber
@@ -122,7 +117,12 @@ Al multiplicar cada término en la desigualdad por $\sigma / \sqrt{n}$, y despu�
 P(\bar X - z_{\alpha/2} \sigma / \sqrt{n} < \mu < \bar X + z_{\alpha/2} \sigma / \sqrt{n}) = 1- \alpha. \nonumber
 \end{equation}
 
-**Intervalo de confianza de $\sigma$; con $\sigma$ conocida**: Se selecciona una muestra aleatoria de tamaño $n$ de una población cuya varianza es $\sigma^{2}$ se conoce y se calcula la media muestral $\bar x$ para obtener el siguiente intervalo de confianza de $(1-\alpha)100\%$ para $\mu$
+```{r pressure2, echo=FALSE, fig.cap="", out.width = '85%'}
+knitr::include_graphics("fig7.jpeg")
+```
+
+
+**Intervalo de confianza de $\mu$; con $\sigma$ conocida**: Se selecciona una muestra aleatoria de tamaño $n$ de una población cuya varianza es $\sigma^{2}$ se conoce y se calcula la media muestral $\bar x$ para obtener el siguiente intervalo de confianza de $(1-\alpha)100\%$ para $\mu$
 
 \begin{equation} 
 \bar x - z_{\alpha/2} \sigma / \sqrt{n} < \mu < \bar x + z_{\alpha/2} \sigma / \sqrt{n} = 1- \alpha. \nonumber
@@ -174,7 +174,7 @@ segments(i, low, i, high, col = "blue", lwd = 5)
 }
 }
 abline(h = mu)
-cat(SCL, "95% de los intervalos de confianza aleatorios contienen Mu = 100")
+cat(SCL, "% de los intervalos de confianza aleatorios contienen Mu = 100")
 }
 ```
 
