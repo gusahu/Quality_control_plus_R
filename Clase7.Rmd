@@ -95,7 +95,7 @@ donde $z_{\alpha/2}$ es el valor $z$ que deja un área de ${\alpha/2}$ a la dere
 donde $S_{p}$ es la estimación de unión de la desviación estándar poblacional y  $t_{\alpha/2}$ es el valor $t$ con $v = n_{1}+n_{1}-2$ grados de libertad, que deja un área de ${\alpha/2}$ a la derecha.
 
 \begin{equation} 
-S_{p} = \frac{(n_{1}-1)s_{1}^{2} + (n_{2}-1)s_{2}^{2}}{n_{1}+n_{1}-2} \nonumber
+S_{p}^{2} = \frac{(n_{1}-1)s_{1}^{2} + (n_{2}-1)s_{2}^{2}}{n_{1}+n_{1}-2} \nonumber
 \end{equation}
 
 
