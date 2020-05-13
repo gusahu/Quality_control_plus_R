@@ -45,10 +45,10 @@ La probabilidad de cometer el error tipo II es $\beta$, donde
 
 **Solución**: aunque no hay una manera de conocer si la decisión realizadas tomando en consideración si la hipótesis nula es correcta, hay un criterio razone que permite la determinación de la probabilidad de cometer el erro tipo I y el error tipo II.
 
-**Determinar $\alpha$**. La probabilidad de cometer un error tipo II, el nivel de significancia , es la probabilidad que el valor muestral en la región $(2,\infty)$ cuando $H_{0}: \mu = 1$ es verdadera. Para encontrar $\alpha$, es necesario encontrar 
+**Determinar $\alpha$**. La probabilidad de cometer un error tipo I, el nivel de significancia, es la probabilidad que el valor muestral falle en rechazar la región $(2,\infty)$ cuando $H_{0}: \mu = 1$ es verdadera. Para encontrar $\alpha$, es necesario encontrar 
 
 \begin{equation} 
-\alpha = P(X_{1}>2|N(1,2)) = P\left(\frac{X_{1}}{2}>X_{2-1}{2}\right) = P(Z>0.5) = 0.3085  \nonumber
+\alpha = P(X_{1}>2|N(1,2)) = P\left(\frac{X_{1}}{2}>\frac{2-1}{2}\right) = P(Z>0.5) = 0.3085  \nonumber
 \end{equation}
 
 Para encontrar $\alpha$ en R tenemos
@@ -164,7 +164,7 @@ P \left(-z_{\alpha/2} < \frac{\bar X - \mu_{0}}{\sigma/\sqrt{n}} < -z_{\alpha/2}
 para escribir una región de aceptación apropiada. Debe tener en cuenta que, la región crítica se diseña para controlar $\alpha$, la probabilidad de cometer un error tipo I.  Por lo tanto se necesita una señal de evidencia de dos colas para rechazar $H_{1}$. Así, un valor calculado $\bar x$, la prueba formal implica rechazar $H_{0}$ si la *estadística de prueba* calculada 
 
 \begin{equation} 
-z = \frac{\bar x - \mu_{0}}{\sigma/\sqrt{n}} > z_{\alpha/2} \quad o \quad z < -z_{\alpha/2}. \nonumber
+z = \frac{\bar x - \mu_{0}}{\sigma/\sqrt{n}} > z_{\alpha/2} \quad o \quad z < z_{\alpha/2}. \nonumber
 \end{equation}
 
 Si $-z_{\alpha/2}<z<z_{\alpha/2}$, no se rechaza $H_{0}$. El rechazo $H_{0}$, por supuesto, implica la aceptación de la hipótesis alternativa $\mu=\mu_{0}$. Con esta definición de la región crítica debe quedar claro que existe la probabilidad $\alpha$ de rechazar $H_{0}$ (que cae en la región de crítica) cuando,en realidad, $\mu=\mu_{0}$.
@@ -199,11 +199,17 @@ La señal que favorece a $H_{1}$ proviene de valores grandes de $z$. De esta man
 **Ejemplo**. Una muestra aleatoria de $100$ muertes registradas en Chile a causa del Covid-19 hace dos meses muestra un promedio de vida de $71.8$ años. Suponga una desviación estándar poblacional de $8.9$ años, ¿esto parece indicar que la vida media hoy en día es mayor que $70$ años? Utilizar un nivel de significancia de $0.05$.
 
 **Solución**
+
 1. $H_{0}: \mu = 70$
-2. $H_{0}: \mu > 70$
+
+2. $H_{1}: \mu > 70$
+
 3. $\alpha = 0.05$
+
 4. Región crítica: $z>1.645$, donde $z = \frac{\bar x -\mu_{0}}{\sigma/\sqrt{n}}$.
+
 5. Cálculos: $\bar x = 71.8$ años, $\sigma = 8.9$ años y $z = \frac{71.8 -70}{8.9/\sqrt{100}}=2.02$.
+
 6. Decisión: rechazamos $H_{0}$ y concluir que la vida media hoy día es mayor que $70$ años.
 
 En este ejemplo el valor $P$ que corresponde a $z=2.02$ está dado por a región del área sombreada de la siguiente figura
