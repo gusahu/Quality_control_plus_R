@@ -1,6 +1,6 @@
 ---
 title: "Control Estadístico de Calidad"
-subtitle: "Introducción a los gráficos de control por variables y cartas de control " 
+subtitle: "Introducción a los gráficos de control" 
 author: "Profesor: Gustavo Ahumada"
 output:
   pdf_document: default
