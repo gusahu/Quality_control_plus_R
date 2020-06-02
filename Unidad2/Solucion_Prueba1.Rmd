@@ -1,0 +1,267 @@
+---
+title: "Universidad Santo Tomás, Facultad de Ingeniería"
+subtitle: "Control Estadístico de Calidad: Solución Primera prueba parcial" 
+author: "Profesor: Gustavo Ahumada"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+**Exigencia**: $70\%$. **Puntaje total**: 80 puntos. **Tiempo de duración**: 36 horas  
+
+**Instrucciones**: (1) Las respuestas finales deben ser legibles y escritas con lápiz pasta; (2) debe scanear sus respuestas y generar un archivo en PDF, el cual debe ser enviado únicamente al correo electrónico gahumada2@santotomas.cl; (3) la fecha de entrega es el día 17 de mayo a las 12:00 PM.
+
+## Distribuciones de probabilidad
+
+**1. Distribución Binomial**. Considerar el problema de calcular la probabilidad de obtener 6 o mas caras en 10 lanzamiento de una moneda ponderada (no balanceada), donde la probabilidad de obtener una cara en cualquier intento es de $0.33$.
+
+
+**Solución**: Sea la variable aleatoria $X$ igual al número de intentos que resultan en una cara. Consecuentemente, $X\sim Bin(10, 0.33)$, y la suma de las probabilidades individuales de obtener $6,7,8,9$ y $10$ necesitan ser encontradas. Metemáticamente, esto puede escribirse $P(X \ge 6)= P(X=6)+P(X=7)+...+P(X=10)$, donde
+
+\begin{equation} 
+\begin{split}
+P(X = 6)&  = \frac{10!}{6!(10-6!)} \times 0.33^{6} \times (1-0.33)^{(10-6)} =0.0547, \\
+P(X = 7)&  = \frac{10!}{7!(10-7!)} \times 0.33^{7} \times (1-0.33)^{(10-7)} =0.0154, \\
+P(X = 8)&  = \frac{10!}{8!(10-8!)} \times 0.33^{8} \times (1-0.33)^{(10-8)} =0.0028, \\
+P(X = 9)&  = \frac{10!}{9!(10-9!)} \times 0.33^{9} \times (1-0.33)^{(10-9)} =0.0003, \\
+P(X = 10)&  = \frac{10!}{9!(10-9!)} \times 0.33^{9} \times (1-0.33)^{(10-9)} =0. \\
+\nonumber
+\end{split} 
+\end{equation}
+
+Entonces,
+\begin{equation} 
+\begin{split}
+P(X \ge 6) & = P(X=6)+P(X=7)+P(X=8)+P(X=9)+P(X=10) \\
+& = 0.0547+0.0154+0.0028+0.0003+0 \\
+& = 0.0732.
+\nonumber
+\end{split} 
+\end{equation}
+
+Existen varias aproximaciones para encontrar dicha probabilidad con R
+
+```{r}
+sum(dbinom(6:10, 10, 0.33))             # P(X>=6)
+
+1 - pbinom(5, 10, 0.33)                 # 1 - P(X<=5) 
+
+pbinom(5,10,0.33, lower = FALSE)        # P(X>=6)
+
+1- sum(dbinom(5:0, 10, 0.33)) 
+```
+-->
+
+**2. Distribución normal**. Mucho de los accesorios para teléfonos celulares hoy en día permiten a los consumidores cambiar del altavoz y el micrófono a una fuente externa. Una empresa manufacturera de teléfonos celulares quiere incluir un altavoz y un micrófono para operar con manos libres. Una nueva empresa ha patentado un componente que permite que la planicidad de resistencia para el micrófono y el altavoz sea más baja que nunca. El teléfono celular de la compañía requiere que la planicidad de resistencia sea menor a $0.7$ ohmios ($\Omega$). Si se sabe que el $50\%$ de los componentes de la nueva compañía tiene una proporción de $0.5$ ohmios o menos, $10\%$  tiene una proporción de $0.628$ ohmios y la distribución de estas proporciones sigue una distribución normal, entonces:
+
+1. Encontrar la media y la desviación estándar para la distribución de la proporción de ohmio de los componentes.
+
+2. Si un componente es seleccionado de manera aleatoria, ¿cual es la probabilidad que su planicidad de resistencia sea menor a $0.7$ ohmios?
+
+3. Si $20$ componentes son seleccionados de manera aleatoria, ¿cual es la probabilidad que al menos 19 componentes tengan una planicidad de resistencia menor a $0.7$ ohmios?
+
+
+**Solución**: Sea $X=$ a la proporción de ohmio de los componentes 
+
+1. Debido a la simetria de la distribución normal, la media es igual a la mediana. Es conocido que $50\%$ de los componentes tienen una proporción de $0.5\Omega$ o menos, entones $\mu_{x}=0.5$. Para obtener la desviación estándar de proporción de componentes se tiene en cuenta el hecho que $10\%$ tiene una proporción de $0.628\Omega$ o mayor.
+
+Esto significa que
+\begin{equation}
+P(X \leq 0.628) = 0.9, \nonumber
+\end{equation}
+
+lo cual implica 
+
+\begin{equation}
+P(Z = \frac{X-0.5}{\sigma} \leq \frac{0.628-0.5}{\sigma}) = 0.9. \nonumber
+\end{equation}
+
+Porque
+
+\begin{equation}
+P(Z \leq 1.28) = 0.9, \quad estableciendo \quad \frac{0.628-0.5}{\sigma} = 1.28  \nonumber
+\end{equation}
+
+y obtenemos $\sigma$. $\sigma = \frac{0.628-0.5}{1.28}=0.1$
+
+2. Calcular la probabilidad de que un componente tenga una planicidad de resistencia menor a $0.7\Omega$:
+
+\begin{equation}
+\begin{split}
+P(X \leq 0.7) & = P\left(Z= \frac{X-0.5}{\sigma} \leq \frac{0.7-0.5}{0.1} \right) \\
+& = P(Z \leq 2) \\
+& = 0.9772 \nonumber
+\end{split}
+\end{equation}
+
+La repuesta obtenida con R es
+```{r}
+p <- pnorm(0.7, 0.5, 0.1)
+p
+```
+
+3. Calcular la probabilidad que al menos 19 de 20 componentes tenga una planicidad de resistencia menor a $0.7\Omega$. Sea $Y \sim Bin(20,0.9772)$.
+
+\begin{equation}
+P(Z \geq 19) = \sum_{i=19}^{20} \binom{20}{i}(0.9772)^{i}(1-0.9772)^{i} = 0.925. \nonumber
+\end{equation}
+
+La repuesta obtenida con R es
+```{r}
+sum(dbinom(19:20, 20, p))
+
+# también
+
+pbinom(18, 20, p, lower = FALSE)
+```
+
+
+**3. Distribución hipergeométrica**. Se selecciona al azar un comité de ocho personas entre tres sociólogos, tres antropólogos y 2 economistas. Encuentre la distribución de probabilidad para el número de economistas en el comité.
+
+**Solución**
+Sea la variable aleatoria X el número de economistas en el comité. Se satisfacen las dos propiedades de un experimento hipergeométrico. Por ello
+
+\begin{equation}
+P(X = 0) = h(0;8,2,6) = \frac{\binom{2}{0}\binom{6}{2}}{\binom{8}{2}} =  \nonumber
+\end{equation}
+
+\begin{equation}
+P(X = 1) = h(1;8,2,6) = \frac{\binom{2}{1}\binom{6}{1}}{\binom{8}{2}} \nonumber
+\end{equation}
+
+\begin{equation}
+P(X = 2) = h(2;8,2,6) = \frac{\binom{2}{2}\binom{6}{0}}{\binom{8}{2}} \nonumber
+\end{equation}
+
+<!--
+**Solución**:
+
+
+-->
+
+## Distribuciones muestrales
+
+**4.** La distribución de alturas de cierta raza de perros terrier tiene una altura media de $72$ centímetros y una desviación estándar de 10 centímetros, mientras que la distribución de alturas de cierta raza de poodles tiene una altura de media $28$ centímetros con una desviación estándar de 5 centímetros. Suponga que las medias muestrales se pueden medir con cualquier grado de precisión, encuentre la probabilidad de que la media muestral para una muestra aleatoria de altura de 64 terriers exceda la media para una muestra aleatioria de alturas de 100 poodles por cuando mucho $44.2$ centímetros.
+
+**Solución**. Sea $\bar {X}_{t}$ la altura media de los perros de raza terrier y $\bar {X}_{p}$ la altura media de los perros de raza poodles, entonces debemos encontrar la $P(\bar{X}_{t}-\bar{X}_{p}\leq 44.2)$.
+
+Tenemos la siguiente información:
+
+$\mu_{\bar{X}t-\bar{X}p}= 72-28=44$ y 
+$\sigma_{\bar{X}t-\bar{X}p}=\sqrt{\frac{100}{64}+\frac{25}{100}} =1.34$
+\begin{equation}
+z = \frac{44.2-44}{1.34} = 0.148 \nonumber
+\end{equation}
+
+y de aquí tenemos
+
+\begin{equation}
+P(\bar{X}_{t}-\bar{X}_{p}\leq 44.2) = P(Z<0.148) = 0.5596 \nonumber
+\end{equation}
+
+
+**5.** Encontrar la probabilidad de que una muestra aleatoria de 25 observaciones, de una población normal con varianza $\sigma^{2} = 6$, tenga una varianza $s^{2}$
+
+1. mayor que $9.1$.
+
+2. entre $3.463$ y $10.745$.
+
+Suponga que las varianzas muestrales son mediciones continuas.
+
+
+**Solución**
+1. Primero se procederá a calcular el valor de la ji-cuadrada:
+
+\begin{equation}
+\chi^{2} = \frac{(n-1)s^{2}}{\sigma^{2}}  = \frac{(25-1)(9.1)}{6} = 36.4 \nonumber
+\end{equation}
+
+Al buscar este número en el renglo de 24 grados de libertad nos da un área a la derecha de $0.05$. Por lo que la $P(s^{2}>9.1) = 0.05$.
+
+2. Se calcularán dos valores de ji-cuadrado:
+
+\begin{equation}
+\chi^{2} = \frac{(n-1)s^{2}}{\sigma^{2}}  = \frac{(25-1)(3.462)}{6} = 13.847 \quad y \quad \chi^{2} = \frac{(25-1)(10.745)}{6} = 42.98 \nonumber
+\end{equation}
+
+Ahora se buscan los dos valores en el renglón de 24 grados de libertad. Al buscar el valor $13.847$ se encuentra un área a la derecha de $0.95$. El valor $42.98$ da un área a la derecha de 0.01. Como se está pidiendo la probabilidad entre dos valores se resta el área de $0.95$ menos $0.01$ obteniendo 0.94.
+
+Por lo tanto la $P(3.462 \leq s^{2} \leq 10.745)=0.94$.
+
+<!--
+http://www.itchihuahua.edu.mx/academic/industrial/estadistica1/cap03b.html
+-->
+
+## Intervalos de confianza
+
+**6.** Una muestra aleatoria de tamaño $n_{1}=25$ que se toma de una población normal con una desviación estándar $\sigma_{1}=5$ tiene una media $\bar x_{1}=80$. Una segunda muestra aleatoria de tamaño $n_{2}=36$, que se toma de una población normal diferente con una desviación estándar $\sigma_{2}=3$ tiene una media $\bar x_{2}=75$. Encontrar un intervalo de confianza de $95\%$ para $\mu_{1}-\mu_{2}$.
+
+
+**Solución**. Deseamos encontrar un intervalo de confianza de $95\%$ para $\mu_{1}-\mu_{2}$. La estimación puntual de $\mu_{1}-\mu_{2}$ es $\bar x_{1}-\bar x_{2}=80-75=5$. Con el uso de $\alpha=0.05$, encontramos $z_{0.025}=1.96$. De aquí con la sustitución en la fórmula de diferencia de medias, el intervalo de confianza de $95\%$ es
+
+\begin{equation}
+5-1.96 \sqrt{\frac{25}{25} + \frac{9}{36}} < \mu_{1}-\mu_{2} < 5 + 1.96 \sqrt{\frac{25}{25} + \frac{9}{36}} \nonumber
+\end{equation}
+
+\begin{equation}
+2.80 < \mu_{1}-\mu_{2} < 7.19. \nonumber
+\end{equation}
+
+
+## Prueba de hipótesis
+
+**7.** La estatura promedio de mujeres en el grupo de primer año de cierta universidad es de $162.5$ centímetros con una desviación estándar de $6.9$ ¿Hay alguna razón para creer que hay un cambio de estatura si una muestra aleatoria de 50 mujeres en el grupo actual de primer año tiene una altura promedio de $165.2$ centímetros? utilice un valor $P$ para su conclusión.
+
+**Solución**.
+
+1. $H_{0}: \mu=162.5$ centímetros.
+
+2. $H_{0}: \mu\geq162.5$ centímetros.
+
+3. $\alpha=0.05$
+
+4. Región crítica: $z>1.645$, donde $z=\frac{\bar x - \mu_{0}}{\sigma/\sqrt{n}}$.
+
+5. Cálculos: $\bar x = 165.2$ centímetros, $\sigma=6.9$ centímetros y $z=\frac{165.2 - 162.5}{6.9/\sqrt{50}}=2.77$.
+
+6. Decisión: rechazar $H_{0}$ y concluir que la estatura promedio de las mujeres en el grupo de primer año es mayor a 162.5 centímetros.
+
+El valor $P$ que corresponde a $z=2.56$ es $0.0052$.
+
+
+**8.** Una compañía de venta de calefacciones afirma que un quinto de las casas en cierta ciudad se calientan con petróleo. ¿Tenemos razón en duda de esta afirmación si, en una muestra aleatoria de 1000 casas en esta ciudad, se encuentra que $136$ se calientan con petróleo? Utilice un nivel de significancia de $0.01$.
+
+**Solución**
+1. $H_{0}:p=0.2$.
+
+2. $H_{1}:p \neq 0.2$.
+
+3. $\alpha = 0.01$.
+
+4. Estadística de prueba: variable binomial $X$ con $p=0.2$ y $n=1000$.
+
+5. Cálculo: $x=136$ y $np_{0}=(1000)(0.2)=200$. Por lo tanto, el valor $P$ calculado es
+
+\begin{equation}
+P = 2P(X \leq 8 \quad cuando \quad p=0.2) = 2 \sum_{x=0}^{136}b(x;1000,0.2) \nonumber
+\end{equation}
+
+```{r}
+(dbinom(136,1000,0.2))*2
+```
+$P<0.0001$.
+
+6. Decisión: Rechazamos $H_{0}$, por lo que concluimos que menos del $1/5$ de las casas se calienta con petroleo.
+
+
+
+<!--
+**Solución**:
+335
+
+-->
+

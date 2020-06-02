@@ -20,7 +20,7 @@ c. ¿cuál es la probabilidad de que sobrevivan exactamente 6?
 
 d. Encontrar la media y la varianza de la variable aleatoria binomial.
 
-<!--   
+   
 **Solución**
 Sea $X$ el número de personas que sobreviven
 
@@ -33,7 +33,7 @@ P(X\geq 8) & = 1- p(X < 8) = 1 - \sum^{8}_{0}b(x;8,0.4) = 1 - 0.9983  \\
 \end{equation}
 
 ```{r}
-1 - pbinom(8,10,0.4) 
+1 - pbinom(7,10,0.4) 
 ```
 
 
@@ -61,7 +61,7 @@ P(X = 6) & = b(6;10,0.4) = \sum^{6}_{0}b(x;10,0.4) - \sum^{5}_{0}b(x;10,0.4) \\
 ```{r}
 pbinom(6,10,0.4) - pbinom(5,10,0.4) 
 ```
- -->
+
 
 # 2. Distribución de Poisson
 
@@ -71,7 +71,7 @@ a. más de cinco veces?
 
 b. ninguna vez?
 
-<!--  
+
 **Solución**
 Sea $X$ el número de veces que se solicita dicho artículo
 
@@ -96,12 +96,11 @@ P(X = 0) & = p(0;5)  \\
 ```{r}
 ppois(0,5)
 ```
- -->
+
 
 # 3. Binomial negativa
 La probabilidad de que una persona, que vive en la ciudad de Antofagasta, tenga un perro se estima en $0.3$. Encontrar la probabilidad de que la décima  persona entrevistada al azar en esta ciudad sea la quinta que tiene un perro.
 
-<!-- 
 **Solución**
 
 Al utilizar la distribución binomial con $x=10$, $k=5$, y $p=0.3$, tenemos
@@ -113,7 +112,6 @@ b*(10;5,0.3) = \binom{9}{4}(0.3)^{5}(0.7)^{5} = 0.0515  \nonumber
 ```{r}
 dnbinom(5,5,0.3)
 ```
- -->
 
 
 

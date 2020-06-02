@@ -1,0 +1,138 @@
+---
+title: "Control Estadístico de Calidad"
+subtitle: "Gráficos de control X-R y X-S: interpretación" 
+author: "Profesor: Gustavo Ahumada"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+# Gráfico de desviación estándar (Gráfico $\bar{X}-S$) 
+Cuando en un gráfico $\bar{X}-R$ se requiere tener mayor potencia para detectar cambios en el proceso, se incrementa el tamaño de subgrupo, $n$. Pero si $n>10$, el gráfico de rango ya no es eficiente para detectar pequeños cambios en la variabilidad del proceso, y en su lugar se recomienda utiliza el gráfico $S$, en el cual se gráfican las desviaciones estándar de los subgrupos. Obviamente, la estadística de control para cada muestra es la desviación estándar $s_{j}$:
+\begin{equation}
+s_{j} = \frac{\sum_{i=1}^{n}(x_{ij}-\bar{x}_{j})^{2}}{n_{j}-1} \nonumber
+\end{equation}
+
+Estimamos la desviación estándar de la estadística $s$ como:
+
+\begin{equation}
+\bar{s}\frac{\sqrt{1-c_{4}^{2}}}{c_{4}} \nonumber
+\end{equation}
+ y por lo tanto la linea central y los límites de control son los siquientes:
+ 
+\begin{equation}
+CL = \bar{s} = \frac{\sum_{j=1}^{m}s_{j}}{m}, \nonumber
+\end{equation}
+ 
+ 
+\begin{equation}
+UCL = \bar{s} + 3\bar{s}\frac{\sqrt{1-c_{4}^{2}}}{c_{4}} \nonumber
+\end{equation}
+ 
+\begin{equation}
+LCL = \bar{s} - 3\bar{s}\frac{\sqrt{1-c_{4}^{2}}}{c_{4}}. \nonumber
+\end{equation}
+
+**Ejemplo**. Espesor de placas de metal (continuación) Gráfico de desviación estándar.
+
+Primero debemos cargar los datos con los cuales vamos a trabajar
+
+```{r}
+library(SixSigma)
+library(qcc)
+aggregate(thickness ~ ushift,
+data = ss.data.thickness2,
+FUN = mean)
+
+samples.thick <- qcc.groups(
+data = ss.data.thickness2$thickness,
+sample = ss.data.thickness2$ushift) # convertimos nuestros datos en un data frame
+samples.thick
+```
+
+luego gráficar
+
+```{r}
+S.thick <- qcc(data = samples.thick, type = "S") # el tipo de gráfico es "S"
+```
+
+¿Por qué es importante que los gráficos de control por variables deben ser mostrados en pareja?
+
+**Ejemplo**. Espesor de placas de metal (continuación) gráfico $\bar{X}$ y gráfico $S$.
+
+Para ilustrar la importancia del monitoreo de la variabilidad, vamos a simular un nuevo cambio de turno en el proceso de producción de las placas de metal con el siguiente código:
+
+```{r}
+set.seed(1)
+nueva.muestra <- matrix(round(rnorm(6, 0.75, 0.05), 3),
+nrow = 1, ncol = 6)
+mean(nueva.muestra)
+```
+
+Para gráficar de manera conjunta los gráficos de control, empleamos el parámetro $mfrow$ de la función $par$ para dividir el gráfico en dos filas. Primero necesitamos añadir la nueva muestra a los datos que tenemos:
+
+
+```{r}
+ccxbar <- qcc(data = samples.thick, type = "xbar",
+              newdata = nueva.muestra, newlabels = "8.1")
+ccs <- qcc(data = samples.thick, type = "S",
+           newdata = nueva.muestra, newlabels = "8.1")
+par(mfrow = c(2, 1))
+plot(ccxbar, restore.par = FALSE, add.stats = FALSE)
+plot(ccs, add.stats = FALSE)
+```
+
+## Gráficos de control para datos no agrupados
+
+### Gráfico de valores individuales y gráfico de rango movil
+
+El gráfico más simple que podemos crear es el gráfico de valores individuales. Ciando no es posible crear subgrupos racionales podemos monitorear los datos individualmente. En este caso, se estima la desviación estándar global como $MR/d_{2}$ tomando $d_{2}$ por $n=2$.
+
+Los límites de control para el gráfico I son:
+  
+  \begin{equation}
+CL = \bar{x}, \nonumber
+\end{equation}
+
+\begin{equation}
+UCL = \bar{x} + 3\frac{\bar{MR}}{d_{2}}, \nonumber
+\end{equation}
+
+\begin{equation}
+UCL = \bar{x} - 3\frac{\bar{MR}}{d_{2}}, \nonumber
+\end{equation}
+
+donde $\bar{MR}$ es el rango móvil, calculado como:
+
+\begin{equation}
+\bar{MR} = \frac{\sum_{j=1}^{m}MR_{j}}{m-1}; \quad MR_{j}=|x_{j+1}-x_{j}|. \nonumber
+\end{equation}
+
+El gráfico más adecuado para acompañar el gráfico de los valores individuales en orden para controlar la variabilidad del proceso es el gráfico de rango movil. Realmente. lo que se hace en tal caso es asumir que cada dos datos constituyen un grupo y de esta manera se puede determinar un rango equivalente a la diferencia entre dos observaciones consecutivas. Este es lo que se conoce como el **principio de Schewhart** para tamaños muestrales de $n=2$ que pueden ser aplicados a valores individuales. Por lo tanto, la linea central y los límites de control son equivalentes a $R$, tomando $d_{3}$ y $d_{2}$ por $n=2$. En la practica, el limite inferior es siempre cero desde que la formula genera una valor negativo y un rango nu puede ser negativo por definición.
+
+**Ejemplo**. Espesor de placas de metal (continuación) gráfico I y gráfico de control MR.
+
+Para ilustrar  este proposito, empleamos las 24 primeros valores del data frame ss.data.thickness2 para gráficar el gráfico de control individual. En este caso, un vector con los datos es requerido, por lo tanto, no necesitamos realizar ningún tipo de transformación. Por otra parte, para gráficar el gráfico de rango móvil, se crea una matriz con dos muestras artificiales: una con los primeros 23 valores y otra con los siguientes 23 valores.
+
+
+```{r}
+espesor2dias <- ss.data.thickness2$thickness[1:24]
+muestra.movil <- cbind(espesor2dias[1:23],
+espesor2dias[2:24])
+cci <- qcc(espesor2dias, type = "xbar.one")
+ccmr <- qcc(muestra.movil, type = "R")
+```
+
+
+En este caso, una se produce una señal fuera de control en ambos gráficos en la medición 12. En adición, una violación es producida en la muestra 19, dado que hay muchos puntos en el mismo lado de la linea central.
+
+
+
+
+
+
+
+

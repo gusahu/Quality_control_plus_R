@@ -96,9 +96,9 @@ La desviación estándar no es un estimador insesgado de la desviación poblacio
 
 En orden para construir este tipo de gráficos nosotros tenemos que definir subgrupos raciones, idealmente de igual tamaño. Si los grupos tiene tamaños diferentes, entonces los límites de control no serán constantes, y tendrá una aspecto desigual que los hará más difícil para la interpretación.
 
-El más famoso par de gráficos de control es el gráfico de media y rango o gráfico X-R.  
+El más famoso par de gráficos de control es el gráfico de media y rango o gráfico $\bar{X}-R$.  
 
-### Gráfico de media (gráfico de X barra)
+### Gráfico de media (gráfico de $\bar{X}$)
 
 La estadística para ser estimada es la media de cada muestra $\bar x_{j}$:
 
@@ -155,7 +155,7 @@ samples.thick
 ```
 
 
-Ahora creamos un objeto qcc para un gráfico X-bar:
+Ahora creamos un objeto qcc para un gráfico $\bar{X}$:
 
 ```{r}
 xbar.thick <- qcc(data = samples.thick, type = "xbar")
@@ -168,6 +168,11 @@ plot(xbar.thick) # solamente obtener gráfico de control
 names(xbar.thick)
 ```
 
+```{r}
+xbar.thick$type
+xbar.thick$nsigmas
+xbar.thick$violations
+```
 
 Por otra parte, la función qcc.options nos permite modificar algunas opciones general de nuestro gráfico 
 
@@ -192,8 +197,9 @@ thick.betas <- oc.curves(xbar.thick)
 1/(1 - thick.betas[rownames(thick.betas) == "1", 1])
 ```
 
+Desde el calculo $ARL=3.43$, concluimos que, en promedio, más de tres muestras son necesarias para detectar una situación fuera de control
 
-### Gráfico de rango (R-gráfico)
+### Gráfico de rango (gráfico R)
 
 Este gráfico monitorea la estabilidad de la variabilidad del proceso por medio de los rangos muestrales. Entonces, la estadística es el rango, y los límites de control son:
 

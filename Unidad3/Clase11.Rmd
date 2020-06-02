@@ -1,0 +1,171 @@
+---
+title: "Control Estadístico de Calidad"
+subtitle: "Cartas de control para atributos" 
+author: "Profesor: Gustavo Ahumada"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+# Introducción
+
+No siempre es posible medir una característica cualitativa de un producto o servicio numéricamente. Sin embargo, es fácil verificar ciertos atributos, por ejemplo: conforme/no conforme. Es posible llevar a cabo un proceso de control sobre este tipo de datos por medio de los gráficos (cartas) de control para atributos. Similar a los gráficos de control para variables, este tipo de gráficos pueden detectar situaciones altamente improbables de acuerdo de las distribución de probabilidad inherente al proceso.
+
+
+## Gráficos (cartas) para defectuosos
+
+Existen muchas caracteristicas de calidad del tipo pasa o no pasa y, de acuerdo con éstas, un producto es juzgado como defectuoso o no defectuoso (conforme o no conforme), dependiendo de si cumple o no con las especificaciones o criterios de calidad.
+
+### Gráfico de control *p* (proporción de defectuosos)
+
+Este gráfico muestra las variaciones en la fracción o proporción de artículo defectuosos por muestra o subgrupo. El gráfico *p* es ampliamente usoado para evaluar el desempeño de una parte o de todo un proceso, tomando en cuenta su variabilidad con el propósito de detectar causas o cambios especiales en el proceso.
+
+La estadística para ser monitoreada es la propoción muestral $p_{j}$, cuya desviación estándar es:
+
+\begin{equation}
+\sqrt{\frac{\bar p(1- \bar p)}{n_{j}}} \nonumber
+\end{equation}
+
+La linea central es la proporción total de defectuosos $\bar p$, por ejemplo:
+
+\begin{equation}
+\bar p = \frac{\sum_{j=1}^{m}D_{j}}{\sum_{j=1}^{m}n_{j}} \nonumber
+\end{equation}
+
+y los límites son calculados como sigue:
+
+\begin{equation}
+UCL_{j} =\bar p + 3 \sqrt{\frac{\bar p(1- \bar p)}{n_{j}}} \nonumber
+\end{equation}
+
+\begin{equation}
+LCL_{j} =\bar p - 3 \sqrt{\frac{\bar p(1- \bar p)}{n_{j}}} \nonumber
+\end{equation}
+
+NOtar que si tenemos diferentes tamaños muestrales los límites de control no son constantes.
+
+
+### Gráficos de control $np$ (número de defectuosos)
+
+En ocasiones, cuando el tamaño del subgrupo o muestra en los gráficos $p$ es contante, es más conveniente usar *el graficos* $np$, en la que se gráfica el número de defectuosos por subgrupo $D_{j}$, en lugar de la proporción. Sin embargo, el tipo de dato es el mismo como en la gráfico $p$, por ejemplo, grupos con un tamaño $n$ dado, obligatoriamente todos los tamaños son iguales para este gráfico. La linea central es el número promedio de productos con la característica para la muestra, ejemplo, $n\bar p$. En este caso los límites de control son calculados como: 
+
+\begin{equation}
+UCL =n\bar p + 3 \sqrt{n\bar p(1-\bar p)} \nonumber
+\end{equation}
+
+\begin{equation}
+LCL =n\bar p - 3 \sqrt{n\bar p(1-\bar p)} \nonumber
+\end{equation}
+
+**Ejemplo**: Espesor de placas de metal (continuación) Gráfico $p$ y Gráfico $np$.
+
+Se requiere monitorear la proproción y el número de laminas de metal cuyo espesor es mayor que el punto mediomuestra, entre el valor nominal y el límite de especificación, por ejemplo, $0.775$. Necesitamos primero un vector con la proporción de cada muestra, la cual puede ser calculada con la siguiente expresión
+
+```{r}
+library(SixSigma)
+atributo.espesor <- aggregate(thickness ~ ushift,
+data = ss.data.thickness2,
+FUN = function(x){
+ sum(x>0.775) 
+})
+```
+
+El gráfico de control $p$ puede ser obtenido empleando la función qcc:
+
+```{r}
+library(qcc)
+espesor_p <- qcc(data = atributo.espesor$thickness,
+                 type = "p", # el tipo de gráfico es p
+                 sizes = 6)
+```
+
+El gráfico de control $np$  puede ser obtenido empleado de igual manera la función qcc
+
+```{r}
+library(qcc)
+espesor_np <- qcc(data = atributo.espesor$thickness,
+                 type = "np", # el tipo de gráfico es np
+                 sizes = 6)
+```
+
+El gráfico $np$ muestra muestra el mismo patrón que el gráfico $p$. La elección de uno u otro es muchos casos depende de que tan fácil sea interpretarlos: proporción o número. Además, el gráfico $np$ solamente puede ser usado cuando las muestras tienen el mismo tamaño muestral.
+
+
+## Gráfico $c$ y $u$ (para defectos)
+
+Es frecuente que al inspeccionar una unidad (unidad representa un artículo, un lote de artículos, una medida lineal-metros, tiempo-, una media de área o de volumen) se cuneta el número de defectos que tiene en lugar de limitarse a concluir que es o no defectuosa. Algunos ejemplos de unidades que se inspeccionan para contar sus defectos son: una mesa, $x$ metros de rollo fotográfico, una zapato, $z$ sartenes de teflón, etc. Cada una de estas unidades puede tener más de un defecto, suceso o atributo y no necesariamente se cataloga al producto  o unidad como defectuoso. Por ejemplo, un mueble quizá tenga algunos defectos en su acabado pero puede cumplir con relativa normalidad la función para la que fue fabricado. Aunque se detecten defectos en la operación intermedia de un proceso, la unidad inspeccionada podría pasar a la siguiente etapa, caso contrario de lo que ocurre en las cartas $p$ y $np$. Otro tipo de variables que también es importante evaluar, que cuentan el número de eventos o sucesos en lugar de defectos, son las siguientes: número de errores por trabajador, cantidad de accidentes, número de quejas por mal servicio, etc.
+
+En términos generales, las variables mencionadas se pueden ver como el número de eventos que ocurren por unidad, y tienden a comportarse de acuerdo con la distribución de Poisson.
+
+
+### Gráfico $c$ (número de defectos)
+
+El gráfico de control $c$  es usado para controlar el número total de eventos para un proceso dado en errores por intervalo, este el un proceso que sigue una distribución de Poisson en el cual teóricamente es un número infinito de posibles eventos. Este tipo de proceso no tiene un tamaño muestral del cual un proporción pueda ser calculada, como en el caso del gráfico $p$ y $np$. La estadística de cada muestra es el conteo del número de eventos $c_{j}$. La linea central es el número promedio de eventos por muestra $\bar c = \frac{\sum c_{j}}{m}$. Como en una distribución de Poisson la varianza es el parámetro $\lambda$, entonces un estimador de la desviación estándar es $\sqrt{\bar c}$, y por lo tanto los límites de control son:
+
+\begin{equation}
+UCL_{j} =  \bar c + 3\sqrt{\bar c}, \nonumber
+\end{equation}
+
+\begin{equation}
+LCL_{j} =  \bar c - 3\sqrt{\bar c}. \nonumber
+\end{equation}
+
+### Gráfico $u$ (número de por unidad)
+
+Cuando en la situación previa tenemos $n_{j}$ artículos de diferente tamaño entre cada muestra $j$ en la cual contamos el número total de eventos $x_{j}$ entre todos los elementos de la muestra, puede ser interesante monitorear el número promedio de defectos por artículo. Tal situación demanda el uso del gráfico de control $u$. La estadistica para ser monitoreada es $u_{j}$, el número de defectos por unidad en la muestra $j$, por ejemplo:
+
+\begin{equation}
+u_{j} = \frac{x_{j}}{n_{j}}, \nonumber
+\end{equation}
+
+y la linea central es el número promedio de defectos por unidad en todo la muestra:
+
+\begin{equation}
+CL = \bar {u} = \frac{\sum_{j=1}^{m}u_{j}}{m}. \nonumber
+\end{equation}
+
+Los límites son calculados como sigue:
+
+\begin{equation}
+UCL = \bar {u} = \bar{u} + 3 \sqrt{\frac{\bar{u}}{n_{j}}},   \nonumber
+\end{equation}
+
+\begin{equation}
+LCL = \bar {u} = \bar{u} - 3 \sqrt{\frac{\bar{u}}{n_{j}}}.   \nonumber
+\end{equation}
+
+**Ejemplo**: Espesor de placas de metal (continuación) Gráfico $c$ y Gráfico $u$. En adición a la medición del espesor de las placas metal, algunas placas de metal ($1,2$, o $3$) son inspeccionadas para identificar fallos en la superficie. El inspector cuenta el número de fallos en cada placa de metal, y esta información se encuentra en la columna flaws del data frame ss.data.thickness2.
+
+Para gráficar el gráfico de control $c$ para todas las placas de metal necesitamos un vector con solo los artículos inspeccionados, entonces debemos remover los valores NA:
+
+```{r}
+flaws <- ss.data.thickness2$flaws[
+!is.na(ss.data.thickness2$flaws)] # removemos los valores NA
+espesor_c <- qcc(data = flaws, type = "c")
+```
+
+Finalmente, se queremos monitorear el promedio de fallos en las placas de metal en cada cambio de turno, entonces necesitamos el gráfico de control $u$ que es el resultado del siguiente codigo:
+
+```{r}
+fallos_cambio <- aggregate(flaws ~ ushift,
+data = ss.data.thickness2,
+sum,
+na.rm = TRUE)[,2] # remover valores NA
+cambio.inpeccionado <- aggregate(flaws ~ ushift,
+data = ss.data.thickness2,
+function(x) {
+sum(!is.na(x))
+})[,2]
+espesor.c <- qcc(data = fallos_cambio,
+type = "u",
+sizes = cambio.inpeccionado)
+```
+
+
+
+
+
+

@@ -1761,24 +1761,23 @@ summary {
 <li><p>¿cuál es la probabilidad de que sobrevivan exactamente 6?</p></li>
 <li><p>Encontrar la media y la varianza de la variable aleatoria binomial.</p></li>
 </ol>
-<!--   
-**Solución**
-Sea $X$ el número de personas que sobreviven
-
-a.
-\begin{equation}
+<p><strong>Solución</strong> Sea <span class="math inline">\(X\)</span> el número de personas que sobreviven</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math display">\[\begin{equation}
 \begin{split}
-P(X\geq 8) & = 1- p(X < 8) = 1 - \sum^{8}_{0}b(x;8,0.4) = 1 - 0.9983  \\
-& = 0.00167 \nonumber
+P(X\geq 8) &amp; = 1- p(X &lt; 8) = 1 - \sum^{8}_{0}b(x;8,0.4) = 1 - 0.9983  \\
+&amp; = 0.00167 \nonumber
 \end{split}  
-\end{equation}
-
-
+\end{equation}\]</span></li>
+</ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMSAtIHBiaW5vbSg4LDEwLDAuNCkgXG5gYGAifQ== -->
-<pre class="r"><code>1 - pbinom(8,10,0.4) </code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMSAtIHBiaW5vbSg3LDEwLDAuNCkgXG5gYGAifQ== -->
+<pre class="r"><code>1 - pbinom(7,10,0.4) </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDEyMjk0NTVcbiJ9 -->
+<pre><code>[1] 0.01229455</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <ol start="2" style="list-style-type: lower-alpha">
@@ -1795,6 +1794,9 @@ P(2 \leq X \leq 5) &amp; = \sum^{5}_{2}b(x;10,0.4) \\
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGJpbm9tKDUsMTAsMC40KS0gcGJpbm9tKDIsMTAsMC40KSBcbmBgYCJ9 -->
 <pre class="r"><code>pbinom(5,10,0.4)- pbinom(2,10,0.4) </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuNjY2NDcxNlxuIn0= -->
+<pre><code>[1] 0.6664716</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <ol start="3" style="list-style-type: lower-alpha">
@@ -1810,9 +1812,11 @@ P(X = 6) &amp; = b(6;10,0.4) = \sum^{6}_{0}b(x;10,0.4) - \sum^{5}_{0}b(x;10,0.4)
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGJpbm9tKDYsMTAsMC40KSAtIHBiaW5vbSg1LDEwLDAuNCkgXG5gYGAifQ== -->
 <pre class="r"><code>pbinom(6,10,0.4) - pbinom(5,10,0.4) </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMTExNDc2N1xuIn0= -->
+<pre><code>[1] 0.1114767</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>–&gt;</p>
 </div>
 <div id="distribucion-de-poisson" class="section level1">
 <h1>2. Distribución de Poisson</h1>
@@ -1821,23 +1825,23 @@ P(X = 6) &amp; = b(6;10,0.4) = \sum^{6}_{0}b(x;10,0.4) - \sum^{5}_{0}b(x;10,0.4)
 <li><p>más de cinco veces?</p></li>
 <li><p>ninguna vez?</p></li>
 </ol>
-<!--  
-**Solución**
-Sea $X$ el número de veces que se solicita dicho artículo
-
-a.  \begin{equation}
+<p><strong>Solución</strong> Sea <span class="math inline">\(X\)</span> el número de veces que se solicita dicho artículo</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math display">\[\begin{equation}
 \begin{split}
-P(X > 5) & = 1- P(X \neq 5) = 1- \sum^{5}_{0}p(x;5)  \\
-& = 1- 0.6159607 = 0.3840393  \nonumber
+P(X &gt; 5) &amp; = 1- P(X \neq 5) = 1- \sum^{5}_{0}p(x;5)  \\
+&amp; = 1- 0.6159607 = 0.3840393  \nonumber
 \end{split}  
-\end{equation}
-
-
+\end{equation}\]</span></li>
+</ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIDEtIHBwb2lzKDUsNSlcbmBgYCJ9 -->
 <pre class="r"><code> 1- ppois(5,5)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMzg0MDM5M1xuIn0= -->
+<pre><code>[1] 0.3840393</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <ol start="2" style="list-style-type: lower-alpha">
@@ -1853,35 +1857,34 @@ P(X = 0) &amp; = p(0;5)  \\
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHBvaXMoMCw1KVxuYGBgIn0= -->
 <pre class="r"><code>ppois(0,5)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDA2NzM3OTQ3XG4ifQ== -->
+<pre><code>[1] 0.006737947</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>–&gt;</p>
 </div>
 <div id="binomial-negativa" class="section level1">
 <h1>3. Binomial negativa</h1>
 <p>La probabilidad de que una persona, que vive en la ciudad de Antofagasta, tenga un perro se estima en <span class="math inline">\(0.3\)</span>. Encontrar la probabilidad de que la décima persona entrevistada al azar en esta ciudad sea la quinta que tiene un perro.</p>
-<!-- 
-**Solución**
-
-Al utilizar la distribución binomial con $x=10$, $k=5$, y $p=0.3$, tenemos
-
-\begin{equation} 
+<p><strong>Solución</strong></p>
+<p>Al utilizar la distribución binomial con <span class="math inline">\(x=10\)</span>, <span class="math inline">\(k=5\)</span>, y <span class="math inline">\(p=0.3\)</span>, tenemos</p>
+<p><span class="math display">\[\begin{equation} 
 b*(10;5,0.3) = \binom{9}{4}(0.3)^{5}(0.7)^{5} = 0.0515  \nonumber
-\end{equation}
-
-
+\end{equation}\]</span></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZG5iaW5vbSg1LDUsMC4zKVxuYGBgIn0= -->
 <pre class="r"><code>dnbinom(5,5,0.3)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDUxNDU5NjdcbiJ9 -->
+<pre><code>[1] 0.05145967</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>–&gt;</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGFsbGVyIDE6IERpc3RyaWJ1Y2lvbmVzIGRlIHByb2JhYmlsaWRhZCIKYXV0aG9yOiAiR3VzdGF2byBBaHVtYWRhIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogIHRoZW1lOiB1bml0ZWQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQojIDEuIERpc3RyaWJ1Y2nDs24gQmlub21pYWwuCgpMYSBwcm9iYWJpbGlkYWQgZGUgcXVlIHVuIHBhY2llbnRlIHNlIHJlY3VwZXJlIGRlICoqQ292aWQtMTkqKiBlcyBkZSAkMC40JC4gU2kgc2Ugc2FiZSBxdWUgMTAgcGVyc29uYXMgY29udHJhZW4gbGEgZW5mZXJtZWRhZCwKCmEuIMK/Y3XDoWwgZXMgbGEgcHJvYmFiaWxpZGFkIGRlIHF1ZSBzb2JyZXZpdmFuIGFsIG1lbm9zIDg/CgpiLiDCv2N1w6FsIGVzIGxhIHByb2JhYmlsaWRhZCBkZSBxdWUgc29icmV2aXZhbiBlbnRyZSAyIGEgNT8KCmMuIMK/Y3XDoWwgZXMgbGEgcHJvYmFiaWxpZGFkIGRlIHF1ZSBzb2JyZXZpdmFuIGV4YWN0YW1lbnRlIDY/CgpkLiBFbmNvbnRyYXIgbGEgbWVkaWEgeSBsYSB2YXJpYW56YSBkZSBsYSB2YXJpYWJsZSBhbGVhdG9yaWEgYmlub21pYWwuCgo8IS0tICAgCioqU29sdWNpw7NuKioKU2VhICRYJCBlbCBuw7ptZXJvIGRlIHBlcnNvbmFzIHF1ZSBzb2JyZXZpdmVuCgphLgpcYmVnaW57ZXF1YXRpb259ClxiZWdpbntzcGxpdH0KUChYXGdlcSA4KSAmID0gMS0gcChYIDwgOCkgPSAxIC0gXHN1bV57OH1fezB9Yih4OzgsMC40KSA9IDEgLSAwLjk5ODMgIFxcCiYgPSAwLjAwMTY3IFxub251bWJlcgpcZW5ke3NwbGl0fSAgClxlbmR7ZXF1YXRpb259CgpgYGB7cn0KMSAtIHBiaW5vbSg4LDEwLDAuNCkgCmBgYAoKCmIuIApcYmVnaW57ZXF1YXRpb259ClxiZWdpbntzcGxpdH0KUCgyIFxsZXEgWCBcbGVxIDUpICYgPSBcc3VtXns1fV97Mn1iKHg7MTAsMC40KSBcXAomID0gXHN1bV57NX1fezB9Yih4OzEwLDAuNCkgLSBcc3VtXnsyfV97MH1iKHg7MTAsMC40KSA9IDAuODMzNzYxNCAtIDAuMTY3Mjg5OCBcXAomID0gMC42NjY0NzE2IFxub251bWJlcgpcZW5ke3NwbGl0fSAgClxlbmR7ZXF1YXRpb259CgpgYGB7cn0KcGJpbm9tKDUsMTAsMC40KS0gcGJpbm9tKDIsMTAsMC40KSAKYGBgCgoKYy4gXGJlZ2lue2VxdWF0aW9ufQpcYmVnaW57c3BsaXR9ClAoWCA9IDYpICYgPSBiKDY7MTAsMC40KSA9IFxzdW1eezZ9X3swfWIoeDsxMCwwLjQpIC0gXHN1bV57NX1fezB9Yih4OzEwLDAuNCkgXFwKJiA9IDAuOTQ1MjM4MSAtIDAuODMzNzYxNCA9IDAuMTExNDc2NyAgXG5vbnVtYmVyClxlbmR7c3BsaXR9ICAKXGVuZHtlcXVhdGlvbn0KCmBgYHtyfQpwYmlub20oNiwxMCwwLjQpIC0gcGJpbm9tKDUsMTAsMC40KSAKYGBgCiAtLT4KCiMgMi4gRGlzdHJpYnVjacOzbiBkZSBQb2lzc29uCgpFbCBlc3R1ZGlvIGRlIHVuIGludmVudGFyaW8gZGV0ZXJtaW5hZGEgcXVlLCBlbiBwcm9tZWRpbywgbGFzIGRlbWFuZGFzIGRlIHVuIGFydMOtY3VsbyBwYXJ0aWN1bGFyIGVuIHVuIGFsbWFjw6luIHNlIHJlYWxpemFuIGNpbmNvIHZlY2VzIGFsIGTDrWEuIMK/Q3XDoWwgZXMgbGEgcHJvYmFiaWxpZGFkIGRlIHF1ZSBlbiB1biBkw61hIGRhZG8gc2UgcGlkYSBlc3RlIGFydMOtY3VsbwoKYS4gbcOhcyBkZSBjaW5jbyB2ZWNlcz8KCmIuIG5pbmd1bmEgdmV6PwoKPCEtLSAgCioqU29sdWNpw7NuKioKU2VhICRYJCBlbCBuw7ptZXJvIGRlIHZlY2VzIHF1ZSBzZSBzb2xpY2l0YSBkaWNobyBhcnTDrWN1bG8KCmEuICBcYmVnaW57ZXF1YXRpb259ClxiZWdpbntzcGxpdH0KUChYID4gNSkgJiA9IDEtIFAoWCBcbmVxIDUpID0gMS0gXHN1bV57NX1fezB9cCh4OzUpICBcXAomID0gMS0gMC42MTU5NjA3ID0gMC4zODQwMzkzICBcbm9udW1iZXIKXGVuZHtzcGxpdH0gIApcZW5ke2VxdWF0aW9ufQoKYGBge3J9CiAxLSBwcG9pcyg1LDUpCmBgYAoKYi4gIFxiZWdpbntlcXVhdGlvbn0KXGJlZ2lue3NwbGl0fQpQKFggPSAwKSAmID0gcCgwOzUpICBcXAomID0gMC4wMDY3ICBcbm9udW1iZXIKXGVuZHtzcGxpdH0gIApcZW5ke2VxdWF0aW9ufQoKYGBge3J9CnBwb2lzKDAsNSkKYGBgCiAtLT4KCiMgMy4gQmlub21pYWwgbmVnYXRpdmEKTGEgcHJvYmFiaWxpZGFkIGRlIHF1ZSB1bmEgcGVyc29uYSwgcXVlIHZpdmUgZW4gbGEgY2l1ZGFkIGRlIEFudG9mYWdhc3RhLCB0ZW5nYSB1biBwZXJybyBzZSBlc3RpbWEgZW4gJDAuMyQuIEVuY29udHJhciBsYSBwcm9iYWJpbGlkYWQgZGUgcXVlIGxhIGTDqWNpbWEgIHBlcnNvbmEgZW50cmV2aXN0YWRhIGFsIGF6YXIgZW4gZXN0YSBjaXVkYWQgc2VhIGxhIHF1aW50YSBxdWUgdGllbmUgdW4gcGVycm8uCgo8IS0tIAoqKlNvbHVjacOzbioqCgpBbCB1dGlsaXphciBsYSBkaXN0cmlidWNpw7NuIGJpbm9taWFsIGNvbiAkeD0xMCQsICRrPTUkLCB5ICRwPTAuMyQsIHRlbmVtb3MKClxiZWdpbntlcXVhdGlvbn0gCmIqKDEwOzUsMC4zKSA9IFxiaW5vbXs5fXs0fSgwLjMpXns1fSgwLjcpXns1fSA9IDAuMDUxNSAgXG5vbnVtYmVyClxlbmR7ZXF1YXRpb259CgpgYGB7cn0KZG5iaW5vbSg1LDUsMC4zKQpgYGAKIC0tPgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGFsbGVyIDE6IERpc3RyaWJ1Y2lvbmVzIGRlIHByb2JhYmlsaWRhZCIKYXV0aG9yOiAiR3VzdGF2byBBaHVtYWRhIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogIHRoZW1lOiB1bml0ZWQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQojIDEuIERpc3RyaWJ1Y2nDs24gQmlub21pYWwuCgpMYSBwcm9iYWJpbGlkYWQgZGUgcXVlIHVuIHBhY2llbnRlIHNlIHJlY3VwZXJlIGRlICoqQ292aWQtMTkqKiBlcyBkZSAkMC40JC4gU2kgc2Ugc2FiZSBxdWUgMTAgcGVyc29uYXMgY29udHJhZW4gbGEgZW5mZXJtZWRhZCwKCmEuIMK/Y3XDoWwgZXMgbGEgcHJvYmFiaWxpZGFkIGRlIHF1ZSBzb2JyZXZpdmFuIGFsIG1lbm9zIDg/CgpiLiDCv2N1w6FsIGVzIGxhIHByb2JhYmlsaWRhZCBkZSBxdWUgc29icmV2aXZhbiBlbnRyZSAyIGEgNT8KCmMuIMK/Y3XDoWwgZXMgbGEgcHJvYmFiaWxpZGFkIGRlIHF1ZSBzb2JyZXZpdmFuIGV4YWN0YW1lbnRlIDY/CgpkLiBFbmNvbnRyYXIgbGEgbWVkaWEgeSBsYSB2YXJpYW56YSBkZSBsYSB2YXJpYWJsZSBhbGVhdG9yaWEgYmlub21pYWwuCgogICAKKipTb2x1Y2nDs24qKgpTZWEgJFgkIGVsIG7Dum1lcm8gZGUgcGVyc29uYXMgcXVlIHNvYnJldml2ZW4KCmEuClxiZWdpbntlcXVhdGlvbn0KXGJlZ2lue3NwbGl0fQpQKFhcZ2VxIDgpICYgPSAxLSBwKFggPCA4KSA9IDEgLSBcc3VtXns4fV97MH1iKHg7OCwwLjQpID0gMSAtIDAuOTk4MyAgXFwKJiA9IDAuMDAxNjcgXG5vbnVtYmVyClxlbmR7c3BsaXR9ICAKXGVuZHtlcXVhdGlvbn0KCmBgYHtyfQoxIC0gcGJpbm9tKDcsMTAsMC40KSAKYGBgCgoKYi4gClxiZWdpbntlcXVhdGlvbn0KXGJlZ2lue3NwbGl0fQpQKDIgXGxlcSBYIFxsZXEgNSkgJiA9IFxzdW1eezV9X3syfWIoeDsxMCwwLjQpIFxcCiYgPSBcc3VtXns1fV97MH1iKHg7MTAsMC40KSAtIFxzdW1eezJ9X3swfWIoeDsxMCwwLjQpID0gMC44MzM3NjE0IC0gMC4xNjcyODk4IFxcCiYgPSAwLjY2NjQ3MTYgXG5vbnVtYmVyClxlbmR7c3BsaXR9ICAKXGVuZHtlcXVhdGlvbn0KCmBgYHtyfQpwYmlub20oNSwxMCwwLjQpLSBwYmlub20oMiwxMCwwLjQpIApgYGAKCgpjLiBcYmVnaW57ZXF1YXRpb259ClxiZWdpbntzcGxpdH0KUChYID0gNikgJiA9IGIoNjsxMCwwLjQpID0gXHN1bV57Nn1fezB9Yih4OzEwLDAuNCkgLSBcc3VtXns1fV97MH1iKHg7MTAsMC40KSBcXAomID0gMC45NDUyMzgxIC0gMC44MzM3NjE0ID0gMC4xMTE0NzY3ICBcbm9udW1iZXIKXGVuZHtzcGxpdH0gIApcZW5ke2VxdWF0aW9ufQoKYGBge3J9CnBiaW5vbSg2LDEwLDAuNCkgLSBwYmlub20oNSwxMCwwLjQpIApgYGAKCgojIDIuIERpc3RyaWJ1Y2nDs24gZGUgUG9pc3NvbgoKRWwgZXN0dWRpbyBkZSB1biBpbnZlbnRhcmlvIGRldGVybWluYWRhIHF1ZSwgZW4gcHJvbWVkaW8sIGxhcyBkZW1hbmRhcyBkZSB1biBhcnTDrWN1bG8gcGFydGljdWxhciBlbiB1biBhbG1hY8OpbiBzZSByZWFsaXphbiBjaW5jbyB2ZWNlcyBhbCBkw61hLiDCv0N1w6FsIGVzIGxhIHByb2JhYmlsaWRhZCBkZSBxdWUgZW4gdW4gZMOtYSBkYWRvIHNlIHBpZGEgZXN0ZSBhcnTDrWN1bG8KCmEuIG3DoXMgZGUgY2luY28gdmVjZXM/CgpiLiBuaW5ndW5hIHZlej8KCgoqKlNvbHVjacOzbioqClNlYSAkWCQgZWwgbsO6bWVybyBkZSB2ZWNlcyBxdWUgc2Ugc29saWNpdGEgZGljaG8gYXJ0w61jdWxvCgphLiAgXGJlZ2lue2VxdWF0aW9ufQpcYmVnaW57c3BsaXR9ClAoWCA+IDUpICYgPSAxLSBQKFggXG5lcSA1KSA9IDEtIFxzdW1eezV9X3swfXAoeDs1KSAgXFwKJiA9IDEtIDAuNjE1OTYwNyA9IDAuMzg0MDM5MyAgXG5vbnVtYmVyClxlbmR7c3BsaXR9ICAKXGVuZHtlcXVhdGlvbn0KCmBgYHtyfQogMS0gcHBvaXMoNSw1KQpgYGAKCmIuICBcYmVnaW57ZXF1YXRpb259ClxiZWdpbntzcGxpdH0KUChYID0gMCkgJiA9IHAoMDs1KSAgXFwKJiA9IDAuMDA2NyAgXG5vbnVtYmVyClxlbmR7c3BsaXR9ICAKXGVuZHtlcXVhdGlvbn0KCmBgYHtyfQpwcG9pcygwLDUpCmBgYAoKCiMgMy4gQmlub21pYWwgbmVnYXRpdmEKTGEgcHJvYmFiaWxpZGFkIGRlIHF1ZSB1bmEgcGVyc29uYSwgcXVlIHZpdmUgZW4gbGEgY2l1ZGFkIGRlIEFudG9mYWdhc3RhLCB0ZW5nYSB1biBwZXJybyBzZSBlc3RpbWEgZW4gJDAuMyQuIEVuY29udHJhciBsYSBwcm9iYWJpbGlkYWQgZGUgcXVlIGxhIGTDqWNpbWEgIHBlcnNvbmEgZW50cmV2aXN0YWRhIGFsIGF6YXIgZW4gZXN0YSBjaXVkYWQgc2VhIGxhIHF1aW50YSBxdWUgdGllbmUgdW4gcGVycm8uCgoqKlNvbHVjacOzbioqCgpBbCB1dGlsaXphciBsYSBkaXN0cmlidWNpw7NuIGJpbm9taWFsIGNvbiAkeD0xMCQsICRrPTUkLCB5ICRwPTAuMyQsIHRlbmVtb3MKClxiZWdpbntlcXVhdGlvbn0gCmIqKDEwOzUsMC4zKSA9IFxiaW5vbXs5fXs0fSgwLjMpXns1fSgwLjcpXns1fSA9IDAuMDUxNSAgXG5vbnVtYmVyClxlbmR7ZXF1YXRpb259CgpgYGB7cn0KZG5iaW5vbSg1LDUsMC4zKQpgYGAKCgoK</div>
 
 
 
