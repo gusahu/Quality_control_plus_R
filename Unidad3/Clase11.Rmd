@@ -1,6 +1,6 @@
 ---
 title: "Control Estadístico de Calidad"
-subtitle: "Cartas de control para atributos" 
+subtitle: "Gráficos de control para atributos" 
 author: "Profesor: Gustavo Ahumada"
 output:
   pdf_document: default
