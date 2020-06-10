@@ -1,0 +1,54 @@
+---
+title: "Universidad Santo Tomás, Facultad de Ingeniería"
+subtitle: "Gráficos (cartas) de control para atributos: Taller 3." 
+author: "Profesor: Gustavo Ahumada"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+# Instrucciones
+1. Para el desarrollo de los ejercicios debe hacer uso del archivo datos_taller.xlsx, el cual contiene la información que se va analizar.
+
+2. Las respuesta a cada uno de los ejercicios deben estar en un solo script, no se acepta que envíen un archivo en PDF con el desarrollo de los ejercicios. En el script se debe ser ordenado en la elaboración de cada uno de las respuestas. En adición al código, usted deber escribir en el script su análisis a cada uno de los puntos que contienen los ejercicios.
+
+3. La fecha límite de entrega es el día viernes a las 11:30 PM. Se debe envíar el archivo script al correo gahumada2@santotomas.cl.
+
+**Nota**: a modo de guía se encuentra un script en la sección Unidad Nº3 en la plataforma Santo Tomás llamado Ejemplos.R.
+
+# Ejercicios
+
+**1.** En una empresa del ramo metalmecánico se fabrican válvulas. Después del proceso de fundición se realiza una inspección y las piezas que no cumplen con ciertas características son rechazadas. Las razones del rechazo son diversas: piezas incompletas, porosas, mal formadas, etc. Para evaluar la variabilidad y la magnitud de la proporción de piezas defectuosas en el proceso de fundición se decide implementar una gráfico (carta) $p$. El proceso de fundición se hace por lotes. En el archivo **datos_taller.xlsx** se muestran los datos obtenidos durante una semana para cierto tipo de válvulas. Aunque regularmente el tamaño de lote es fijo, n = 300, en ocasiones, por diferentes motivos, en algunos lotes se hacen unas cuantas piezas de más o de menos, como se aprecia en el archivo.
+
+a. Calcule los límites de control utilizando el tamaño de subgrupo (lote) promedio.
+
+b. ¿Cómo explicaría los límites de control que obtuvo a alguien que no tiene conocimientos profundos de estadística?
+
+c. Gráficar la proporción de defectuosos e interpréte. ¿El proceso es estable?
+
+d. ¿Se puede considerar que la calidad del proceso es aceptable? Argumente su respuesta.
+
+
+**2.** En el caso del ejercicio **1**:
+
+a. Obtenga un gráfico $p$ con límites de control variables.
+
+b. ¿Qué diferencias observa con respecto al gráfico obtenido en el ejercicio anterior?
+
+
+**3.** En el caso del ejercicio **1**:
+
+a.  Suponga que todos los lotes tienen el mismo tamaño (el promedio), calcule los límites de control para gráfico $np$ e interprétar.
+
+b. Grafique la correspondiente gráfico $np$ y analizar. ¿El proceso es estable?
+
+c. ¿Observa alguna diferencia importante entre gráfico de control $p$ y el  gráfico de control $np$?
+
+d. ¿Cuál gráfico $p$ o la $np$ sería el más conveniente en
+este caso? Argumentar. 
+
+

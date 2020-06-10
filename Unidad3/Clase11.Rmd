@@ -62,7 +62,7 @@ LCL =n\bar p - 3 \sqrt{n\bar p(1-\bar p)} \nonumber
 
 **Ejemplo**: Espesor de placas de metal (continuación) Gráfico $p$ y Gráfico $np$.
 
-Se requiere monitorear la proproción y el número de laminas de metal cuyo espesor es mayor que el punto mediomuestra, entre el valor nominal y el límite de especificación, por ejemplo, $0.775$. Necesitamos primero un vector con la proporción de cada muestra, la cual puede ser calculada con la siguiente expresión
+Se requiere monitorear la proporción y el número de laminas de metal cuyo espesor es mayor que el punto medio muestra, entre el valor nominal y el límite de especificación, por ejemplo, $0.775$. Necesitamos primero un vector con la proporción de cada muestra, la cual puede ser calculada con la siguiente expresión
 
 ```{r}
 library(SixSigma)
