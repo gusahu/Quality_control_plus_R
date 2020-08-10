@@ -38,7 +38,7 @@ cuando Six Sigma es implementada, debería ser aplicada sobre un proyecto bien d
 
 Con la fase de definición, comienza el viaje al problema en cuestión. Inicialmente debería ser determinado si la metodología Six Sigma es adecuada para solución del problema. La entrega clave para esta fase del ciclo DMAIC es el capitulo del proyecto. Un capitulo del proyecto es una declaración de las metas, objetivos y los participantes del proyecto. Esto provee una delineación de los roles y responsabilidad, describe los objetivos, identifica los principales actores involucrados y define la autoridad del proyecto.
 
-## Fase de mejora
+## Fase de medir
 
 Es la segunda fase de DMAIC, El objetivo de esta fase es recoger desde el proceso actual tanta información como sea posible. Debería ser adecuado determinar como operan los procesos.
 

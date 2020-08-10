@@ -1,0 +1,203 @@
+---
+title: "Universidad Santo Tomás, Facultad de Ingeniería"
+subtitle: "Control Estadístico de Calidad: Tercera prueba parcial" 
+author: "Profesor: Gustavo Ahumada"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+**Exigencia**: $70\%$. **Puntaje total**: 70 puntos. **Tiempo de duración**: 36 horas.
+
+**Instrucciones**
+
+
+1. Las respuestas desde la pregunta 1 hasta la pregunta 6 deben estar en **un solo archivo script**, no se acepta que envíe un archivo en PDF con el desarrollo de estas preguntas. 
+2 La elaboración de la respuesta a la pregunta 7 debe ser incluida en un archivo en PDF.
+3. El orden en la elaboración de sus respuesta es importante, por lo tanto, su script debe ser totalmente funcional para que el docente puede verificar su respuesta.
+4. La fecha límite de entrega es el día miércoles 29 de julio a las 11:59 PM. Se debe envíar el archivo script al correo gahumada2@santotomas.cl.
+
+**Nota**: se sugiere tomar en consideración las notas de clase disponible en la Intranet Santo Tomás, el texto guía **Six Sigma with R** de Emilio L. Cano, Andrés Redchuk y Javier M. Moguerza y la sección **Help** de Rstudio en relación al package **SixSigma**.
+
+
+# Pregunta 1.
+
+Dibuje un mapa de proceso para el proceso de lavar la ropa, usando tres pasos: preparar, lavar y colgar. Imagine las entradas y las salidas e incluya algunos parámetros y  ejemplos de características. **Nota**: debe emplear las herramientas que ofrece el package **SixSigma** para elaborar el mapa de procesos (ver notas de clases como ejemplo).
+
+
+Insumos X: Lavadora, secadora, detergente, suavizante, perchero para colgar
+
+1. Preparar: separar la ropa (color/blanco), seleccionar temperatura del agua, tipo de
+carga, 
+
+2. Lavar: adicionar detergente, adicionar la ropa, adicionar suavizante, seleccionar
+temperatura de secado, seleccionar tiempo de secado, iniciar secado
+
+3. Colgar: remover ropa de secadora, colocar ropa en perchero
+
+Resultado Y: temperatura, suavidad, olor, tiempo, limpieza.  
+
+
+```{r, fig.width=7, fig.height=7}
+#Cargar package
+library("SixSigma")
+# Crear un vector de Insumo, Salida y Pasos 
+insumos <-c ("Lavadora", "Secadora", "Detergente", "Suavizante", "Ropa","Perchero")
+salidas <- c("Temperatura", "Textura", "Aroma","Tiempo", "Limpieza")
+pasos <- c("Preparar", "Lavar", "Colgar")
+
+# Guardar el nombre de los insumos (entradas) en cada paso en la lista
+io <- list()
+io[[1]] <- list("Ropa", "Lavadora")
+io[[2]] <- list("Ropa", "Lavadora", "Secadora", "Detergente", "Suavizante")
+io[[3]] <- list("Ropa", "Perchero")
+
+#Guardar el nombre, tipos de parámetros y caracteristicas:
+param <- list()
+param[[1]] <- list(c("Separar(color/blanco)", "C"),c("Marca detergente", "C"),c("Marca suavizante", "C"),c("Temperatura agua", "P"),c("Tipo de carga", "Cr"))
+param[[2]] <- list(c("Cocinar", "C"),c("Marca ingred", "Cr"),c("Cantidad", "P"),c("T preparación", "Cr"))
+param[[3]] <- list(c("Cocinar","C"),c("cola", "N"),c("Tiempo hornear", "Cr"))
+
+feat <- list()
+feat[[1]] <- list("Ropa seleccionada", "Lavadora preparada")
+feat[[2]] <- list("Ropa lavada", "Temperatura", "Aroma", "Limpieza", "Tiempo")
+feat[[3]] <- list("Ropa seca", "Aroma", "Limpieza", "Tiempo")
+
+# Crear mapa de procesos
+ss.pMap(pasos, insumos, salidas,io, param, feat,sub = "Proceso lavar ropa")
+```
+
+
+# Pregunta 2.
+
+a. En la siguiente tabla se presentan los datos de una pastelería que hace distintos tipos de postres.^[Los datos están habilitados en el package **SixSigma** como un objeto llamado **ss.data.pastries**. Para mayor información de esta base de datos ir a help y escribir el nombre del objeto.] La satisfacción del consumidor está relacionada por un componente utilizado en el chocolate. Para evaluar el sistema de medición, tres laboratorios son empleados para determinar la cantidad del componente en los postres. Identificar los evaluadores o tasadores, las partes y su longitud.
+
+
+```{r}
+library("SixSigma")
+pasteleria <- ss.data.pastries
+pasteleria
+```
+
+**a. Respuesta**
+- Evaluadores (b): 3 laboratorios.
+- Partes (a): Lotes con una longitud de 3.
+
+
+
+b. Empleando la base de datos pasteleria y el package **SixSigma**, llevar a cabo un análisis del sistema de medición (MSA) e indicar las principales conclusiones procedente de este análisis.
+
+
+**b. Respuesta**
+
+
+
+Análisis de varianza
+
+```{r, fig.width=12, fig.height=10}
+
+mi_analisis <- ss.rr(var = comp, part = batch,
+                     appr = lab,
+                     data = pasteleria,
+                     main = "Six Sigma medida de calibración R&R",
+                     sub = "MSA Pastelería")
+```
+
+
+
+**Tablas de varianza**
+
+Los resultados del MSA muestran que el $\%$ de variación del estudio ($\%$StudyVar) debido a R&R (segunda tabla, primera fila, tecera columna) es del $19.65\%$. Este valor es menor al $30\%$, indicando que la variabilidad debido a la aleatoriedad del proceso es aceptable, por lo cual indica que estamos frente a un buen sistema de medición.
+
+
+**Interpretación de los gráficos**
+
+El gráfico en parte superior izquierda representa la contribución de cada componente en la varianza total. Éste permite a partir de un vistazo identificar si los problemas de medición provienen de la repetibilidad o la reproducibilidad. En el caso bajo estudio, es claro que la mayor fuente variación proviene Part-to-part (variabilidad no debido al sistema de medición), además, la aportación de la variación debido a R&R se encuentra por debajo del $30\%$.
+
+Los dos primeros gráficos en la columna derecha muestran cada medida como un punto en el gráfico. En el gráfico superior, el eje de las $Xs$ representa los lote y una lena ha sido extendida para vincular la media de cada lote. En el gráfico intermedio, el eje de las $Xs$ representa los laboratorios. El gráfico inferior en la derecha muestra la interacción entre los laboratorios y los lotes. Las medias de $lotes \times laboratorios$  son representadas por puntos y vinculadas mediante lineas. En este gráfico se detecta que el lote número dos tiene una media mayor al resto, sin embargo, las mediciones por laboratorio son iguales, lo cual indica una baja variabilidad por laboratorio. El gráfico por laboratorio indica que que no existen substanciales diferencias entre laboratorios. La media y la variabilidad son similares, lo cual indica que no es un problema para el sistema de medición. Las lineas en el gráfico de interacción se cruzan una a otra, entonces la interacción entre factores es relevante.
+
+
+# Pregunta 3.
+Empleando la base de datos **ss.data.pc** disponible en el package **SixSigma**, elaborar un gráfico de barra del volument total de los cartridges (cartuchos) por tipo de filler (relleno).^[Los datos están habilitados en el package **SixSigma** como un objeto llamado **ss.data.pc**. Para mayor información de esta base de datos ir a help y escribir el nombre del objeto.] Nota: emplear la función **aggregate** transformar de manera apropiada los datos contenidos **ss.data.pc**.
+
+
+```{r}
+library(SixSigma)
+datos <- ss.data.pc 
+datos
+data2 <- aggregate(datos[,3:4],
+           by = list(datos$pc.filler),
+           FUN = sum, na.rm = TRUE)
+with(data2,
+     barplot(pc.volume,
+             names.arg = Group.1,
+             las = 1,
+             main = "Barplot del volumen total del cartucho por tipo de relleno"))
+abline(h = 0,
+       col = "#666666")
+```
+
+
+# Pregunta 4
+Empleando la base de datos **ss.data.strings**^[Los datos están habilitados en el package **SixSigma** como un objeto llamado **ss.data.strings**. Para mayor información de esta base de datos ir a help y escribir el nombre del objeto.] evaluar la hipótesis de normalidad de la resistencia de las cuerdas.
+
+
+```{r, fig.width=6, fig.height=6}
+datos_sonido <- na.omit(ss.data.strings) 
+mi_modelo <- lm(res ~ len, data = datos_sonido)
+names(mi_modelo)
+shapiro.test(residuals(mi_modelo))
+par(mfrow=c(2,2))
+plot(mi_modelo)
+```
+
+
+# Pregunta 5
+
+Estimar un modelo lineal empleando la resistencia de las cuerdas como la variable de respuesta y la longitud de las cuerdas como la variable independiente. ¿Es el modelo lineal un buen modelo para explicar esta relación?
+
+
+```{r, fig.width=6, fig.height=6}
+datos_sonido <- na.omit(ss.data.strings) 
+mi_modelo <- lm(res ~ len, data = datos_sonido)
+summary(mi_modelo)
+```
+
+
+# Pregunta 6
+
+Obtener el diseño matricial para un experimento $2^{4}$ y crear una tabla aleatoria para registrar las respuestas. Nota: la columna de Calificación todos sus valores deben ser *NA*.
+
+
+```{r}
+Diseno_experimento <- expand.grid(factor1 = gl(2,1, labels = c("-", "+")),
+                                  factor2 = gl(2,1, labels = c("-", "+")),
+                                  factor3 = gl(2,1, labels = c("-", "+")),
+                                  factor4 = gl(2,1, labels = c("-", "+")),
+                                  calificación = NA)
+Diseno_experimento
+Diseno_experimento$orden <- sample(1:16, 16)
+Diseno_experimento[order(Diseno_experimento$orden),]
+
+```
+
+
+# Pregunta 7
+
+Asumir que una vez egrese de la carrera de Ingeniería Civil Industrial su primera oportunidad de empleo es la elaboración de un proyecto empleando la metodología Six Sigma. Dicho proyecto tendrá como objetivo general reducir los tiempos de elaboración de pizzas y el puntual envío de los pedidos a los hogares de los consumidores. Para tener una pequeña descripción de su proyecto Six Sigma es necesario responder de manera clara y detallada cada una de las siguientes preguntas:
+
+1. ¿Cuales son cada uno de los pasos del ciclo DMAIC de su proyecto?
+2. Describir las actividades que deben ser llevadas a cabo en cada uno de los pasos anteriores.
+3. ¿Cuales serían algunos de los problemas a los cuales se enfrentaría el proyecto?
+4. ¿Qué tipo de información y herramientas estadísticas son necesarias para llevar a cabo la fase de análisis en su proyecto?
+5. ¿Puede llevar a cabo algún tipo de diseño de experimento en su proyecto?, ¿Describir el diseño del experimento?, ¿De que manera este experimento puede mejorar los resultados de su proyecto?
+
+
+
+
+
+

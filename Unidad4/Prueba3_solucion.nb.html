@@ -1745,7 +1745,7 @@ summary {
 
 
 <h1 class="title toc-ignore">Universidad Santo Tomás, Facultad de Ingeniería</h1>
-<h3 class="subtitle">Gráficos (cartas) de control para atributos: Taller 3.</h3>
+<h3 class="subtitle">Control Estadístico de Calidad: Tercera prueba parcial</h3>
 <h4 class="author">Profesor: Gustavo Ahumada</h4>
 <h4 class="date">04 August, 2020</h4>
 
@@ -1753,40 +1753,188 @@ summary {
 
 
 <!-- rnb-text-begin -->
-<div id="instrucciones" class="section level1">
-<h1>Instrucciones</h1>
+<p><strong>Exigencia</strong>: <span class="math inline">\(70\%\)</span>. <strong>Puntaje total</strong>: 70 puntos. <strong>Tiempo de duración</strong>: 36 horas.</p>
+<p><strong>Instrucciones</strong></p>
 <ol style="list-style-type: decimal">
-<li><p>Para el desarrollo de los ejercicios debe hacer uso del archivo datos_taller.xlsx, el cual contiene la información que se va analizar.</p></li>
-<li><p>Las respuesta a cada uno de los ejercicios deben estar en un solo script, no se acepta que envíen un archivo en PDF con el desarrollo de los ejercicios. En el script se debe ser ordenado en la elaboración de cada uno de las respuestas. En adición al código, usted deber escribir en el script su análisis a cada uno de los puntos que contienen los ejercicios.</p></li>
-<li><p>La fecha límite de entrega es el día viernes a las 11:30 PM. Se debe envíar el archivo script al correo <a href="mailto:gahumada2@santotomas.cl" class="email">gahumada2@santotomas.cl</a>.</p></li>
+<li>Las respuestas desde la pregunta 1 hasta la pregunta 6 deben estar en <strong>un solo archivo script</strong>, no se acepta que envíe un archivo en PDF con el desarrollo de estas preguntas. 2 La elaboración de la respuesta a la pregunta 7 debe ser incluida en un archivo en PDF.</li>
+<li>El orden en la elaboración de sus respuesta es importante, por lo tanto, su script debe ser totalmente funcional para que el docente puede verificar su respuesta.</li>
+<li>La fecha límite de entrega es el día miércoles 29 de julio a las 11:59 PM. Se debe envíar el archivo script al correo <a href="mailto:gahumada2@santotomas.cl" class="email">gahumada2@santotomas.cl</a>.</li>
 </ol>
-<p><strong>Nota</strong>: a modo de guía se encuentra un script en la sección Unidad Nº3 en la plataforma Santo Tomás llamado Ejemplos.R.</p>
+<p><strong>Nota</strong>: se sugiere tomar en consideración las notas de clase disponible en la Intranet Santo Tomás, el texto guía <strong>Six Sigma with R</strong> de Emilio L. Cano, Andrés Redchuk y Javier M. Moguerza y la sección <strong>Help</strong> de Rstudio en relación al package <strong>SixSigma</strong>.</p>
+<div id="pregunta-1." class="section level1">
+<h1>Pregunta 1.</h1>
+<p>Dibuje un mapa de proceso para el proceso de lavar la ropa, usando tres pasos: preparar, lavar y colgar. Imagine las entradas y las salidas e incluya algunos parámetros y ejemplos de características. <strong>Nota</strong>: debe emplear las herramientas que ofrece el package <strong>SixSigma</strong> para elaborar el mapa de procesos (ver notas de clases como ejemplo).</p>
+<p>Insumos X: Lavadora, secadora, detergente, suavizante, perchero para colgar</p>
+<ol style="list-style-type: decimal">
+<li><p>Preparar: separar la ropa (color/blanco), seleccionar temperatura del agua, tipo de carga,</p></li>
+<li><p>Lavar: adicionar detergente, adicionar la ropa, adicionar suavizante, seleccionar temperatura de secado, seleccionar tiempo de secado, iniciar secado</p></li>
+<li><p>Colgar: remover ropa de secadora, colocar ropa en perchero</p></li>
+</ol>
+<p>Resultado Y: temperatura, suavidad, olor, tiempo, limpieza.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0NhcmdhciBwYWNrYWdlXG5saWJyYXJ5KFwiU2l4U2lnbWFcIilcbiMgQ3JlYXIgdW4gdmVjdG9yIGRlIEluc3VtbywgU2FsaWRhIHkgUGFzb3MgXG5pbnN1bW9zIDwtYyAoXCJMYXZhZG9yYVwiLCBcIlNlY2Fkb3JhXCIsIFwiRGV0ZXJnZW50ZVwiLCBcIlN1YXZpemFudGVcIiwgXCJSb3BhXCIsXCJQZXJjaGVyb1wiKVxuc2FsaWRhcyA8LSBjKFwiVGVtcGVyYXR1cmFcIiwgXCJUZXh0dXJhXCIsIFwiQXJvbWFcIixcIlRpZW1wb1wiLCBcIkxpbXBpZXphXCIpXG5wYXNvcyA8LSBjKFwiUHJlcGFyYXJcIiwgXCJMYXZhclwiLCBcIkNvbGdhclwiKVxuXG4jIEd1YXJkYXIgZWwgbm9tYnJlIGRlIGxvcyBpbnN1bW9zIChlbnRyYWRhcykgZW4gY2FkYSBwYXNvIGVuIGxhIGxpc3RhXG5pbyA8LSBsaXN0KClcbmlvW1sxXV0gPC0gbGlzdChcIlJvcGFcIiwgXCJMYXZhZG9yYVwiKVxuaW9bWzJdXSA8LSBsaXN0KFwiUm9wYVwiLCBcIkxhdmFkb3JhXCIsIFwiU2VjYWRvcmFcIiwgXCJEZXRlcmdlbnRlXCIsIFwiU3Vhdml6YW50ZVwiKVxuaW9bWzNdXSA8LSBsaXN0KFwiUm9wYVwiLCBcIlBlcmNoZXJvXCIpXG5cbiNHdWFyZGFyIGVsIG5vbWJyZSwgdGlwb3MgZGUgcGFyw6FtZXRyb3MgeSBjYXJhY3RlcmlzdGljYXM6XG5wYXJhbSA8LSBsaXN0KClcbnBhcmFtW1sxXV0gPC0gbGlzdChjKFwiU2VwYXJhcihjb2xvci9ibGFuY28pXCIsIFwiQ1wiKSxjKFwiTWFyY2EgZGV0ZXJnZW50ZVwiLCBcIkNcIiksYyhcIk1hcmNhIHN1YXZpemFudGVcIiwgXCJDXCIpLGMoXCJUZW1wZXJhdHVyYSBhZ3VhXCIsIFwiUFwiKSxjKFwiVGlwbyBkZSBjYXJnYVwiLCBcIkNyXCIpKVxucGFyYW1bWzJdXSA8LSBsaXN0KGMoXCJDb2NpbmFyXCIsIFwiQ1wiKSxjKFwiTWFyY2EgaW5ncmVkXCIsIFwiQ3JcIiksYyhcIkNhbnRpZGFkXCIsIFwiUFwiKSxjKFwiVCBwcmVwYXJhY2nDs25cIiwgXCJDclwiKSlcbnBhcmFtW1szXV0gPC0gbGlzdChjKFwiQ29jaW5hclwiLFwiQ1wiKSxjKFwiY29sYVwiLCBcIk5cIiksYyhcIlRpZW1wbyBob3JuZWFyXCIsIFwiQ3JcIikpXG5cbmZlYXQgPC0gbGlzdCgpXG5mZWF0W1sxXV0gPC0gbGlzdChcIlJvcGEgc2VsZWNjaW9uYWRhXCIsIFwiTGF2YWRvcmEgcHJlcGFyYWRhXCIpXG5mZWF0W1syXV0gPC0gbGlzdChcIlJvcGEgbGF2YWRhXCIsIFwiVGVtcGVyYXR1cmFcIiwgXCJBcm9tYVwiLCBcIkxpbXBpZXphXCIsIFwiVGllbXBvXCIpXG5mZWF0W1szXV0gPC0gbGlzdChcIlJvcGEgc2VjYVwiLCBcIkFyb21hXCIsIFwiTGltcGllemFcIiwgXCJUaWVtcG9cIilcblxuIyBDcmVhciBtYXBhIGRlIHByb2Nlc29zXG5zcy5wTWFwKHBhc29zLCBpbnN1bW9zLCBzYWxpZGFzLGlvLCBwYXJhbSwgZmVhdCxzdWIgPSBcIlByb2Nlc28gbGF2YXIgcm9wYVwiKVxuYGBgIn0= -->
+<pre class="r"><code>#Cargar package
+library(&quot;SixSigma&quot;)
+# Crear un vector de Insumo, Salida y Pasos 
+insumos &lt;-c (&quot;Lavadora&quot;, &quot;Secadora&quot;, &quot;Detergente&quot;, &quot;Suavizante&quot;, &quot;Ropa&quot;,&quot;Perchero&quot;)
+salidas &lt;- c(&quot;Temperatura&quot;, &quot;Textura&quot;, &quot;Aroma&quot;,&quot;Tiempo&quot;, &quot;Limpieza&quot;)
+pasos &lt;- c(&quot;Preparar&quot;, &quot;Lavar&quot;, &quot;Colgar&quot;)
+
+# Guardar el nombre de los insumos (entradas) en cada paso en la lista
+io &lt;- list()
+io[[1]] &lt;- list(&quot;Ropa&quot;, &quot;Lavadora&quot;)
+io[[2]] &lt;- list(&quot;Ropa&quot;, &quot;Lavadora&quot;, &quot;Secadora&quot;, &quot;Detergente&quot;, &quot;Suavizante&quot;)
+io[[3]] &lt;- list(&quot;Ropa&quot;, &quot;Perchero&quot;)
+
+#Guardar el nombre, tipos de parámetros y caracteristicas:
+param &lt;- list()
+param[[1]] &lt;- list(c(&quot;Separar(color/blanco)&quot;, &quot;C&quot;),c(&quot;Marca detergente&quot;, &quot;C&quot;),c(&quot;Marca suavizante&quot;, &quot;C&quot;),c(&quot;Temperatura agua&quot;, &quot;P&quot;),c(&quot;Tipo de carga&quot;, &quot;Cr&quot;))
+param[[2]] &lt;- list(c(&quot;Cocinar&quot;, &quot;C&quot;),c(&quot;Marca ingred&quot;, &quot;Cr&quot;),c(&quot;Cantidad&quot;, &quot;P&quot;),c(&quot;T preparación&quot;, &quot;Cr&quot;))
+param[[3]] &lt;- list(c(&quot;Cocinar&quot;,&quot;C&quot;),c(&quot;cola&quot;, &quot;N&quot;),c(&quot;Tiempo hornear&quot;, &quot;Cr&quot;))
+
+feat &lt;- list()
+feat[[1]] &lt;- list(&quot;Ropa seleccionada&quot;, &quot;Lavadora preparada&quot;)
+feat[[2]] &lt;- list(&quot;Ropa lavada&quot;, &quot;Temperatura&quot;, &quot;Aroma&quot;, &quot;Limpieza&quot;, &quot;Tiempo&quot;)
+feat[[3]] &lt;- list(&quot;Ropa seca&quot;, &quot;Aroma&quot;, &quot;Limpieza&quot;, &quot;Tiempo&quot;)
+
+# Crear mapa de procesos
+ss.pMap(pasos, insumos, salidas,io, param, feat,sub = &quot;Proceso lavar ropa&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<div id="ejercicios" class="section level1">
-<h1>Ejercicios</h1>
-<p><strong>1.</strong> En una empresa del ramo metalmecánico se fabrican válvulas. Después del proceso de fundición se realiza una inspección y las piezas que no cumplen con ciertas características son rechazadas. Las razones del rechazo son diversas: piezas incompletas, porosas, mal formadas, etc. Para evaluar la variabilidad y la magnitud de la proporción de piezas defectuosas en el proceso de fundición se decide implementar una gráfico (carta) <span class="math inline">\(p\)</span>. El proceso de fundición se hace por lotes. En el archivo <strong>datos_taller.xlsx</strong> se muestran los datos obtenidos durante una semana para cierto tipo de válvulas. Aunque regularmente el tamaño de lote es fijo, n = 300, en ocasiones, por diferentes motivos, en algunos lotes se hacen unas cuantas piezas de más o de menos, como se aprecia en el archivo.</p>
+<div id="pregunta-2." class="section level1">
+<h1>Pregunta 2.</h1>
 <ol style="list-style-type: lower-alpha">
-<li><p>Calcule los límites de control utilizando el tamaño de subgrupo (lote) promedio.</p></li>
-<li><p>¿Cómo explicaría los límites de control que obtuvo a alguien que no tiene conocimientos profundos de estadística?</p></li>
-<li><p>Gráficar la proporción de defectuosos e interpretar. ¿El proceso es estable?</p></li>
-<li><p>¿Se puede considerar que la calidad del proceso es aceptable? Argumente su respuesta.</p></li>
+<li>En la siguiente tabla se presentan los datos de una pastelería que hace distintos tipos de postres.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> La satisfacción del consumidor está relacionada por un componente utilizado en el chocolate. Para evaluar el sistema de medición, tres laboratorios son empleados para determinar la cantidad del componente en los postres. Identificar los evaluadores o tasadores, las partes y su longitud.</li>
 </ol>
-<p><strong>2.</strong> En el caso del ejercicio <strong>1</strong>:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Obtenga un gráfico <span class="math inline">\(p\)</span> con límites de control variables.</p></li>
-<li><p>¿Qué diferencias observa con respecto al gráfico obtenido en el ejercicio anterior?</p></li>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShcIlNpeFNpZ21hXCIpXG5wYXN0ZWxlcmlhIDwtIHNzLmRhdGEucGFzdHJpZXNcbnBhc3RlbGVyaWFcbmBgYCJ9 -->
+<pre class="r"><code>library(&quot;SixSigma&quot;)
+pasteleria &lt;- ss.data.pastries
+pasteleria</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>a. Respuesta</strong> - Evaluadores (b): 3 laboratorios. - Partes (a): Lotes con una longitud de 3.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Empleando la base de datos pasteleria y el package <strong>SixSigma</strong>, llevar a cabo un análisis del sistema de medición (MSA) e indicar las principales conclusiones procedente de este análisis.</li>
 </ol>
-<p><strong>3.</strong> En el caso del ejercicio <strong>1</strong>:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Suponga que todos los lotes tienen el mismo tamaño (el promedio), calcule los límites de control para gráfico <span class="math inline">\(np\)</span> e interprétar.</p></li>
-<li><p>Grafique la correspondiente gráfico <span class="math inline">\(np\)</span> y analizar. ¿El proceso es estable?</p></li>
-<li><p>¿Observa alguna diferencia importante entre gráfico de control <span class="math inline">\(p\)</span> y el gráfico de control <span class="math inline">\(np\)</span>?</p></li>
-<li><p>¿Cuál gráfico <span class="math inline">\(p\)</span> o la <span class="math inline">\(np\)</span> sería el más conveniente en este caso? Argumentar.</p></li>
+<p><strong>b. Respuesta</strong></p>
+<p>Análisis de varianza</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5taV9hbmFsaXNpcyA8LSBzcy5ycih2YXIgPSBjb21wLCBwYXJ0ID0gYmF0Y2gsXG4gICAgICAgICAgICAgICAgICAgICBhcHByID0gbGFiLFxuICAgICAgICAgICAgICAgICAgICAgZGF0YSA9IHBhc3RlbGVyaWEsXG4gICAgICAgICAgICAgICAgICAgICBtYWluID0gXCJTaXggU2lnbWEgbWVkaWRhIGRlIGNhbGlicmFjacOzbiBSJlJcIixcbiAgICAgICAgICAgICAgICAgICAgIHN1YiA9IFwiTVNBIFBhc3RlbGVyw61hXCIpXG5gYGAifQ== -->
+<pre class="r"><code>
+mi_analisis &lt;- ss.rr(var = comp, part = batch,
+                     appr = lab,
+                     data = pasteleria,
+                     main = &quot;Six Sigma medida de calibración R&amp;R&quot;,
+                     sub = &quot;MSA Pastelería&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Tablas de varianza</strong></p>
+<p>Los resultados del MSA muestran que el <span class="math inline">\(\%\)</span> de variación del estudio (<span class="math inline">\(\%\)</span>StudyVar) debido a R&amp;R (segunda tabla, primera fila, tecera columna) es del <span class="math inline">\(19.65\%\)</span>. Este valor es menor al <span class="math inline">\(30\%\)</span>, indicando que la variabilidad debido a la aleatoriedad del proceso es aceptable, por lo cual indica que estamos frente a un buen sistema de medición.</p>
+<p><strong>Interpretación de los gráficos</strong></p>
+<p>El gráfico en parte superior izquierda representa la contribución de cada componente en la varianza total. Éste permite a partir de un vistazo identificar si los problemas de medición provienen de la repetibilidad o la reproducibilidad. En el caso bajo estudio, es claro que la mayor fuente variación proviene Part-to-part (variabilidad no debido al sistema de medición), además, la aportación de la variación debido a R&amp;R se encuentra por debajo del <span class="math inline">\(30\%\)</span>.</p>
+<p>Los dos primeros gráficos en la columna derecha muestran cada medida como un punto en el gráfico. En el gráfico superior, el eje de las <span class="math inline">\(Xs\)</span> representa los lote y una lena ha sido extendida para vincular la media de cada lote. En el gráfico intermedio, el eje de las <span class="math inline">\(Xs\)</span> representa los laboratorios. El gráfico inferior en la derecha muestra la interacción entre los laboratorios y los lotes. Las medias de <span class="math inline">\(lotes \times laboratorios\)</span> son representadas por puntos y vinculadas mediante lineas. En este gráfico se detecta que el lote número dos tiene una media mayor al resto, sin embargo, las mediciones por laboratorio son iguales, lo cual indica una baja variabilidad por laboratorio. El gráfico por laboratorio indica que que no existen substanciales diferencias entre laboratorios. La media y la variabilidad son similares, lo cual indica que no es un problema para el sistema de medición. Las lineas en el gráfico de interacción se cruzan una a otra, entonces la interacción entre factores es relevante.</p>
+</div>
+<div id="pregunta-3." class="section level1">
+<h1>Pregunta 3.</h1>
+<p>Empleando la base de datos <strong>ss.data.pc</strong> disponible en el package <strong>SixSigma</strong>, elaborar un gráfico de barra del volument total de los cartridges (cartuchos) por tipo de filler (relleno).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Nota: emplear la función <strong>aggregate</strong> transformar de manera apropiada los datos contenidos <strong>ss.data.pc</strong>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShTaXhTaWdtYSlcbmRhdG9zIDwtIHNzLmRhdGEucGMgXG5kYXRvc1xuZGF0YTIgPC0gYWdncmVnYXRlKGRhdG9zWywzOjRdLFxuICAgICAgICAgICBieSA9IGxpc3QoZGF0b3MkcGMuZmlsbGVyKSxcbiAgICAgICAgICAgRlVOID0gc3VtLCBuYS5ybSA9IFRSVUUpXG53aXRoKGRhdGEyLFxuICAgICBiYXJwbG90KHBjLnZvbHVtZSxcbiAgICAgICAgICAgICBuYW1lcy5hcmcgPSBHcm91cC4xLFxuICAgICAgICAgICAgIGxhcyA9IDEsXG4gICAgICAgICAgICAgbWFpbiA9IFwiQmFycGxvdCBkZWwgdm9sdW1lbiB0b3RhbCBkZWwgY2FydHVjaG8gcG9yIHRpcG8gZGUgcmVsbGVub1wiKSlcbmFibGluZShoID0gMCxcbiAgICAgICBjb2wgPSBcIiM2NjY2NjZcIilcbmBgYCJ9 -->
+<pre class="r"><code>library(SixSigma)
+datos &lt;- ss.data.pc 
+datos
+data2 &lt;- aggregate(datos[,3:4],
+           by = list(datos$pc.filler),
+           FUN = sum, na.rm = TRUE)
+with(data2,
+     barplot(pc.volume,
+             names.arg = Group.1,
+             las = 1,
+             main = &quot;Barplot del volumen total del cartucho por tipo de relleno&quot;))
+abline(h = 0,
+       col = &quot;#666666&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="pregunta-4" class="section level1">
+<h1>Pregunta 4</h1>
+<p>Empleando la base de datos <strong>ss.data.strings</strong><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> evaluar la hipótesis de normalidad de la resistencia de las cuerdas.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0b3Nfc29uaWRvIDwtIG5hLm9taXQoc3MuZGF0YS5zdHJpbmdzKSBcbm1pX21vZGVsbyA8LSBsbShyZXMgfiBsZW4sIGRhdGEgPSBkYXRvc19zb25pZG8pXG5uYW1lcyhtaV9tb2RlbG8pXG5zaGFwaXJvLnRlc3QocmVzaWR1YWxzKG1pX21vZGVsbykpXG5wYXIobWZyb3c9YygyLDIpKVxucGxvdChtaV9tb2RlbG8pXG5gYGAifQ== -->
+<pre class="r"><code>datos_sonido &lt;- na.omit(ss.data.strings) 
+mi_modelo &lt;- lm(res ~ len, data = datos_sonido)
+names(mi_modelo)
+shapiro.test(residuals(mi_modelo))
+par(mfrow=c(2,2))
+plot(mi_modelo)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="pregunta-5" class="section level1">
+<h1>Pregunta 5</h1>
+<p>Estimar un modelo lineal empleando la resistencia de las cuerdas como la variable de respuesta y la longitud de las cuerdas como la variable independiente. ¿Es el modelo lineal un buen modelo para explicar esta relación?</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0b3Nfc29uaWRvIDwtIG5hLm9taXQoc3MuZGF0YS5zdHJpbmdzKSBcbm1pX21vZGVsbyA8LSBsbShyZXMgfiBsZW4sIGRhdGEgPSBkYXRvc19zb25pZG8pXG5zdW1tYXJ5KG1pX21vZGVsbylcbmBgYCJ9 -->
+<pre class="r"><code>datos_sonido &lt;- na.omit(ss.data.strings) 
+mi_modelo &lt;- lm(res ~ len, data = datos_sonido)
+summary(mi_modelo)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="pregunta-6" class="section level1">
+<h1>Pregunta 6</h1>
+<p>Obtener el diseño matricial para un experimento <span class="math inline">\(2^{4}\)</span> y crear una tabla aleatoria para registrar las respuestas. Nota: la columna de Calificación todos sus valores deben ser <em>NA</em>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRGlzZW5vX2V4cGVyaW1lbnRvIDwtIGV4cGFuZC5ncmlkKGZhY3RvcjEgPSBnbCgyLDEsIGxhYmVscyA9IGMoXCItXCIsIFwiK1wiKSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZmFjdG9yMiA9IGdsKDIsMSwgbGFiZWxzID0gYyhcIi1cIiwgXCIrXCIpKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmYWN0b3IzID0gZ2woMiwxLCBsYWJlbHMgPSBjKFwiLVwiLCBcIitcIikpLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZhY3RvcjQgPSBnbCgyLDEsIGxhYmVscyA9IGMoXCItXCIsIFwiK1wiKSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2FsaWZpY2FjacOzbiA9IE5BKVxuRGlzZW5vX2V4cGVyaW1lbnRvXG5EaXNlbm9fZXhwZXJpbWVudG8kb3JkZW4gPC0gc2FtcGxlKDE6MTYsIDE2KVxuRGlzZW5vX2V4cGVyaW1lbnRvW29yZGVyKERpc2Vub19leHBlcmltZW50byRvcmRlbiksXVxuXG5gYGAifQ== -->
+<pre class="r"><code>Diseno_experimento &lt;- expand.grid(factor1 = gl(2,1, labels = c(&quot;-&quot;, &quot;+&quot;)),
+                                  factor2 = gl(2,1, labels = c(&quot;-&quot;, &quot;+&quot;)),
+                                  factor3 = gl(2,1, labels = c(&quot;-&quot;, &quot;+&quot;)),
+                                  factor4 = gl(2,1, labels = c(&quot;-&quot;, &quot;+&quot;)),
+                                  calificación = NA)
+Diseno_experimento
+Diseno_experimento$orden &lt;- sample(1:16, 16)
+Diseno_experimento[order(Diseno_experimento$orden),]
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="pregunta-7" class="section level1">
+<h1>Pregunta 7</h1>
+<p>Asumir que una vez egrese de la carrera de Ingeniería Civil Industrial su primera oportunidad de empleo es la elaboración de un proyecto empleando la metodología Six Sigma. Dicho proyecto tendrá como objetivo general reducir los tiempos de elaboración de pizzas y el puntual envío de los pedidos a los hogares de los consumidores. Para tener una pequeña descripción de su proyecto Six Sigma es necesario responder de manera clara y detallada cada una de las siguientes preguntas:</p>
+<ol style="list-style-type: decimal">
+<li>¿Cuales son cada uno de los pasos del ciclo DMAIC de su proyecto?</li>
+<li>Describir las actividades que deben ser llevadas a cabo en cada uno de los pasos anteriores.</li>
+<li>¿Cuales serían algunos de los problemas a los cuales se enfrentaría el proyecto?</li>
+<li>¿Qué tipo de información y herramientas estadísticas son necesarias para llevar a cabo la fase de análisis en su proyecto?</li>
+<li>¿Puede llevar a cabo algún tipo de diseño de experimento en su proyecto?, ¿Describir el diseño del experimento?, ¿De que manera este experimento puede mejorar los resultados de su proyecto?</li>
 </ol>
 <!-- rnb-text-end -->
 </div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Los datos están habilitados en el package <strong>SixSigma</strong> como un objeto llamado <strong>ss.data.pastries</strong>. Para mayor información de esta base de datos ir a help y escribir el nombre del objeto.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Los datos están habilitados en el package <strong>SixSigma</strong> como un objeto llamado <strong>ss.data.pc</strong>. Para mayor información de esta base de datos ir a help y escribir el nombre del objeto.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Los datos están habilitados en el package <strong>SixSigma</strong> como un objeto llamado <strong>ss.data.strings</strong>. Para mayor información de esta base de datos ir a help y escribir el nombre del objeto.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVW5pdmVyc2lkYWQgU2FudG8gVG9tw6FzLCBGYWN1bHRhZCBkZSBJbmdlbmllcsOtYSIKc3VidGl0bGU6ICJHcsOhZmljb3MgKGNhcnRhcykgZGUgY29udHJvbCBwYXJhIGF0cmlidXRvczogVGFsbGVyIDMuIiAKYXV0aG9yOiAiUHJvZmVzb3I6IEd1c3Rhdm8gQWh1bWFkYSIKZGF0ZTogImByIGZvcm1hdChTeXMudGltZSgpLCAnJWQgJUIsICVZJylgIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogIHRoZW1lOiB1bml0ZWQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQoKIyBJbnN0cnVjY2lvbmVzCjEuIFBhcmEgZWwgZGVzYXJyb2xsbyBkZSBsb3MgZWplcmNpY2lvcyBkZWJlIGhhY2VyIHVzbyBkZWwgYXJjaGl2byBkYXRvc190YWxsZXIueGxzeCwgZWwgY3VhbCBjb250aWVuZSBsYSBpbmZvcm1hY2nDs24gcXVlIHNlIHZhIGFuYWxpemFyLgoKMi4gTGFzIHJlc3B1ZXN0YSBhIGNhZGEgdW5vIGRlIGxvcyBlamVyY2ljaW9zIGRlYmVuIGVzdGFyIGVuIHVuIHNvbG8gc2NyaXB0LCBubyBzZSBhY2VwdGEgcXVlIGVudsOtZW4gdW4gYXJjaGl2byBlbiBQREYgY29uIGVsIGRlc2Fycm9sbG8gZGUgbG9zIGVqZXJjaWNpb3MuIEVuIGVsIHNjcmlwdCBzZSBkZWJlIHNlciBvcmRlbmFkbyBlbiBsYSBlbGFib3JhY2nDs24gZGUgY2FkYSB1bm8gZGUgbGFzIHJlc3B1ZXN0YXMuIEVuIGFkaWNpw7NuIGFsIGPDs2RpZ28sIHVzdGVkIGRlYmVyIGVzY3JpYmlyIGVuIGVsIHNjcmlwdCBzdSBhbsOhbGlzaXMgYSBjYWRhIHVubyBkZSBsb3MgcHVudG9zIHF1ZSBjb250aWVuZW4gbG9zIGVqZXJjaWNpb3MuCgozLiBMYSBmZWNoYSBsw61taXRlIGRlIGVudHJlZ2EgZXMgZWwgZMOtYSB2aWVybmVzIGEgbGFzIDExOjMwIFBNLiBTZSBkZWJlIGVudsOtYXIgZWwgYXJjaGl2byBzY3JpcHQgYWwgY29ycmVvIGdhaHVtYWRhMkBzYW50b3RvbWFzLmNsLgoKKipOb3RhKio6IGEgbW9kbyBkZSBndcOtYSBzZSBlbmN1ZW50cmEgdW4gc2NyaXB0IGVuIGxhIHNlY2Npw7NuIFVuaWRhZCBOwrozIGVuIGxhIHBsYXRhZm9ybWEgU2FudG8gVG9tw6FzIGxsYW1hZG8gRWplbXBsb3MuUi4KCiMgRWplcmNpY2lvcwoKKioxLioqIEVuIHVuYSBlbXByZXNhIGRlbCByYW1vIG1ldGFsbWVjw6FuaWNvIHNlIGZhYnJpY2FuIHbDoWx2dWxhcy4gRGVzcHXDqXMgZGVsIHByb2Nlc28gZGUgZnVuZGljacOzbiBzZSByZWFsaXphIHVuYSBpbnNwZWNjacOzbiB5IGxhcyBwaWV6YXMgcXVlIG5vIGN1bXBsZW4gY29uIGNpZXJ0YXMgY2FyYWN0ZXLDrXN0aWNhcyBzb24gcmVjaGF6YWRhcy4gTGFzIHJhem9uZXMgZGVsIHJlY2hhem8gc29uIGRpdmVyc2FzOiBwaWV6YXMgaW5jb21wbGV0YXMsIHBvcm9zYXMsIG1hbCBmb3JtYWRhcywgZXRjLiBQYXJhIGV2YWx1YXIgbGEgdmFyaWFiaWxpZGFkIHkgbGEgbWFnbml0dWQgZGUgbGEgcHJvcG9yY2nDs24gZGUgcGllemFzIGRlZmVjdHVvc2FzIGVuIGVsIHByb2Nlc28gZGUgZnVuZGljacOzbiBzZSBkZWNpZGUgaW1wbGVtZW50YXIgdW5hIGdyw6FmaWNvIChjYXJ0YSkgJHAkLiBFbCBwcm9jZXNvIGRlIGZ1bmRpY2nDs24gc2UgaGFjZSBwb3IgbG90ZXMuIEVuIGVsIGFyY2hpdm8gKipkYXRvc190YWxsZXIueGxzeCoqIHNlIG11ZXN0cmFuIGxvcyBkYXRvcyBvYnRlbmlkb3MgZHVyYW50ZSB1bmEgc2VtYW5hIHBhcmEgY2llcnRvIHRpcG8gZGUgdsOhbHZ1bGFzLiBBdW5xdWUgcmVndWxhcm1lbnRlIGVsIHRhbWHDsW8gZGUgbG90ZSBlcyBmaWpvLCBuID0gMzAwLCBlbiBvY2FzaW9uZXMsIHBvciBkaWZlcmVudGVzIG1vdGl2b3MsIGVuIGFsZ3Vub3MgbG90ZXMgc2UgaGFjZW4gdW5hcyBjdWFudGFzIHBpZXphcyBkZSBtw6FzIG8gZGUgbWVub3MsIGNvbW8gc2UgYXByZWNpYSBlbiBlbCBhcmNoaXZvLgoKYS4gQ2FsY3VsZSBsb3MgbMOtbWl0ZXMgZGUgY29udHJvbCB1dGlsaXphbmRvIGVsIHRhbWHDsW8gZGUgc3ViZ3J1cG8gKGxvdGUpIHByb21lZGlvLgoKYi4gwr9Dw7NtbyBleHBsaWNhcsOtYSBsb3MgbMOtbWl0ZXMgZGUgY29udHJvbCBxdWUgb2J0dXZvIGEgYWxndWllbiBxdWUgbm8gdGllbmUgY29ub2NpbWllbnRvcyBwcm9mdW5kb3MgZGUgZXN0YWTDrXN0aWNhPwoKYy4gR3LDoWZpY2FyIGxhIHByb3BvcmNpw7NuIGRlIGRlZmVjdHVvc29zIGUgaW50ZXJwcmV0YXIuIMK/RWwgcHJvY2VzbyBlcyBlc3RhYmxlPwoKZC4gwr9TZSBwdWVkZSBjb25zaWRlcmFyIHF1ZSBsYSBjYWxpZGFkIGRlbCBwcm9jZXNvIGVzIGFjZXB0YWJsZT8gQXJndW1lbnRlIHN1IHJlc3B1ZXN0YS4KCgoqKjIuKiogRW4gZWwgY2FzbyBkZWwgZWplcmNpY2lvICoqMSoqOgoKYS4gT2J0ZW5nYSB1biBncsOhZmljbyAkcCQgY29uIGzDrW1pdGVzIGRlIGNvbnRyb2wgdmFyaWFibGVzLgoKYi4gwr9RdcOpIGRpZmVyZW5jaWFzIG9ic2VydmEgY29uIHJlc3BlY3RvIGFsIGdyw6FmaWNvIG9idGVuaWRvIGVuIGVsIGVqZXJjaWNpbyBhbnRlcmlvcj8KCgoqKjMuKiogRW4gZWwgY2FzbyBkZWwgZWplcmNpY2lvICoqMSoqOgoKYS4gIFN1cG9uZ2EgcXVlIHRvZG9zIGxvcyBsb3RlcyB0aWVuZW4gZWwgbWlzbW8gdGFtYcOxbyAoZWwgcHJvbWVkaW8pLCBjYWxjdWxlIGxvcyBsw61taXRlcyBkZSBjb250cm9sIHBhcmEgZ3LDoWZpY28gJG5wJCBlIGludGVycHLDqXRhci4KCmIuIEdyYWZpcXVlIGxhIGNvcnJlc3BvbmRpZW50ZSBncsOhZmljbyAkbnAkIHkgYW5hbGl6YXIuIMK/RWwgcHJvY2VzbyBlcyBlc3RhYmxlPwoKYy4gwr9PYnNlcnZhIGFsZ3VuYSBkaWZlcmVuY2lhIGltcG9ydGFudGUgZW50cmUgZ3LDoWZpY28gZGUgY29udHJvbCAkcCQgeSBlbCAgZ3LDoWZpY28gZGUgY29udHJvbCAkbnAkPwoKZC4gwr9DdcOhbCBncsOhZmljbyAkcCQgbyBsYSAkbnAkIHNlcsOtYSBlbCBtw6FzIGNvbnZlbmllbnRlIGVuCmVzdGUgY2Fzbz8gQXJndW1lbnRhci4gCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVW5pdmVyc2lkYWQgU2FudG8gVG9tw6FzLCBGYWN1bHRhZCBkZSBJbmdlbmllcsOtYSIKc3VidGl0bGU6ICJDb250cm9sIEVzdGFkw61zdGljbyBkZSBDYWxpZGFkOiBUZXJjZXJhIHBydWViYSBwYXJjaWFsIiAKYXV0aG9yOiAiUHJvZmVzb3I6IEd1c3Rhdm8gQWh1bWFkYSIKZGF0ZTogImByIGZvcm1hdChTeXMudGltZSgpLCAnJWQgJUIsICVZJylgIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogIHRoZW1lOiB1bml0ZWQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQoKKipFeGlnZW5jaWEqKjogJDcwXCUkLiAqKlB1bnRhamUgdG90YWwqKjogNzAgcHVudG9zLiAqKlRpZW1wbyBkZSBkdXJhY2nDs24qKjogMzYgaG9yYXMuCgoqKkluc3RydWNjaW9uZXMqKgoKCjEuIExhcyByZXNwdWVzdGFzIGRlc2RlIGxhIHByZWd1bnRhIDEgaGFzdGEgbGEgcHJlZ3VudGEgNiBkZWJlbiBlc3RhciBlbiAqKnVuIHNvbG8gYXJjaGl2byBzY3JpcHQqKiwgbm8gc2UgYWNlcHRhIHF1ZSBlbnbDrWUgdW4gYXJjaGl2byBlbiBQREYgY29uIGVsIGRlc2Fycm9sbG8gZGUgZXN0YXMgcHJlZ3VudGFzLiAKMiBMYSBlbGFib3JhY2nDs24gZGUgbGEgcmVzcHVlc3RhIGEgbGEgcHJlZ3VudGEgNyBkZWJlIHNlciBpbmNsdWlkYSBlbiB1biBhcmNoaXZvIGVuIFBERi4KMy4gRWwgb3JkZW4gZW4gbGEgZWxhYm9yYWNpw7NuIGRlIHN1cyByZXNwdWVzdGEgZXMgaW1wb3J0YW50ZSwgcG9yIGxvIHRhbnRvLCBzdSBzY3JpcHQgZGViZSBzZXIgdG90YWxtZW50ZSBmdW5jaW9uYWwgcGFyYSBxdWUgZWwgZG9jZW50ZSBwdWVkZSB2ZXJpZmljYXIgc3UgcmVzcHVlc3RhLgo0LiBMYSBmZWNoYSBsw61taXRlIGRlIGVudHJlZ2EgZXMgZWwgZMOtYSBtacOpcmNvbGVzIDI5IGRlIGp1bGlvIGEgbGFzIDExOjU5IFBNLiBTZSBkZWJlIGVudsOtYXIgZWwgYXJjaGl2byBzY3JpcHQgYWwgY29ycmVvIGdhaHVtYWRhMkBzYW50b3RvbWFzLmNsLgoKKipOb3RhKio6IHNlIHN1Z2llcmUgdG9tYXIgZW4gY29uc2lkZXJhY2nDs24gbGFzIG5vdGFzIGRlIGNsYXNlIGRpc3BvbmlibGUgZW4gbGEgSW50cmFuZXQgU2FudG8gVG9tw6FzLCBlbCB0ZXh0byBndcOtYSAqKlNpeCBTaWdtYSB3aXRoIFIqKiBkZSBFbWlsaW8gTC4gQ2FubywgQW5kcsOpcyBSZWRjaHVrIHkgSmF2aWVyIE0uIE1vZ3VlcnphIHkgbGEgc2VjY2nDs24gKipIZWxwKiogZGUgUnN0dWRpbyBlbiByZWxhY2nDs24gYWwgcGFja2FnZSAqKlNpeFNpZ21hKiouCgoKIyBQcmVndW50YSAxLgoKRGlidWplIHVuIG1hcGEgZGUgcHJvY2VzbyBwYXJhIGVsIHByb2Nlc28gZGUgbGF2YXIgbGEgcm9wYSwgdXNhbmRvIHRyZXMgcGFzb3M6IHByZXBhcmFyLCBsYXZhciB5IGNvbGdhci4gSW1hZ2luZSBsYXMgZW50cmFkYXMgeSBsYXMgc2FsaWRhcyBlIGluY2x1eWEgYWxndW5vcyBwYXLDoW1ldHJvcyB5ICBlamVtcGxvcyBkZSBjYXJhY3RlcsOtc3RpY2FzLiAqKk5vdGEqKjogZGViZSBlbXBsZWFyIGxhcyBoZXJyYW1pZW50YXMgcXVlIG9mcmVjZSBlbCBwYWNrYWdlICoqU2l4U2lnbWEqKiBwYXJhIGVsYWJvcmFyIGVsIG1hcGEgZGUgcHJvY2Vzb3MgKHZlciBub3RhcyBkZSBjbGFzZXMgY29tbyBlamVtcGxvKS4KCgpJbnN1bW9zIFg6IExhdmFkb3JhLCBzZWNhZG9yYSwgZGV0ZXJnZW50ZSwgc3Vhdml6YW50ZSwgcGVyY2hlcm8gcGFyYSBjb2xnYXIKCjEuIFByZXBhcmFyOiBzZXBhcmFyIGxhIHJvcGEgKGNvbG9yL2JsYW5jbyksIHNlbGVjY2lvbmFyIHRlbXBlcmF0dXJhIGRlbCBhZ3VhLCB0aXBvIGRlCmNhcmdhLCAKCjIuIExhdmFyOiBhZGljaW9uYXIgZGV0ZXJnZW50ZSwgYWRpY2lvbmFyIGxhIHJvcGEsIGFkaWNpb25hciBzdWF2aXphbnRlLCBzZWxlY2Npb25hcgp0ZW1wZXJhdHVyYSBkZSBzZWNhZG8sIHNlbGVjY2lvbmFyIHRpZW1wbyBkZSBzZWNhZG8sIGluaWNpYXIgc2VjYWRvCgozLiBDb2xnYXI6IHJlbW92ZXIgcm9wYSBkZSBzZWNhZG9yYSwgY29sb2NhciByb3BhIGVuIHBlcmNoZXJvCgpSZXN1bHRhZG8gWTogdGVtcGVyYXR1cmEsIHN1YXZpZGFkLCBvbG9yLCB0aWVtcG8sIGxpbXBpZXphLiAgCgoKYGBge3IsIGZpZy53aWR0aD03LCBmaWcuaGVpZ2h0PTd9CiNDYXJnYXIgcGFja2FnZQpsaWJyYXJ5KCJTaXhTaWdtYSIpCiMgQ3JlYXIgdW4gdmVjdG9yIGRlIEluc3VtbywgU2FsaWRhIHkgUGFzb3MgCmluc3Vtb3MgPC1jICgiTGF2YWRvcmEiLCAiU2VjYWRvcmEiLCAiRGV0ZXJnZW50ZSIsICJTdWF2aXphbnRlIiwgIlJvcGEiLCJQZXJjaGVybyIpCnNhbGlkYXMgPC0gYygiVGVtcGVyYXR1cmEiLCAiVGV4dHVyYSIsICJBcm9tYSIsIlRpZW1wbyIsICJMaW1waWV6YSIpCnBhc29zIDwtIGMoIlByZXBhcmFyIiwgIkxhdmFyIiwgIkNvbGdhciIpCgojIEd1YXJkYXIgZWwgbm9tYnJlIGRlIGxvcyBpbnN1bW9zIChlbnRyYWRhcykgZW4gY2FkYSBwYXNvIGVuIGxhIGxpc3RhCmlvIDwtIGxpc3QoKQppb1tbMV1dIDwtIGxpc3QoIlJvcGEiLCAiTGF2YWRvcmEiKQppb1tbMl1dIDwtIGxpc3QoIlJvcGEiLCAiTGF2YWRvcmEiLCAiU2VjYWRvcmEiLCAiRGV0ZXJnZW50ZSIsICJTdWF2aXphbnRlIikKaW9bWzNdXSA8LSBsaXN0KCJSb3BhIiwgIlBlcmNoZXJvIikKCiNHdWFyZGFyIGVsIG5vbWJyZSwgdGlwb3MgZGUgcGFyw6FtZXRyb3MgeSBjYXJhY3RlcmlzdGljYXM6CnBhcmFtIDwtIGxpc3QoKQpwYXJhbVtbMV1dIDwtIGxpc3QoYygiU2VwYXJhcihjb2xvci9ibGFuY28pIiwgIkMiKSxjKCJNYXJjYSBkZXRlcmdlbnRlIiwgIkMiKSxjKCJNYXJjYSBzdWF2aXphbnRlIiwgIkMiKSxjKCJUZW1wZXJhdHVyYSBhZ3VhIiwgIlAiKSxjKCJUaXBvIGRlIGNhcmdhIiwgIkNyIikpCnBhcmFtW1syXV0gPC0gbGlzdChjKCJDb2NpbmFyIiwgIkMiKSxjKCJNYXJjYSBpbmdyZWQiLCAiQ3IiKSxjKCJDYW50aWRhZCIsICJQIiksYygiVCBwcmVwYXJhY2nDs24iLCAiQ3IiKSkKcGFyYW1bWzNdXSA8LSBsaXN0KGMoIkNvY2luYXIiLCJDIiksYygiY29sYSIsICJOIiksYygiVGllbXBvIGhvcm5lYXIiLCAiQ3IiKSkKCmZlYXQgPC0gbGlzdCgpCmZlYXRbWzFdXSA8LSBsaXN0KCJSb3BhIHNlbGVjY2lvbmFkYSIsICJMYXZhZG9yYSBwcmVwYXJhZGEiKQpmZWF0W1syXV0gPC0gbGlzdCgiUm9wYSBsYXZhZGEiLCAiVGVtcGVyYXR1cmEiLCAiQXJvbWEiLCAiTGltcGllemEiLCAiVGllbXBvIikKZmVhdFtbM11dIDwtIGxpc3QoIlJvcGEgc2VjYSIsICJBcm9tYSIsICJMaW1waWV6YSIsICJUaWVtcG8iKQoKIyBDcmVhciBtYXBhIGRlIHByb2Nlc29zCnNzLnBNYXAocGFzb3MsIGluc3Vtb3MsIHNhbGlkYXMsaW8sIHBhcmFtLCBmZWF0LHN1YiA9ICJQcm9jZXNvIGxhdmFyIHJvcGEiKQpgYGAKCgojIFByZWd1bnRhIDIuCgphLiBFbiBsYSBzaWd1aWVudGUgdGFibGEgc2UgcHJlc2VudGFuIGxvcyBkYXRvcyBkZSB1bmEgcGFzdGVsZXLDrWEgcXVlIGhhY2UgZGlzdGludG9zIHRpcG9zIGRlIHBvc3RyZXMuXltMb3MgZGF0b3MgZXN0w6FuIGhhYmlsaXRhZG9zIGVuIGVsIHBhY2thZ2UgKipTaXhTaWdtYSoqIGNvbW8gdW4gb2JqZXRvIGxsYW1hZG8gKipzcy5kYXRhLnBhc3RyaWVzKiouIFBhcmEgbWF5b3IgaW5mb3JtYWNpw7NuIGRlIGVzdGEgYmFzZSBkZSBkYXRvcyBpciBhIGhlbHAgeSBlc2NyaWJpciBlbCBub21icmUgZGVsIG9iamV0by5dIExhIHNhdGlzZmFjY2nDs24gZGVsIGNvbnN1bWlkb3IgZXN0w6EgcmVsYWNpb25hZGEgcG9yIHVuIGNvbXBvbmVudGUgdXRpbGl6YWRvIGVuIGVsIGNob2NvbGF0ZS4gUGFyYSBldmFsdWFyIGVsIHNpc3RlbWEgZGUgbWVkaWNpw7NuLCB0cmVzIGxhYm9yYXRvcmlvcyBzb24gZW1wbGVhZG9zIHBhcmEgZGV0ZXJtaW5hciBsYSBjYW50aWRhZCBkZWwgY29tcG9uZW50ZSBlbiBsb3MgcG9zdHJlcy4gSWRlbnRpZmljYXIgbG9zIGV2YWx1YWRvcmVzIG8gdGFzYWRvcmVzLCBsYXMgcGFydGVzIHkgc3UgbG9uZ2l0dWQuCgoKYGBge3J9CmxpYnJhcnkoIlNpeFNpZ21hIikKcGFzdGVsZXJpYSA8LSBzcy5kYXRhLnBhc3RyaWVzCnBhc3RlbGVyaWEKYGBgCgoqKmEuIFJlc3B1ZXN0YSoqCi0gRXZhbHVhZG9yZXMgKGIpOiAzIGxhYm9yYXRvcmlvcy4KLSBQYXJ0ZXMgKGEpOiBMb3RlcyBjb24gdW5hIGxvbmdpdHVkIGRlIDMuCgoKCmIuIEVtcGxlYW5kbyBsYSBiYXNlIGRlIGRhdG9zIHBhc3RlbGVyaWEgeSBlbCBwYWNrYWdlICoqU2l4U2lnbWEqKiwgbGxldmFyIGEgY2FibyB1biBhbsOhbGlzaXMgZGVsIHNpc3RlbWEgZGUgbWVkaWNpw7NuIChNU0EpIGUgaW5kaWNhciBsYXMgcHJpbmNpcGFsZXMgY29uY2x1c2lvbmVzIHByb2NlZGVudGUgZGUgZXN0ZSBhbsOhbGlzaXMuCgoKKipiLiBSZXNwdWVzdGEqKgoKCgpBbsOhbGlzaXMgZGUgdmFyaWFuemEKCmBgYHtyLCBmaWcud2lkdGg9MTIsIGZpZy5oZWlnaHQ9MTB9CgptaV9hbmFsaXNpcyA8LSBzcy5ycih2YXIgPSBjb21wLCBwYXJ0ID0gYmF0Y2gsCiAgICAgICAgICAgICAgICAgICAgIGFwcHIgPSBsYWIsCiAgICAgICAgICAgICAgICAgICAgIGRhdGEgPSBwYXN0ZWxlcmlhLAogICAgICAgICAgICAgICAgICAgICBtYWluID0gIlNpeCBTaWdtYSBtZWRpZGEgZGUgY2FsaWJyYWNpw7NuIFImUiIsCiAgICAgICAgICAgICAgICAgICAgIHN1YiA9ICJNU0EgUGFzdGVsZXLDrWEiKQpgYGAKCgoKKipUYWJsYXMgZGUgdmFyaWFuemEqKgoKTG9zIHJlc3VsdGFkb3MgZGVsIE1TQSBtdWVzdHJhbiBxdWUgZWwgJFwlJCBkZSB2YXJpYWNpw7NuIGRlbCBlc3R1ZGlvICgkXCUkU3R1ZHlWYXIpIGRlYmlkbyBhIFImUiAoc2VndW5kYSB0YWJsYSwgcHJpbWVyYSBmaWxhLCB0ZWNlcmEgY29sdW1uYSkgZXMgZGVsICQxOS42NVwlJC4gRXN0ZSB2YWxvciBlcyBtZW5vciBhbCAkMzBcJSQsIGluZGljYW5kbyBxdWUgbGEgdmFyaWFiaWxpZGFkIGRlYmlkbyBhIGxhIGFsZWF0b3JpZWRhZCBkZWwgcHJvY2VzbyBlcyBhY2VwdGFibGUsIHBvciBsbyBjdWFsIGluZGljYSBxdWUgZXN0YW1vcyBmcmVudGUgYSB1biBidWVuIHNpc3RlbWEgZGUgbWVkaWNpw7NuLgoKCioqSW50ZXJwcmV0YWNpw7NuIGRlIGxvcyBncsOhZmljb3MqKgoKRWwgZ3LDoWZpY28gZW4gcGFydGUgc3VwZXJpb3IgaXpxdWllcmRhIHJlcHJlc2VudGEgbGEgY29udHJpYnVjacOzbiBkZSBjYWRhIGNvbXBvbmVudGUgZW4gbGEgdmFyaWFuemEgdG90YWwuIMOJc3RlIHBlcm1pdGUgYSBwYXJ0aXIgZGUgdW4gdmlzdGF6byBpZGVudGlmaWNhciBzaSBsb3MgcHJvYmxlbWFzIGRlIG1lZGljacOzbiBwcm92aWVuZW4gZGUgbGEgcmVwZXRpYmlsaWRhZCBvIGxhIHJlcHJvZHVjaWJpbGlkYWQuIEVuIGVsIGNhc28gYmFqbyBlc3R1ZGlvLCBlcyBjbGFybyBxdWUgbGEgbWF5b3IgZnVlbnRlIHZhcmlhY2nDs24gcHJvdmllbmUgUGFydC10by1wYXJ0ICh2YXJpYWJpbGlkYWQgbm8gZGViaWRvIGFsIHNpc3RlbWEgZGUgbWVkaWNpw7NuKSwgYWRlbcOhcywgbGEgYXBvcnRhY2nDs24gZGUgbGEgdmFyaWFjacOzbiBkZWJpZG8gYSBSJlIgc2UgZW5jdWVudHJhIHBvciBkZWJham8gZGVsICQzMFwlJC4KCkxvcyBkb3MgcHJpbWVyb3MgZ3LDoWZpY29zIGVuIGxhIGNvbHVtbmEgZGVyZWNoYSBtdWVzdHJhbiBjYWRhIG1lZGlkYSBjb21vIHVuIHB1bnRvIGVuIGVsIGdyw6FmaWNvLiBFbiBlbCBncsOhZmljbyBzdXBlcmlvciwgZWwgZWplIGRlIGxhcyAkWHMkIHJlcHJlc2VudGEgbG9zIGxvdGUgeSB1bmEgbGVuYSBoYSBzaWRvIGV4dGVuZGlkYSBwYXJhIHZpbmN1bGFyIGxhIG1lZGlhIGRlIGNhZGEgbG90ZS4gRW4gZWwgZ3LDoWZpY28gaW50ZXJtZWRpbywgZWwgZWplIGRlIGxhcyAkWHMkIHJlcHJlc2VudGEgbG9zIGxhYm9yYXRvcmlvcy4gRWwgZ3LDoWZpY28gaW5mZXJpb3IgZW4gbGEgZGVyZWNoYSBtdWVzdHJhIGxhIGludGVyYWNjacOzbiBlbnRyZSBsb3MgbGFib3JhdG9yaW9zIHkgbG9zIGxvdGVzLiBMYXMgbWVkaWFzIGRlICRsb3RlcyBcdGltZXMgbGFib3JhdG9yaW9zJCAgc29uIHJlcHJlc2VudGFkYXMgcG9yIHB1bnRvcyB5IHZpbmN1bGFkYXMgbWVkaWFudGUgbGluZWFzLiBFbiBlc3RlIGdyw6FmaWNvIHNlIGRldGVjdGEgcXVlIGVsIGxvdGUgbsO6bWVybyBkb3MgdGllbmUgdW5hIG1lZGlhIG1heW9yIGFsIHJlc3RvLCBzaW4gZW1iYXJnbywgbGFzIG1lZGljaW9uZXMgcG9yIGxhYm9yYXRvcmlvIHNvbiBpZ3VhbGVzLCBsbyBjdWFsIGluZGljYSB1bmEgYmFqYSB2YXJpYWJpbGlkYWQgcG9yIGxhYm9yYXRvcmlvLiBFbCBncsOhZmljbyBwb3IgbGFib3JhdG9yaW8gaW5kaWNhIHF1ZSBxdWUgbm8gZXhpc3RlbiBzdWJzdGFuY2lhbGVzIGRpZmVyZW5jaWFzIGVudHJlIGxhYm9yYXRvcmlvcy4gTGEgbWVkaWEgeSBsYSB2YXJpYWJpbGlkYWQgc29uIHNpbWlsYXJlcywgbG8gY3VhbCBpbmRpY2EgcXVlIG5vIGVzIHVuIHByb2JsZW1hIHBhcmEgZWwgc2lzdGVtYSBkZSBtZWRpY2nDs24uIExhcyBsaW5lYXMgZW4gZWwgZ3LDoWZpY28gZGUgaW50ZXJhY2Npw7NuIHNlIGNydXphbiB1bmEgYSBvdHJhLCBlbnRvbmNlcyBsYSBpbnRlcmFjY2nDs24gZW50cmUgZmFjdG9yZXMgZXMgcmVsZXZhbnRlLgoKCiMgUHJlZ3VudGEgMy4KRW1wbGVhbmRvIGxhIGJhc2UgZGUgZGF0b3MgKipzcy5kYXRhLnBjKiogZGlzcG9uaWJsZSBlbiBlbCBwYWNrYWdlICoqU2l4U2lnbWEqKiwgZWxhYm9yYXIgdW4gZ3LDoWZpY28gZGUgYmFycmEgZGVsIHZvbHVtZW50IHRvdGFsIGRlIGxvcyBjYXJ0cmlkZ2VzIChjYXJ0dWNob3MpIHBvciB0aXBvIGRlIGZpbGxlciAocmVsbGVubykuXltMb3MgZGF0b3MgZXN0w6FuIGhhYmlsaXRhZG9zIGVuIGVsIHBhY2thZ2UgKipTaXhTaWdtYSoqIGNvbW8gdW4gb2JqZXRvIGxsYW1hZG8gKipzcy5kYXRhLnBjKiouIFBhcmEgbWF5b3IgaW5mb3JtYWNpw7NuIGRlIGVzdGEgYmFzZSBkZSBkYXRvcyBpciBhIGhlbHAgeSBlc2NyaWJpciBlbCBub21icmUgZGVsIG9iamV0by5dIE5vdGE6IGVtcGxlYXIgbGEgZnVuY2nDs24gKiphZ2dyZWdhdGUqKiB0cmFuc2Zvcm1hciBkZSBtYW5lcmEgYXByb3BpYWRhIGxvcyBkYXRvcyBjb250ZW5pZG9zICoqc3MuZGF0YS5wYyoqLgoKCmBgYHtyfQpsaWJyYXJ5KFNpeFNpZ21hKQpkYXRvcyA8LSBzcy5kYXRhLnBjIApkYXRvcwpkYXRhMiA8LSBhZ2dyZWdhdGUoZGF0b3NbLDM6NF0sCiAgICAgICAgICAgYnkgPSBsaXN0KGRhdG9zJHBjLmZpbGxlciksCiAgICAgICAgICAgRlVOID0gc3VtLCBuYS5ybSA9IFRSVUUpCndpdGgoZGF0YTIsCiAgICAgYmFycGxvdChwYy52b2x1bWUsCiAgICAgICAgICAgICBuYW1lcy5hcmcgPSBHcm91cC4xLAogICAgICAgICAgICAgbGFzID0gMSwKICAgICAgICAgICAgIG1haW4gPSAiQmFycGxvdCBkZWwgdm9sdW1lbiB0b3RhbCBkZWwgY2FydHVjaG8gcG9yIHRpcG8gZGUgcmVsbGVubyIpKQphYmxpbmUoaCA9IDAsCiAgICAgICBjb2wgPSAiIzY2NjY2NiIpCmBgYAoKCiMgUHJlZ3VudGEgNApFbXBsZWFuZG8gbGEgYmFzZSBkZSBkYXRvcyAqKnNzLmRhdGEuc3RyaW5ncyoqXltMb3MgZGF0b3MgZXN0w6FuIGhhYmlsaXRhZG9zIGVuIGVsIHBhY2thZ2UgKipTaXhTaWdtYSoqIGNvbW8gdW4gb2JqZXRvIGxsYW1hZG8gKipzcy5kYXRhLnN0cmluZ3MqKi4gUGFyYSBtYXlvciBpbmZvcm1hY2nDs24gZGUgZXN0YSBiYXNlIGRlIGRhdG9zIGlyIGEgaGVscCB5IGVzY3JpYmlyIGVsIG5vbWJyZSBkZWwgb2JqZXRvLl0gZXZhbHVhciBsYSBoaXDDs3Rlc2lzIGRlIG5vcm1hbGlkYWQgZGUgbGEgcmVzaXN0ZW5jaWEgZGUgbGFzIGN1ZXJkYXMuCgoKYGBge3IsIGZpZy53aWR0aD02LCBmaWcuaGVpZ2h0PTZ9CmRhdG9zX3NvbmlkbyA8LSBuYS5vbWl0KHNzLmRhdGEuc3RyaW5ncykgCm1pX21vZGVsbyA8LSBsbShyZXMgfiBsZW4sIGRhdGEgPSBkYXRvc19zb25pZG8pCm5hbWVzKG1pX21vZGVsbykKc2hhcGlyby50ZXN0KHJlc2lkdWFscyhtaV9tb2RlbG8pKQpwYXIobWZyb3c9YygyLDIpKQpwbG90KG1pX21vZGVsbykKYGBgCgoKIyBQcmVndW50YSA1CgpFc3RpbWFyIHVuIG1vZGVsbyBsaW5lYWwgZW1wbGVhbmRvIGxhIHJlc2lzdGVuY2lhIGRlIGxhcyBjdWVyZGFzIGNvbW8gbGEgdmFyaWFibGUgZGUgcmVzcHVlc3RhIHkgbGEgbG9uZ2l0dWQgZGUgbGFzIGN1ZXJkYXMgY29tbyBsYSB2YXJpYWJsZSBpbmRlcGVuZGllbnRlLiDCv0VzIGVsIG1vZGVsbyBsaW5lYWwgdW4gYnVlbiBtb2RlbG8gcGFyYSBleHBsaWNhciBlc3RhIHJlbGFjacOzbj8KCgpgYGB7ciwgZmlnLndpZHRoPTYsIGZpZy5oZWlnaHQ9Nn0KZGF0b3Nfc29uaWRvIDwtIG5hLm9taXQoc3MuZGF0YS5zdHJpbmdzKSAKbWlfbW9kZWxvIDwtIGxtKHJlcyB+IGxlbiwgZGF0YSA9IGRhdG9zX3NvbmlkbykKc3VtbWFyeShtaV9tb2RlbG8pCmBgYAoKCiMgUHJlZ3VudGEgNgoKT2J0ZW5lciBlbCBkaXNlw7FvIG1hdHJpY2lhbCBwYXJhIHVuIGV4cGVyaW1lbnRvICQyXns0fSQgeSBjcmVhciB1bmEgdGFibGEgYWxlYXRvcmlhIHBhcmEgcmVnaXN0cmFyIGxhcyByZXNwdWVzdGFzLiBOb3RhOiBsYSBjb2x1bW5hIGRlIENhbGlmaWNhY2nDs24gdG9kb3Mgc3VzIHZhbG9yZXMgZGViZW4gc2VyICpOQSouCgoKYGBge3J9CkRpc2Vub19leHBlcmltZW50byA8LSBleHBhbmQuZ3JpZChmYWN0b3IxID0gZ2woMiwxLCBsYWJlbHMgPSBjKCItIiwgIisiKSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmYWN0b3IyID0gZ2woMiwxLCBsYWJlbHMgPSBjKCItIiwgIisiKSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmYWN0b3IzID0gZ2woMiwxLCBsYWJlbHMgPSBjKCItIiwgIisiKSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmYWN0b3I0ID0gZ2woMiwxLCBsYWJlbHMgPSBjKCItIiwgIisiKSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjYWxpZmljYWNpw7NuID0gTkEpCkRpc2Vub19leHBlcmltZW50bwpEaXNlbm9fZXhwZXJpbWVudG8kb3JkZW4gPC0gc2FtcGxlKDE6MTYsIDE2KQpEaXNlbm9fZXhwZXJpbWVudG9bb3JkZXIoRGlzZW5vX2V4cGVyaW1lbnRvJG9yZGVuKSxdCgpgYGAKCgojIFByZWd1bnRhIDcKCkFzdW1pciBxdWUgdW5hIHZleiBlZ3Jlc2UgZGUgbGEgY2FycmVyYSBkZSBJbmdlbmllcsOtYSBDaXZpbCBJbmR1c3RyaWFsIHN1IHByaW1lcmEgb3BvcnR1bmlkYWQgZGUgZW1wbGVvIGVzIGxhIGVsYWJvcmFjacOzbiBkZSB1biBwcm95ZWN0byBlbXBsZWFuZG8gbGEgbWV0b2RvbG9nw61hIFNpeCBTaWdtYS4gRGljaG8gcHJveWVjdG8gdGVuZHLDoSBjb21vIG9iamV0aXZvIGdlbmVyYWwgcmVkdWNpciBsb3MgdGllbXBvcyBkZSBlbGFib3JhY2nDs24gZGUgcGl6emFzIHkgZWwgcHVudHVhbCBlbnbDrW8gZGUgbG9zIHBlZGlkb3MgYSBsb3MgaG9nYXJlcyBkZSBsb3MgY29uc3VtaWRvcmVzLiBQYXJhIHRlbmVyIHVuYSBwZXF1ZcOxYSBkZXNjcmlwY2nDs24gZGUgc3UgcHJveWVjdG8gU2l4IFNpZ21hIGVzIG5lY2VzYXJpbyByZXNwb25kZXIgZGUgbWFuZXJhIGNsYXJhIHkgZGV0YWxsYWRhIGNhZGEgdW5hIGRlIGxhcyBzaWd1aWVudGVzIHByZWd1bnRhczoKCjEuIMK/Q3VhbGVzIHNvbiBjYWRhIHVubyBkZSBsb3MgcGFzb3MgZGVsIGNpY2xvIERNQUlDIGRlIHN1IHByb3llY3RvPwoyLiBEZXNjcmliaXIgbGFzIGFjdGl2aWRhZGVzIHF1ZSBkZWJlbiBzZXIgbGxldmFkYXMgYSBjYWJvIGVuIGNhZGEgdW5vIGRlIGxvcyBwYXNvcyBhbnRlcmlvcmVzLgozLiDCv0N1YWxlcyBzZXLDrWFuIGFsZ3Vub3MgZGUgbG9zIHByb2JsZW1hcyBhIGxvcyBjdWFsZXMgc2UgZW5mcmVudGFyw61hIGVsIHByb3llY3RvPwo0LiDCv1F1w6kgdGlwbyBkZSBpbmZvcm1hY2nDs24geSBoZXJyYW1pZW50YXMgZXN0YWTDrXN0aWNhcyBzb24gbmVjZXNhcmlhcyBwYXJhIGxsZXZhciBhIGNhYm8gbGEgZmFzZSBkZSBhbsOhbGlzaXMgZW4gc3UgcHJveWVjdG8/CjUuIMK/UHVlZGUgbGxldmFyIGEgY2FibyBhbGfDum4gdGlwbyBkZSBkaXNlw7FvIGRlIGV4cGVyaW1lbnRvIGVuIHN1IHByb3llY3RvPywgwr9EZXNjcmliaXIgZWwgZGlzZcOxbyBkZWwgZXhwZXJpbWVudG8/LCDCv0RlIHF1ZSBtYW5lcmEgZXN0ZSBleHBlcmltZW50byBwdWVkZSBtZWpvcmFyIGxvcyByZXN1bHRhZG9zIGRlIHN1IHByb3llY3RvPwoKCgoKCgo=</div>
 
 
 
@@ -1833,7 +1981,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Taller3.Rmd");
+  window.initializeSourceEmbed("Prueba3_solucion.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

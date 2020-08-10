@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
 <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -1479,13 +1480,13 @@ window.initializeCodeFolding = function(show) {
   var currentIndex = 1;
 
   // select all R code blocks
-  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia, pre.foldable');
+  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia');
   rCodeBlocks.each(function() {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    show = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
-    if (show) div.addClass('in');
+    if (show)
+      div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
     $(this).before(div);
@@ -1614,6 +1615,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1699,7 +1701,6 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -1745,48 +1746,66 @@ summary {
 
 
 <h1 class="title toc-ignore">Universidad Santo Tomás, Facultad de Ingeniería</h1>
-<h3 class="subtitle">Gráficos (cartas) de control para atributos: Taller 3.</h3>
+<h3 class="subtitle">Control Estadístico de Calidad: Segunda prueba parcial</h3>
 <h4 class="author">Profesor: Gustavo Ahumada</h4>
-<h4 class="date">04 August, 2020</h4>
+<h4 class="date">18 June, 2020</h4>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<div id="instrucciones" class="section level1">
-<h1>Instrucciones</h1>
+<p><strong>Exigencia</strong>: <span class="math inline">\(70\%\)</span>. <strong>Puntaje total</strong>: 40 puntos. <strong>Tiempo de duración</strong>: 30 horas.</p>
+<p><strong>Instrucciones</strong></p>
 <ol style="list-style-type: decimal">
-<li><p>Para el desarrollo de los ejercicios debe hacer uso del archivo datos_taller.xlsx, el cual contiene la información que se va analizar.</p></li>
+<li><p>Para el desarrollo de los ejercicios debe hacer uso de los archivos <strong>prueba_ejercicio2.xlsx</strong> y <strong>prueba_ejercicio3.xlsx</strong>, los cuales contiene la información que se va analizar.</p></li>
 <li><p>Las respuesta a cada uno de los ejercicios deben estar en un solo script, no se acepta que envíen un archivo en PDF con el desarrollo de los ejercicios. En el script se debe ser ordenado en la elaboración de cada uno de las respuestas. En adición al código, usted deber escribir en el script su análisis a cada uno de los puntos que contienen los ejercicios.</p></li>
-<li><p>La fecha límite de entrega es el día viernes a las 11:30 PM. Se debe envíar el archivo script al correo <a href="mailto:gahumada2@santotomas.cl" class="email">gahumada2@santotomas.cl</a>.</p></li>
+<li><p>La fecha límite de entrega es el día viernes 19 de junio a las 11:59 PM. Se debe envíar el archivo script al correo <a href="mailto:gahumada2@santotomas.cl" class="email">gahumada2@santotomas.cl</a>.</p></li>
 </ol>
-<p><strong>Nota</strong>: a modo de guía se encuentra un script en la sección Unidad Nº3 en la plataforma Santo Tomás llamado Ejemplos.R.</p>
-</div>
-<div id="ejercicios" class="section level1">
-<h1>Ejercicios</h1>
-<p><strong>1.</strong> En una empresa del ramo metalmecánico se fabrican válvulas. Después del proceso de fundición se realiza una inspección y las piezas que no cumplen con ciertas características son rechazadas. Las razones del rechazo son diversas: piezas incompletas, porosas, mal formadas, etc. Para evaluar la variabilidad y la magnitud de la proporción de piezas defectuosas en el proceso de fundición se decide implementar una gráfico (carta) <span class="math inline">\(p\)</span>. El proceso de fundición se hace por lotes. En el archivo <strong>datos_taller.xlsx</strong> se muestran los datos obtenidos durante una semana para cierto tipo de válvulas. Aunque regularmente el tamaño de lote es fijo, n = 300, en ocasiones, por diferentes motivos, en algunos lotes se hacen unas cuantas piezas de más o de menos, como se aprecia en el archivo.</p>
+<p><strong>Nota</strong>: se sugiere tomar el consideración el script <span class="math inline">\(\textbf{Prueba2.R}\)</span> para hacer el calculo de las desviaciones estándar, con el objetivo de tener estimaciones adecuadas, ver página 245 del libro Quality control with R para mayor información.</p>
+<p><strong>1. Ejercicio para gráfico <span class="math inline">\(\bar{X}-R\)</span></strong>.</p>
+<p>Según la información proporcionada por un gráfico <span class="math inline">\(\bar{X}-R\)</span>, sobre un proceso de producción de piezas metálicas, la media de la longitud de tales piezas es <span class="math inline">\(50\)</span>mm y el rango medio con tamaño de muestra <span class="math inline">\(5\)</span> es <span class="math inline">\(0.6\)</span>, resuelva lo siguiente:</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Calcule los límites de control utilizando el tamaño de subgrupo (lote) promedio.</p></li>
-<li><p>¿Cómo explicaría los límites de control que obtuvo a alguien que no tiene conocimientos profundos de estadística?</p></li>
-<li><p>Gráficar la proporción de defectuosos e interpretar. ¿El proceso es estable?</p></li>
-<li><p>¿Se puede considerar que la calidad del proceso es aceptable? Argumente su respuesta.</p></li>
+<li>Obtenga la desviación están dar del proceso.</li>
+<li>Calcule los límites de control para el gráfico <span class="math inline">\(\bar{X}\)</span> (tamaño de subgrupo 5) e interprételos.</li>
+<li>Obtenga los límites de control para el gráfico <span class="math inline">\(R\)</span> y explique su significado práctico.</li>
+<li>Si la especificación inferior y superior para esta pieza es <span class="math inline">\(49\)</span> y <span class="math inline">\(51\)</span> mm, respectivamente; calcule los límites reales o natura les e interprételos.</li>
+<li>Explique para qué sirven los límites que obtuvo en los incisos b) y c) y para los qué obtuvo en el inciso d).</li>
+<li>¿Tiene información suficiente para comprobar si el proceso es estable (está en control estadístico)? Explique y argumente.</li>
 </ol>
-<p><strong>2.</strong> En el caso del ejercicio <strong>1</strong>:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Obtenga un gráfico <span class="math inline">\(p\)</span> con límites de control variables.</p></li>
-<li><p>¿Qué diferencias observa con respecto al gráfico obtenido en el ejercicio anterior?</p></li>
+<p><strong>2. Ejercicio para gráfico <span class="math inline">\(\bar{X}-R\)</span></strong>.</p>
+<p>En una empresa del ramo metalmecánico se fabrican punterías para motores de automóviles. Cierta puntería debe tener un diámetro exterior de <span class="math inline">\(20,000\)</span> micras donde En una empresa del ramo metalmecánico se fabrican punterías para motores de automóviles. Cierta puntería debe tener un diámetro exterior de <span class="math inline">\(20,000\)</span> micras donde <span class="math inline">\(1\)</span> micra es iguala <span class="math inline">\(0.000001\)</span> metros, con una tolerancia de <span class="math inline">\((+-)25\)</span> micras. De esta manera, si a las mediciones del diámetro se les resta el valor nominal deseado, entonces las especificaciones serán Especificación inferior EI<span class="math inline">\(= -25\)</span> y Especificación superior ES<span class="math inline">\(=25\)</span>.</p>
+<p>Para evaluar la estabilidad del proceso se realiza un estudio inicial, donde es usual obtener por lo menos de 20 a 25 subgrupos (muestras) de tamaño pequeño (entre 5 y 10 por lo general). Además, estos subgrupos deben estar espaciados, de forma que capten el funcionamiento del proceso en un periodo suficientemente amplio para que se capten diferentes cambios en el proceso (turnos, lotes, etc.). En el caso de las punterías, cada hora se mide el diámetro de cinco de éstas y en archivo en Excel llamado <strong>prueba_ejercicio2.xlsx</strong> se muestran de dos días laborales. Para evaluar la estabilidad de la tendencia central se analizará la variación de la media de los datos mediante el gráfico <span class="math inline">\(\bar{X}\)</span>, y la de la misma manera media el gráfico <span class="math inline">\(R\)</span> se analizará los rangos para investigar la estabilidad de la variación del diámetro de las punterías. A continuación resuelva:</p>
+<ol style="list-style-type: decimal">
+<li>Empleando la función <span class="math inline">\(\textbf{qcc}\)</span> obtenga el gráfico de <span class="math inline">\(\bar{X}\)</span>, luego de manera manual calcule los límites de control del gráfico de <span class="math inline">\(\bar{X}\)</span>. ¿son similares los valores?</li>
+<li>Interpretar el gráfico de medias (puntos fuera, tendencias, ciclos, etcétera).</li>
+<li>Empleando la función <span class="math inline">\(\textbf{qcc}\)</span> obtenga el gráfico de <span class="math inline">\(R\)</span>, luego de manera manual calcule los límites de control del gráfico de <span class="math inline">\(\bar{X}\)</span> asumiendo que el rango medio es de <span class="math inline">\(26.3\)</span>. ¿son similares los valores?</li>
+<li>Interpretar el gráfico de rangos (puntos fuera, tendencias, ciclos, etcétera).</li>
+<li>Dados los resultados de los incisos anteriores ¿El proceso muestra una estabilidad o estado de control estadístico razonable?</li>
 </ol>
-<p><strong>3.</strong> En el caso del ejercicio <strong>1</strong>:</p>
+<p><strong>3. Ejercicio gráfico de control por atributos</strong></p>
+<p>En un proceso se produce por lotes y éstos se prueban al <span class="math inline">\(100\%\)</span>. Se lleva un registro de la proporción de artículos defectuosos por diferentes causas. Los datos de los últimos 25 lotes se muestran en el archivo de Excel llamado <strong>prueba_ejercicio3.xlsx</strong>.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Suponga que todos los lotes tienen el mismo tamaño (el promedio), calcule los límites de control para gráfico <span class="math inline">\(np\)</span> e interprétar.</p></li>
-<li><p>Grafique la correspondiente gráfico <span class="math inline">\(np\)</span> y analizar. ¿El proceso es estable?</p></li>
-<li><p>¿Observa alguna diferencia importante entre gráfico de control <span class="math inline">\(p\)</span> y el gráfico de control <span class="math inline">\(np\)</span>?</p></li>
-<li><p>¿Cuál gráfico <span class="math inline">\(p\)</span> o la <span class="math inline">\(np\)</span> sería el más conveniente en este caso? Argumentar.</p></li>
+<li>Obtenga los límites de control de un gráfico <span class="math inline">\(p\)</span> usando el tamaño de subgrupo (lote) promedio. Posteriormente, empleando la función <span class="math inline">\(\textbf{qcc}\)</span> gráficar el correspondiente gráfico de control.</li>
+<li>¿Cómo explicaría los límites de control que obtuvo a alguien que no tiene conocimientos profundos de estadística?</li>
+<li>Obtenga un gráfico de control <span class="math inline">\(p\)</span> con límites de control variables.</li>
+<li>Suponiendo que todos los lotes tienen el mismo tamaño (el promedio), obtenga un gráfico de control <span class="math inline">\(np\)</span> para tales datos.</li>
+<li>¿Observa alguna diferencia importante entre gráfico de control <span class="math inline">\(p\)</span> y el gráfico <span class="math inline">\(np\)</span>?</li>
+<li>¿De qué depende la elección entre el gráfico de control <span class="math inline">\(p\)</span> o <span class="math inline">\(np\)</span>?</li>
+<li>¿Qué límites de control usaría para analizar datos futuros mediante las el gráfico <span class="math inline">\(p\)</span> y <span class="math inline">\(np\)</span>?</li>
+</ol>
+<p><strong>4. Ejercicio gráfico de control por atributos</strong></p>
+<p>En una empresa se registra el número de quejas por mal servicio. Los datos de las últimas 25 semanas se muestran enseguida (datos en orden cronológico):</p>
+<p><span class="math inline">\(6, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>¿Es adecuado hacer un análisis mediante un gráfico <span class="math inline">\(p\)</span>? Argumente.</li>
+<li>Calcule los límites de control.</li>
+<li>Obtenga el gráfico <span class="math inline">\(c\)</span> y analizar.</li>
+<li>¿El proceso es estable?</li>
+<li>¿El nivel de calidad se puede considerar satisfactorio?</li>
 </ol>
 <!-- rnb-text-end -->
-</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVW5pdmVyc2lkYWQgU2FudG8gVG9tw6FzLCBGYWN1bHRhZCBkZSBJbmdlbmllcsOtYSIKc3VidGl0bGU6ICJHcsOhZmljb3MgKGNhcnRhcykgZGUgY29udHJvbCBwYXJhIGF0cmlidXRvczogVGFsbGVyIDMuIiAKYXV0aG9yOiAiUHJvZmVzb3I6IEd1c3Rhdm8gQWh1bWFkYSIKZGF0ZTogImByIGZvcm1hdChTeXMudGltZSgpLCAnJWQgJUIsICVZJylgIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogIHRoZW1lOiB1bml0ZWQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQoKIyBJbnN0cnVjY2lvbmVzCjEuIFBhcmEgZWwgZGVzYXJyb2xsbyBkZSBsb3MgZWplcmNpY2lvcyBkZWJlIGhhY2VyIHVzbyBkZWwgYXJjaGl2byBkYXRvc190YWxsZXIueGxzeCwgZWwgY3VhbCBjb250aWVuZSBsYSBpbmZvcm1hY2nDs24gcXVlIHNlIHZhIGFuYWxpemFyLgoKMi4gTGFzIHJlc3B1ZXN0YSBhIGNhZGEgdW5vIGRlIGxvcyBlamVyY2ljaW9zIGRlYmVuIGVzdGFyIGVuIHVuIHNvbG8gc2NyaXB0LCBubyBzZSBhY2VwdGEgcXVlIGVudsOtZW4gdW4gYXJjaGl2byBlbiBQREYgY29uIGVsIGRlc2Fycm9sbG8gZGUgbG9zIGVqZXJjaWNpb3MuIEVuIGVsIHNjcmlwdCBzZSBkZWJlIHNlciBvcmRlbmFkbyBlbiBsYSBlbGFib3JhY2nDs24gZGUgY2FkYSB1bm8gZGUgbGFzIHJlc3B1ZXN0YXMuIEVuIGFkaWNpw7NuIGFsIGPDs2RpZ28sIHVzdGVkIGRlYmVyIGVzY3JpYmlyIGVuIGVsIHNjcmlwdCBzdSBhbsOhbGlzaXMgYSBjYWRhIHVubyBkZSBsb3MgcHVudG9zIHF1ZSBjb250aWVuZW4gbG9zIGVqZXJjaWNpb3MuCgozLiBMYSBmZWNoYSBsw61taXRlIGRlIGVudHJlZ2EgZXMgZWwgZMOtYSB2aWVybmVzIGEgbGFzIDExOjMwIFBNLiBTZSBkZWJlIGVudsOtYXIgZWwgYXJjaGl2byBzY3JpcHQgYWwgY29ycmVvIGdhaHVtYWRhMkBzYW50b3RvbWFzLmNsLgoKKipOb3RhKio6IGEgbW9kbyBkZSBndcOtYSBzZSBlbmN1ZW50cmEgdW4gc2NyaXB0IGVuIGxhIHNlY2Npw7NuIFVuaWRhZCBOwrozIGVuIGxhIHBsYXRhZm9ybWEgU2FudG8gVG9tw6FzIGxsYW1hZG8gRWplbXBsb3MuUi4KCiMgRWplcmNpY2lvcwoKKioxLioqIEVuIHVuYSBlbXByZXNhIGRlbCByYW1vIG1ldGFsbWVjw6FuaWNvIHNlIGZhYnJpY2FuIHbDoWx2dWxhcy4gRGVzcHXDqXMgZGVsIHByb2Nlc28gZGUgZnVuZGljacOzbiBzZSByZWFsaXphIHVuYSBpbnNwZWNjacOzbiB5IGxhcyBwaWV6YXMgcXVlIG5vIGN1bXBsZW4gY29uIGNpZXJ0YXMgY2FyYWN0ZXLDrXN0aWNhcyBzb24gcmVjaGF6YWRhcy4gTGFzIHJhem9uZXMgZGVsIHJlY2hhem8gc29uIGRpdmVyc2FzOiBwaWV6YXMgaW5jb21wbGV0YXMsIHBvcm9zYXMsIG1hbCBmb3JtYWRhcywgZXRjLiBQYXJhIGV2YWx1YXIgbGEgdmFyaWFiaWxpZGFkIHkgbGEgbWFnbml0dWQgZGUgbGEgcHJvcG9yY2nDs24gZGUgcGllemFzIGRlZmVjdHVvc2FzIGVuIGVsIHByb2Nlc28gZGUgZnVuZGljacOzbiBzZSBkZWNpZGUgaW1wbGVtZW50YXIgdW5hIGdyw6FmaWNvIChjYXJ0YSkgJHAkLiBFbCBwcm9jZXNvIGRlIGZ1bmRpY2nDs24gc2UgaGFjZSBwb3IgbG90ZXMuIEVuIGVsIGFyY2hpdm8gKipkYXRvc190YWxsZXIueGxzeCoqIHNlIG11ZXN0cmFuIGxvcyBkYXRvcyBvYnRlbmlkb3MgZHVyYW50ZSB1bmEgc2VtYW5hIHBhcmEgY2llcnRvIHRpcG8gZGUgdsOhbHZ1bGFzLiBBdW5xdWUgcmVndWxhcm1lbnRlIGVsIHRhbWHDsW8gZGUgbG90ZSBlcyBmaWpvLCBuID0gMzAwLCBlbiBvY2FzaW9uZXMsIHBvciBkaWZlcmVudGVzIG1vdGl2b3MsIGVuIGFsZ3Vub3MgbG90ZXMgc2UgaGFjZW4gdW5hcyBjdWFudGFzIHBpZXphcyBkZSBtw6FzIG8gZGUgbWVub3MsIGNvbW8gc2UgYXByZWNpYSBlbiBlbCBhcmNoaXZvLgoKYS4gQ2FsY3VsZSBsb3MgbMOtbWl0ZXMgZGUgY29udHJvbCB1dGlsaXphbmRvIGVsIHRhbWHDsW8gZGUgc3ViZ3J1cG8gKGxvdGUpIHByb21lZGlvLgoKYi4gwr9Dw7NtbyBleHBsaWNhcsOtYSBsb3MgbMOtbWl0ZXMgZGUgY29udHJvbCBxdWUgb2J0dXZvIGEgYWxndWllbiBxdWUgbm8gdGllbmUgY29ub2NpbWllbnRvcyBwcm9mdW5kb3MgZGUgZXN0YWTDrXN0aWNhPwoKYy4gR3LDoWZpY2FyIGxhIHByb3BvcmNpw7NuIGRlIGRlZmVjdHVvc29zIGUgaW50ZXJwcmV0YXIuIMK/RWwgcHJvY2VzbyBlcyBlc3RhYmxlPwoKZC4gwr9TZSBwdWVkZSBjb25zaWRlcmFyIHF1ZSBsYSBjYWxpZGFkIGRlbCBwcm9jZXNvIGVzIGFjZXB0YWJsZT8gQXJndW1lbnRlIHN1IHJlc3B1ZXN0YS4KCgoqKjIuKiogRW4gZWwgY2FzbyBkZWwgZWplcmNpY2lvICoqMSoqOgoKYS4gT2J0ZW5nYSB1biBncsOhZmljbyAkcCQgY29uIGzDrW1pdGVzIGRlIGNvbnRyb2wgdmFyaWFibGVzLgoKYi4gwr9RdcOpIGRpZmVyZW5jaWFzIG9ic2VydmEgY29uIHJlc3BlY3RvIGFsIGdyw6FmaWNvIG9idGVuaWRvIGVuIGVsIGVqZXJjaWNpbyBhbnRlcmlvcj8KCgoqKjMuKiogRW4gZWwgY2FzbyBkZWwgZWplcmNpY2lvICoqMSoqOgoKYS4gIFN1cG9uZ2EgcXVlIHRvZG9zIGxvcyBsb3RlcyB0aWVuZW4gZWwgbWlzbW8gdGFtYcOxbyAoZWwgcHJvbWVkaW8pLCBjYWxjdWxlIGxvcyBsw61taXRlcyBkZSBjb250cm9sIHBhcmEgZ3LDoWZpY28gJG5wJCBlIGludGVycHLDqXRhci4KCmIuIEdyYWZpcXVlIGxhIGNvcnJlc3BvbmRpZW50ZSBncsOhZmljbyAkbnAkIHkgYW5hbGl6YXIuIMK/RWwgcHJvY2VzbyBlcyBlc3RhYmxlPwoKYy4gwr9PYnNlcnZhIGFsZ3VuYSBkaWZlcmVuY2lhIGltcG9ydGFudGUgZW50cmUgZ3LDoWZpY28gZGUgY29udHJvbCAkcCQgeSBlbCAgZ3LDoWZpY28gZGUgY29udHJvbCAkbnAkPwoKZC4gwr9DdcOhbCBncsOhZmljbyAkcCQgbyBsYSAkbnAkIHNlcsOtYSBlbCBtw6FzIGNvbnZlbmllbnRlIGVuCmVzdGUgY2Fzbz8gQXJndW1lbnRhci4gCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVW5pdmVyc2lkYWQgU2FudG8gVG9tw6FzLCBGYWN1bHRhZCBkZSBJbmdlbmllcsOtYSIKc3VidGl0bGU6ICJDb250cm9sIEVzdGFkw61zdGljbyBkZSBDYWxpZGFkOiBTZWd1bmRhIHBydWViYSBwYXJjaWFsIiAKYXV0aG9yOiAiUHJvZmVzb3I6IEd1c3Rhdm8gQWh1bWFkYSIKZGF0ZTogImByIGZvcm1hdChTeXMudGltZSgpLCAnJWQgJUIsICVZJylgIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogIHRoZW1lOiB1bml0ZWQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQoKKipFeGlnZW5jaWEqKjogJDcwXCUkLiAqKlB1bnRhamUgdG90YWwqKjogNDAgcHVudG9zLiAqKlRpZW1wbyBkZSBkdXJhY2nDs24qKjogMzAgaG9yYXMuCgoqKkluc3RydWNjaW9uZXMqKgoKMS4gUGFyYSBlbCBkZXNhcnJvbGxvIGRlIGxvcyBlamVyY2ljaW9zIGRlYmUgaGFjZXIgdXNvIGRlIGxvcyBhcmNoaXZvcyAqKnBydWViYV9lamVyY2ljaW8yLnhsc3gqKiB5ICoqcHJ1ZWJhX2VqZXJjaWNpbzMueGxzeCoqLCBsb3MgY3VhbGVzIGNvbnRpZW5lIGxhIGluZm9ybWFjacOzbiBxdWUgc2UgdmEgYW5hbGl6YXIuCgoyLiBMYXMgcmVzcHVlc3RhIGEgY2FkYSB1bm8gZGUgbG9zIGVqZXJjaWNpb3MgZGViZW4gZXN0YXIgZW4gdW4gc29sbyBzY3JpcHQsIG5vIHNlIGFjZXB0YSBxdWUgZW52w61lbiB1biBhcmNoaXZvIGVuIFBERiBjb24gZWwgZGVzYXJyb2xsbyBkZSBsb3MgZWplcmNpY2lvcy4gRW4gZWwgc2NyaXB0IHNlIGRlYmUgc2VyIG9yZGVuYWRvIGVuIGxhIGVsYWJvcmFjacOzbiBkZSBjYWRhIHVubyBkZSBsYXMgcmVzcHVlc3Rhcy4gRW4gYWRpY2nDs24gYWwgY8OzZGlnbywgdXN0ZWQgZGViZXIgZXNjcmliaXIgZW4gZWwgc2NyaXB0IHN1IGFuw6FsaXNpcyBhIGNhZGEgdW5vIGRlIGxvcyBwdW50b3MgcXVlIGNvbnRpZW5lbiBsb3MgZWplcmNpY2lvcy4KCjMuIExhIGZlY2hhIGzDrW1pdGUgZGUgZW50cmVnYSBlcyBlbCBkw61hIHZpZXJuZXMgMTkgZGUganVuaW8gYSBsYXMgMTE6NTkgUE0uIFNlIGRlYmUgZW52w61hciBlbCBhcmNoaXZvIHNjcmlwdCBhbCBjb3JyZW8gZ2FodW1hZGEyQHNhbnRvdG9tYXMuY2wuCgoqKk5vdGEqKjogc2Ugc3VnaWVyZSB0b21hciBlbCBjb25zaWRlcmFjacOzbiBlbCBzY3JpcHQgJFx0ZXh0YmZ7UHJ1ZWJhMi5SfSQgcGFyYSBoYWNlciBlbCBjYWxjdWxvIGRlIGxhcyBkZXN2aWFjaW9uZXMgZXN0w6FuZGFyLCBjb24gZWwgb2JqZXRpdm8gZGUgdGVuZXIgZXN0aW1hY2lvbmVzIGFkZWN1YWRhcywgdmVyIHDDoWdpbmEgMjQ1IGRlbCBsaWJybyBRdWFsaXR5IGNvbnRyb2wgd2l0aCBSIHBhcmEgbWF5b3IgaW5mb3JtYWNpw7NuLgoKCioqMS4gRWplcmNpY2lvIHBhcmEgZ3LDoWZpY28gJFxiYXJ7WH0tUiQqKi4KClNlZ8O6biBsYSBpbmZvcm1hY2nDs24gcHJvcG9yY2lvbmFkYSBwb3IgdW4gZ3LDoWZpY28gJFxiYXJ7WH0tUiQsIHNvYnJlIHVuIHByb2Nlc28gZGUgcHJvZHVjY2nDs24gZGUgcGllemFzIG1ldMOhbGljYXMsIGxhIG1lZGlhIGRlIGxhIGxvbmdpdHVkIGRlIHRhbGVzIHBpZXphcyBlcyAkNTAkbW0geSBlbCByYW5nbyBtZWRpbyBjb24gdGFtYcOxbyBkZSBtdWVzdHJhICQ1JCBlcyAkMC42JCwgcmVzdWVsdmEgbG8gc2lndWllbnRlOgoKYS4gT2J0ZW5nYSBsYSBkZXN2aWFjacOzbiBlc3TDoW4gZGFyIGRlbCBwcm9jZXNvLgpiLiBDYWxjdWxlIGxvcyBsw61taXRlcyBkZSBjb250cm9sIHBhcmEgZWwgZ3LDoWZpY28gJFxiYXJ7WH0kICh0YW1hw7FvIGRlIHN1YmdydXBvIDUpIGUgaW50ZXJwcsOpdGVsb3MuCmMuIE9idGVuZ2EgbG9zIGzDrW1pdGVzIGRlIGNvbnRyb2wgcGFyYSBlbCBncsOhZmljbyAkUiQgeSBleHBsaXF1ZSBzdSBzaWduaWZpY2FkbyBwcsOhY3RpY28uCmQuIFNpIGxhIGVzcGVjaWZpY2FjacOzbiBpbmZlcmlvciB5IHN1cGVyaW9yIHBhcmEgZXN0YSBwaWV6YSBlcyAkNDkkIHkgJDUxJCBtbSwgcmVzcGVjdGl2YW1lbnRlOyBjYWxjdWxlIGxvcyBsw61taXRlcyByZWFsZXMgbyBuYXR1cmEgbGVzIGUgaW50ZXJwcsOpdGVsb3MuCmUuIEV4cGxpcXVlIHBhcmEgcXXDqSBzaXJ2ZW4gbG9zIGzDrW1pdGVzIHF1ZSBvYnR1dm8gZW4gbG9zIGluY2lzb3MgYikgeSBjKSB5IHBhcmEgbG9zIHF1w6kgb2J0dXZvIGVuIGVsIGluY2lzbyBkKS4KZi4gwr9UaWVuZSBpbmZvcm1hY2nDs24gc3VmaWNpZW50ZSBwYXJhIGNvbXByb2JhciBzaSBlbCBwcm9jZXNvIGVzIGVzdGFibGUgKGVzdMOhIGVuIGNvbnRyb2wgZXN0YWTDrXN0aWNvKT8gRXhwbGlxdWUgeSBhcmd1bWVudGUuCgoKKioyLiBFamVyY2ljaW8gcGFyYSBncsOhZmljbyAkXGJhcntYfS1SJCoqLgoKRW4gdW5hIGVtcHJlc2EgZGVsIHJhbW8gbWV0YWxtZWPDoW5pY28gc2UgZmFicmljYW4gcHVudGVyw61hcyBwYXJhIG1vdG9yZXMgZGUgYXV0b23Ds3ZpbGVzLiBDaWVydGEgcHVudGVyw61hIGRlYmUgdGVuZXIgdW4gZGnDoW1ldHJvIGV4dGVyaW9yIGRlICQyMCwwMDAkIG1pY3JhcyAgZG9uZGUgRW4gdW5hIGVtcHJlc2EgZGVsIHJhbW8gbWV0YWxtZWPDoW5pY28gc2UgZmFicmljYW4gcHVudGVyw61hcyBwYXJhIG1vdG9yZXMgZGUgYXV0b23Ds3ZpbGVzLiBDaWVydGEgcHVudGVyw61hIGRlYmUgdGVuZXIgdW4gZGnDoW1ldHJvIGV4dGVyaW9yIGRlICQyMCwwMDAkIG1pY3JhcyAgZG9uZGUgJDEkIG1pY3JhIGVzIGlndWFsYSAkMC4wMDAwMDEkIG1ldHJvcywgY29uIHVuYSB0b2xlcmFuY2lhIGRlICQoKy0pMjUkIG1pY3Jhcy4gRGUgZXN0YSBtYW5lcmEsIHNpIGEgbGFzIG1lZGljaW9uZXMgZGVsIGRpw6FtZXRybyBzZSBsZXMgcmVzdGEgZWwgdmFsb3Igbm9taW5hbCBkZXNlYWRvLCBlbnRvbmNlcyBsYXMgZXNwZWNpZmljYWNpb25lcyBzZXLDoW4gRXNwZWNpZmljYWNpw7NuIGluZmVyaW9yIEVJJD0gLTI1JCB5IEVzcGVjaWZpY2FjacOzbiBzdXBlcmlvciBFUyQ9MjUkLgoKUGFyYSBldmFsdWFyIGxhIGVzdGFiaWxpZGFkIGRlbCBwcm9jZXNvIHNlIHJlYWxpemEgdW4gZXN0dWRpbyBpbmljaWFsLCBkb25kZSBlcyB1c3VhbCBvYnRlbmVyIHBvciBsbyBtZW5vcyBkZSAyMCBhIDI1IHN1YmdydXBvcyAobXVlc3RyYXMpIGRlIHRhbWHDsW8gcGVxdWXDsW8gKGVudHJlIDUgeSAxMCBwb3IgbG8gZ2VuZXJhbCkuIEFkZW3DoXMsIGVzdG9zIHN1YmdydXBvcyBkZWJlbiBlc3RhciBlc3BhY2lhZG9zLCBkZSBmb3JtYSBxdWUgY2FwdGVuIGVsIGZ1bmNpb25hbWllbnRvIGRlbCBwcm9jZXNvIGVuIHVuIHBlcmlvZG8gc3VmaWNpZW50ZW1lbnRlIGFtcGxpbyBwYXJhIHF1ZSBzZSBjYXB0ZW4gZGlmZXJlbnRlcyBjYW1iaW9zIGVuIGVsIHByb2Nlc28gKHR1cm5vcywgbG90ZXMsIGV0Yy4pLiBFbiBlbCBjYXNvIGRlIGxhcyBwdW50ZXLDrWFzLCBjYWRhIGhvcmEgc2UgbWlkZSBlbCBkacOhbWV0cm8gZGUgY2luY28gZGUgw6lzdGFzIHkgZW4gYXJjaGl2byBlbiBFeGNlbCBsbGFtYWRvICoqcHJ1ZWJhX2VqZXJjaWNpbzIueGxzeCoqIHNlIG11ZXN0cmFuIGRlIGRvcyBkw61hcyBsYWJvcmFsZXMuIFBhcmEgZXZhbHVhciBsYSBlc3RhYmlsaWRhZCBkZSBsYSB0ZW5kZW5jaWEgY2VudHJhbCBzZSBhbmFsaXphcsOhIGxhIHZhcmlhY2nDs24gZGUgbGEgbWVkaWEgZGUgbG9zIGRhdG9zIG1lZGlhbnRlIGVsIGdyw6FmaWNvICRcYmFye1h9JCwgeSBsYSBkZSBsYSBtaXNtYSBtYW5lcmEgbWVkaWEgZWwgZ3LDoWZpY28gJFIkIHNlIGFuYWxpemFyw6EgbG9zIHJhbmdvcyBwYXJhIGludmVzdGlnYXIgbGEgZXN0YWJpbGlkYWQgZGUgbGEgdmFyaWFjacOzbiBkZWwgZGnDoW1ldHJvIGRlIGxhcyBwdW50ZXLDrWFzLiBBIGNvbnRpbnVhY2nDs24gcmVzdWVsdmE6CgoxLiBFbXBsZWFuZG8gbGEgZnVuY2nDs24gJFx0ZXh0YmZ7cWNjfSQgb2J0ZW5nYSBlbCBncsOhZmljbyBkZSAkXGJhcntYfSQsIGx1ZWdvIGRlIG1hbmVyYSBtYW51YWwgY2FsY3VsZSBsb3MgbMOtbWl0ZXMgZGUgY29udHJvbCBkZWwgZ3LDoWZpY28gZGUgJFxiYXJ7WH0kLiDCv3NvbiBzaW1pbGFyZXMgbG9zIHZhbG9yZXM/CjIuIEludGVycHJldGFyIGVsIGdyw6FmaWNvIGRlIG1lZGlhcyAocHVudG9zIGZ1ZXJhLCB0ZW5kZW5jaWFzLCBjaWNsb3MsIGV0Y8OpdGVyYSkuCjMuIEVtcGxlYW5kbyBsYSBmdW5jacOzbiAkXHRleHRiZntxY2N9JCBvYnRlbmdhIGVsIGdyw6FmaWNvIGRlICRSJCwgbHVlZ28gZGUgbWFuZXJhIG1hbnVhbCBjYWxjdWxlIGxvcyBsw61taXRlcyBkZSBjb250cm9sIGRlbCBncsOhZmljbyBkZSAkXGJhcntYfSQgYXN1bWllbmRvIHF1ZSBlbCByYW5nbyBtZWRpbyBlcyBkZSAkMjYuMyQuIMK/c29uIHNpbWlsYXJlcyBsb3MgdmFsb3Jlcz8KNC4gSW50ZXJwcmV0YXIgZWwgZ3LDoWZpY28gZGUgcmFuZ29zIChwdW50b3MgZnVlcmEsIHRlbmRlbmNpYXMsIGNpY2xvcywgZXRjw6l0ZXJhKS4KNS4gRGFkb3MgbG9zIHJlc3VsdGFkb3MgZGUgbG9zIGluY2lzb3MgYW50ZXJpb3JlcyDCv0VsIHByb2Nlc28gbXVlc3RyYSB1bmEgZXN0YWJpbGlkYWQgbyBlc3RhZG8gZGUgY29udHJvbCBlc3RhZMOtc3RpY28gcmF6b25hYmxlPwoKCioqMy4gRWplcmNpY2lvIGdyw6FmaWNvIGRlIGNvbnRyb2wgcG9yIGF0cmlidXRvcyoqIAoKRW4gdW4gcHJvY2VzbyBzZSBwcm9kdWNlIHBvciBsb3RlcyB5IMOpc3RvcyBzZSBwcnVlYmFuIGFsICQxMDBcJSQuIFNlIGxsZXZhIHVuIHJlZ2lzdHJvIGRlIGxhIHByb3BvcmNpw7NuIGRlIGFydMOtY3Vsb3MgZGVmZWN0dW9zb3MgcG9yIGRpZmVyZW50ZXMgY2F1c2FzLiBMb3MgZGF0b3MgZGUgbG9zIMO6bHRpbW9zIDI1IGxvdGVzIHNlIG11ZXN0cmFuIGVuIGVsIGFyY2hpdm8gZGUgRXhjZWwgbGxhbWFkbyAqKnBydWViYV9lamVyY2ljaW8zLnhsc3gqKi4KCmEuIE9idGVuZ2EgbG9zIGzDrW1pdGVzIGRlIGNvbnRyb2wgZGUgdW4gZ3LDoWZpY28gJHAkIHVzYW5kbyBlbCB0YW1hw7FvIGRlIHN1YmdydXBvIChsb3RlKSBwcm9tZWRpby4gUG9zdGVyaW9ybWVudGUsIGVtcGxlYW5kbyBsYSBmdW5jacOzbiAkXHRleHRiZntxY2N9JCBncsOhZmljYXIgZWwgY29ycmVzcG9uZGllbnRlIGdyw6FmaWNvIGRlIGNvbnRyb2wuCmIuIMK/Q8OzbW8gZXhwbGljYXLDrWEgbG9zIGzDrW1pdGVzIGRlIGNvbnRyb2wgcXVlIG9idHV2byBhIGFsZ3VpZW4gcXVlIG5vIHRpZW5lIGNvbm9jaW1pZW50b3MgcHJvZnVuZG9zIGRlIGVzdGFkw61zdGljYT8KYy4gT2J0ZW5nYSB1biBncsOhZmljbyBkZSBjb250cm9sICRwJCBjb24gbMOtbWl0ZXMgZGUgY29udHJvbCB2YXJpYWJsZXMuCmQuIFN1cG9uaWVuZG8gcXVlIHRvZG9zIGxvcyBsb3RlcyB0aWVuZW4gZWwgbWlzbW8gdGFtYcOxbyAoZWwgcHJvbWVkaW8pLCBvYnRlbmdhIHVuIGdyw6FmaWNvIGRlIGNvbnRyb2wgJG5wJCBwYXJhIHRhbGVzIGRhdG9zLgplLiDCv09ic2VydmEgYWxndW5hIGRpZmVyZW5jaWEgaW1wb3J0YW50ZSBlbnRyZSBncsOhZmljbyBkZSBjb250cm9sICRwJCB5IGVsIGdyw6FmaWNvICRucCQ/CmYuIMK/RGUgcXXDqSBkZXBlbmRlIGxhIGVsZWNjacOzbiBlbnRyZSBlbCBncsOhZmljbyBkZSBjb250cm9sICRwJCBvICRucCQ/CmcuIMK/UXXDqSBsw61taXRlcyBkZSBjb250cm9sIHVzYXLDrWEgcGFyYSBhbmFsaXphciBkYXRvcyBmdXR1cm9zIG1lZGlhbnRlIGxhcyBlbCBncsOhZmljbyAkcCQgeSAkbnAkPwoKCioqNC4gRWplcmNpY2lvIGdyw6FmaWNvIGRlIGNvbnRyb2wgcG9yIGF0cmlidXRvcyoqIAoKRW4gdW5hIGVtcHJlc2Egc2UgcmVnaXN0cmEgZWwgbsO6bWVybyBkZSBxdWVqYXMgcG9yIG1hbCBzZXJ2aWNpby4gTG9zIGRhdG9zIGRlIGxhcyDDumx0aW1hcyAyNSBzZW1hbmFzIHNlIG11ZXN0cmFuIGVuc2VndWlkYSAoZGF0b3MgZW4gb3JkZW4gY3Jvbm9sw7NnaWNvKToKCiQ2LCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAwLCAxLCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAwLCAxLCAyLCAzLCA0LCA1JC4KCmEuIMK/RXMgYWRlY3VhZG8gaGFjZXIgdW4gYW7DoWxpc2lzIG1lZGlhbnRlIHVuIGdyw6FmaWNvICRwJD8gQXJndW1lbnRlLgpiLiBDYWxjdWxlIGxvcyBsw61taXRlcyBkZSBjb250cm9sLgpjLiBPYnRlbmdhIGVsIGdyw6FmaWNvICRjJCB5IGFuYWxpemFyLgpkLiDCv0VsIHByb2Nlc28gZXMgZXN0YWJsZT8KZS4gwr9FbCBuaXZlbCBkZSBjYWxpZGFkIHNlIHB1ZWRlIGNvbnNpZGVyYXIgc2F0aXNmYWN0b3Jpbz8KCg==</div>
 
 
 
@@ -1833,7 +1852,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Taller3.Rmd");
+  window.initializeSourceEmbed("Prueba2.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

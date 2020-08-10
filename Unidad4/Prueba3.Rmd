@@ -1,0 +1,79 @@
+---
+title: "Universidad Santo Tomás, Facultad de Ingeniería"
+subtitle: "Control Estadístico de Calidad: Tercera prueba parcial" 
+author: "Profesor: Gustavo Ahumada"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+**Exigencia**: $70\%$. **Puntaje total**: 70 puntos. **Tiempo de duración**: 36 horas.
+
+**Instrucciones**
+
+
+1. Las respuestas desde la pregunta 1 hasta la pregunta 6 deben estar en **un solo archivo script**, no se acepta que envíe un archivo en PDF con el desarrollo de estas preguntas. 
+2 La elaboración de la respuesta a la pregunta 7 debe ser incluida en un archivo en PDF.
+3. El orden en la elaboración de sus respuesta es importante, por lo tanto, su script debe ser totalmente funcional para que el docente puede verificar su respuesta.
+4. La fecha límite de entrega es el día miércoles 29 de julio a las 11:59 PM. Se debe envíar el archivo script al correo gahumada2@santotomas.cl.
+
+**Nota**: se sugiere tomar en consideración las notas de clase disponible en la Intranet Santo Tomás, el texto guía **Six Sigma with R** de Emilio L. Cano, Andrés Redchuk y Javier M. Moguerza y la sección **Help** de Rstudio en relación al package **SixSigma**.
+
+
+
+# Pregunta 1.
+
+Dibuje un mapa de proceso para el proceso de lavar la ropa, usando tres pasos: preparar, lavar y colgar. Imagine las entradas y las salidas e incluya algunos parámetros y  ejemplos de características. **Nota**: debe emplear la las herramientas que ofrece el package **SixSigma** para elaborar el mapa de procesos (ver notas de clases como ejemplo).
+
+# Pregunta 2.
+
+a. En la siguiente tabla se presentan los datos de una pastelería que hace distintos tipos de postres.^[Los datos están habilitados en el package **SixSigma** como un objeto llamado **ss.data.pastries**. Para mayor información de esta base de datos ir a help y escribir el nombre del objeto.] La satisfacción del consumidor está relacionada por un componente utilizado en el chocolate. Para evaluar el sistema de medición, tres laboratorios son empleados para determinar la cantidad del componente en los postres. Identificar los evaluadores o tasadores, las partes y su longitud.
+
+
+```{r}
+library("SixSigma")
+pasteleria <- ss.data.pastries
+pasteleria
+```
+
+
+b. Empleando la base de datos pasteleria y el package **SixSigma**, llevar a cabo un análisis del sistema de medición (MSA) e indicar las principales conclusiones procedente de este análisis. **Nota**: en su análisis debe incluir e interpretar Tablas de varianza y gráficos de las fuentes de variación (ver pagina 85-88 del nuestro libro guía).
+
+
+# Pregunta 3.
+Empleando la base de datos **ss.data.pc** disponible en el package **SixSigma**, elaborar un gráfico de barra del volument total de los cartridges (cartuchos) por tipo de filler (relleno).^[Los datos están habilitados en el package **SixSigma** como un objeto llamado **ss.data.pc**. Para mayor información de esta base de datos ir a help y escribir el nombre del objeto.] Nota: emplear la función **aggregate** transformar de manera apropiada los datos contenidos **ss.data.pc**.
+
+
+# Pregunta 4
+Empleando la base de datos **ss.data.strings**^[Los datos están habilitados en el package **SixSigma** como un objeto llamado **ss.data.strings**. Para mayor información de esta base de datos ir a help y escribir el nombre del objeto.] evaluar la hipótesis de normalidad de la resistencia de las cuerdas.
+
+
+# Pregunta 5
+
+Estimar un modelo lineal empleando la resistencia de las cuerdas como la variable de respuesta y la longitud de las cuerdas como la variable independiente. ¿Es el modelo lineal un buen modelo para explicar esta relación?
+
+
+# Pregunta 6
+
+Obtener el diseño matricial para un experimento $2^{4}$ y crear una tabla aleatoria para registrar las respuestas. Nota: los valores de la columna  Calificación deben ser *NA*.
+
+
+# Pregunta 7
+
+Asumir que una vez egrese de la carrera de Ingeniería Civil Industrial su primera oportunidad de empleo es la elaboración de un proyecto empleando la metodología Six Sigma. Dicho proyecto tendrá como objetivo general reducir los tiempos de elaboración de pizzas y mejorar los tiempos envío de los pedidos a los hogares de los consumidores. Para tener una pequeña descripción de su proyecto Six Sigma es necesario responder de manera clara y detallada cada una de las siguientes preguntas:
+
+1. ¿Cuales son cada uno de los pasos del ciclo DMAIC de su proyecto?
+2. Describir las actividades que deben ser llevadas a cabo en cada uno de los pasos anteriores.
+3. ¿Cuales serían algunos de los problemas a los cuales se enfrentaría el proyecto?
+4. ¿Qué tipo de información y herramientas estadísticas son necesarias para llevar a cabo la fase de análisis en su proyecto?
+5. ¿Puede llevar a cabo algún tipo de diseño de experimento en su proyecto?, ¿Describir el diseño del experimento?, ¿De que manera este experimento puede mejorar los resultados de su proyecto?
+
+
+
+
+
+

@@ -1,0 +1,168 @@
+---
+title: "Metodología Six Sigma"
+subtitle: "Herramientas para la fase de análisis: Gráficos con R" 
+author: "Profesor: Gustavo Ahumada"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+# Introducción 
+
+Los gráficos son particularmente importantes en los proyectos Six Sigma. El objetivo de un gráfico suele ser apoyar la interpretación de los datos. Por lo tanto, proporcionar una explicación adecuada de los datos a través de gráficos es crucial. Los gráficos bidimensionales se pueden utilizar como base para representaciones más complejas, y los datos multidimensionales se pueden mostrar a través de extensiones de estos gráficos.
+
+**Ejemplo** Cartuchos de impresora. La base de datos $\textbf{ss.data.pc}$ viene por defecto en el paquete $\textbf{SixSigma}$.
+
+```{r}
+library(SixSigma)
+ss.data.pc
+plot(pc.volume ~ pc.density,
+data = ss.data.pc,
+pch = 16)
+```
+
+Gráfico con los límites por defecto cambiados
+
+```{r}
+plot(pc.volume ~ pc.density,
+data = ss.data.pc,
+xlim = c(0,5),
+ylim = c(0,25), pch=16)
+```
+
+
+## Gráfico de barras 
+
+Un gráfico de barras es un gráfico muy simple donde algunas cantidades se muestran como la altura de las barras. Cada barra representa un factor donde se mide la variable en estudio. Un gráfico de barras suele ser la mejor representación gráfica para los recuentos.
+
+**Ejemplo** Cartuchos de impresora (continuación). El productor de cartuchos de impresora reparte su producto en cinco regiones. Una cantidad inesperada de cartuchos defectuosos han sido retornados en el último mes, a continuación tenemos un gráfico de barras del número de cartuchos defectuosos por región:
+
+```{r, fig.width=8, fig.height=5}
+with(ss.data.pc.r,
+barplot(pc.def,
+names.arg = pc.regions,
+las = 2,
+main = "Gráfico de barra de cartuchos defecuosos por región",
+sub = "Ejemplo Cartuchos de impresora"))
+abline(h = 0,
+col = "#666666")
+ss.data.pc.r
+```
+
+**Ejemplo** Cartuchos de impresora (continuación). Se puede graficar un gráfico de barras para cada tipo de cartucho en el mismo gráfico, aún con un leyenda, empleando el siguiente comando:
+
+```{r, fig.width=8, fig.height=8}
+barplot(as.matrix(ss.data.pc.r[,2:3]),
+las = 1,
+beside = TRUE,
+legend = ss.data.pc.r[,1],
+args.legend = list(x=3.5,y=60),
+main = "Gráfico de barra de cartuchos defecuosos por región y tipo",
+sub = "Ejemplo Cartuchos de impresora")
+abline(h = 0,
+col = "#666666")
+```
+
+
+## Histograma
+
+Un histograma es un gráfico de barras para variables continuas. Este gráfico de barras muestra la distribución de las medidas de variables. En el eje x, cada barra representa un intervalo de los posibles valores de una variable. La altura de las barras (es decir, el eje y) depende de la frecuencia (relativa o absoluta) de las medidas dentro de cada intervalo. La regla es que el área de las barras debe ser proporcional a las frecuencias.
+
+**Ejemplo** Cartuchos de impresora (continuación). La siguiente figura tiene un histograma para las variables *volume* y *density* en la base de datos $\textbf{ss.data.pc}$. El siguiente código es utilizada para ello:
+
+```{r, , fig.width=8, fig.height=6}
+hist(ss.data.pc$pc.volume,
+main="Volumen Cartuchos de impresora",
+xlab="Volume",
+col="#DDDDDD")
+```
+
+
+```{r, , fig.width=8, fig.height=6}
+hist(ss.data.pc$pc.density,
+breaks = "FD",
+main = "Densidad Cartuchos de impresora",
+xlab = "Volume",
+col = "#DDDDDD")
+```
+
+
+## Diagrama de dispersión
+
+Un diagrama de dispersión es una herramienta importante para revelar relaciones entre dos variables. En lenguaje estadístico, estas relaciones se pueden incluir en el concepto de correlación. Por lo tanto, podemos tener tres tipos de correlación entre dos variables
+
+Entre un proyecto Six Sigma, descubrir la relación entre las $Y$s y las $X$s del proceso es una tarea importante. Esta relación será medida en term,inos de la correlación entre las variables. UNa descubierta la relación, se deberá probar que la variable   independiente está cuasando la variación de la variable dependiente.
+
+**Ejemplo** Cartuchos de impresora (continuación). En el conjunto de datos $\textbf{ss.data.pc}$, se tiene dos variables continuas $\textbf{pc.volume}$ y $\textbf{pc.density}$. Si se quiere verificar que la densidad y el volumen están correlacionadas, la primera cosa que se debe hacer es generar                                                 
+```{r, fig.width=6, fig.height=5}
+plot(pc.volume ~ pc.density,
+data = ss.data.pc,
+main = "Buscando correlación entre Densidad y Volumen",
+col = "#666666",
+pch = 16,
+sub = "Ejemplo Cartuchos de impresora",
+xlab = "Volumen",
+ylab = "Densidad")
+grid()
+```
+
+
+## Gráficos de series de tiempo
+
+El gráfico de serie de tiempo es un gráfico bidimensional donde el eje $x$ representa una línea de tiempo y en el eje $y$ se traza una variable que queremos monitorear. Esta variable puede ser una característica crítica para la calidad (CTQ) de nuestro proceso o un parámetro que lo afecte. Estos tipos de gráficos también se denominan gráficos de series de tiempo cuando tenemos una escala de tiempo en el eje x (por ejemplo, la cantidad de pedidos recibidos cada día). La escala del eje $x$ puede no ser necesariamente temporal (por ejemplo, el volumen de algunos destinatarios cuya producción es secuencial)
+
+**Ejemplo** Cartuchos de impresora (continuación). Se quiere monitorear el volumen en los cartuchos, disponibles en $\textbf{ss.data.pc}$. Suponer que el valor objetivo para el volumen es $16$. 
+
+```{r, fig.width=6, fig.height=5}
+plot(ss.data.pc$pc.volume,
+type = "b",
+pch = 16,
+ylim = c(12,20),
+axes = FALSE,
+main = "Serie de tiempo para el Volumen",
+sub = "Ejemplo Cartuchos de impresora",
+xlab = "Run",
+ylab = "Volumen")
+axis(1,
+at = 1:24,
+cex.axis = 0.7)
+axis(2)
+box()
+grid()
+abline(h = 16,
+lwd = 2)
+```
+
+
+## Gráfico de Caja y bigotes
+
+El gráfico de caja y bigotes también se conoce como el diagrama de caja. Resume gráficamente la distribución de una variable continua. Los lados de la caja son los cuartiles primero y tercero (percentil 25 y 75, respectivamente). Por lo tanto, dentro del cuadro tenemos el $50\%$ de los datos. La mediana se traza como una línea que cruza el cuadro. Los valores extremos de los bigotes pueden ser el máximo y el mínimo de los datos u otros límites más allá de los cuales los datos se consideran atípicos. Los límites generalmente se toman como:
+
+\begin{equation}
+[Q1-1.5 \times IQR, Q3+1.5 \times IQR], \nonumber
+\end{equation}
+
+donde $Q1$ y $Q3$ son el primer y el tercer cuartil, respectivamente, y $IQR$ es el rango intercuartil ($Q3-Q1$)
+
+**Ejemplo** Cartuchos de impresora (continuación). En una línea de producción, tenemos tres rellenos para los cartuchos de impresora. Queremos determinar si hay alguna diferencia entre los rellenos e identificar valores atípicos (por ejemplo, errores en la entrada de datos). Obtenemos el diagrama de caja para cada grupo con el siguiente código
+
+```{r, fig.width=6, fig.height=5}
+boxplot(pc.volume ~ pc.filler,
+data = ss.data.pc,
+col = "#CCCCCC",
+main = "Gráfico de Caja y bigotes del Volumen por Relleno",
+sub = "Ejemplo Cartuchos de impresora",
+xlab = "Relleno",
+ylab = "Volumen")
+```
+
+
+
+## Entro otras más
+
+
+
+

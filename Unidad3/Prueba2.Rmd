@@ -1,0 +1,76 @@
+---
+title: "Universidad Santo Tomás, Facultad de Ingeniería"
+subtitle: "Control Estadístico de Calidad: Segunda prueba parcial" 
+author: "Profesor: Gustavo Ahumada"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+**Exigencia**: $70\%$. **Puntaje total**: 40 puntos. **Tiempo de duración**: 30 horas.
+
+**Instrucciones**
+
+1. Para el desarrollo de los ejercicios debe hacer uso de los archivos **prueba_ejercicio2.xlsx** y **prueba_ejercicio3.xlsx**, los cuales contiene la información que se va analizar.
+
+2. Las respuesta a cada uno de los ejercicios deben estar en un solo script, no se acepta que envíen un archivo en PDF con el desarrollo de los ejercicios. En el script se debe ser ordenado en la elaboración de cada uno de las respuestas. En adición al código, usted deber escribir en el script su análisis a cada uno de los puntos que contienen los ejercicios.
+
+3. La fecha límite de entrega es el día viernes 19 de junio a las 11:59 PM. Se debe envíar el archivo script al correo gahumada2@santotomas.cl.
+
+**Nota**: se sugiere tomar el consideración el script $\textbf{Prueba2.R}$ para hacer el calculo de las desviaciones estándar, con el objetivo de tener estimaciones adecuadas, ver página 245 del libro Quality control with R para mayor información.
+
+
+**1. Ejercicio para gráfico $\bar{X}-R$**.
+
+Según la información proporcionada por un gráfico $\bar{X}-R$, sobre un proceso de producción de piezas metálicas, la media de la longitud de tales piezas es $50$mm y el rango medio con tamaño de muestra $5$ es $0.6$, resuelva lo siguiente:
+
+a. Obtenga la desviación están dar del proceso.
+b. Calcule los límites de control para el gráfico $\bar{X}$ (tamaño de subgrupo 5) e interprételos.
+c. Obtenga los límites de control para el gráfico $R$ y explique su significado práctico.
+d. Si la especificación inferior y superior para esta pieza es $49$ y $51$ mm, respectivamente; calcule los límites reales o natura les e interprételos.
+e. Explique para qué sirven los límites que obtuvo en los incisos b) y c) y para los qué obtuvo en el inciso d).
+f. ¿Tiene información suficiente para comprobar si el proceso es estable (está en control estadístico)? Explique y argumente.
+
+
+**2. Ejercicio para gráfico $\bar{X}-R$**.
+
+En una empresa del ramo metalmecánico se fabrican punterías para motores de automóviles. Cierta puntería debe tener un diámetro exterior de $20,000$ micras  donde En una empresa del ramo metalmecánico se fabrican punterías para motores de automóviles. Cierta puntería debe tener un diámetro exterior de $20,000$ micras  donde $1$ micra es iguala $0.000001$ metros, con una tolerancia de $(+-)25$ micras. De esta manera, si a las mediciones del diámetro se les resta el valor nominal deseado, entonces las especificaciones serán Especificación inferior EI$= -25$ y Especificación superior ES$=25$.
+
+Para evaluar la estabilidad del proceso se realiza un estudio inicial, donde es usual obtener por lo menos de 20 a 25 subgrupos (muestras) de tamaño pequeño (entre 5 y 10 por lo general). Además, estos subgrupos deben estar espaciados, de forma que capten el funcionamiento del proceso en un periodo suficientemente amplio para que se capten diferentes cambios en el proceso (turnos, lotes, etc.). En el caso de las punterías, cada hora se mide el diámetro de cinco de éstas y en archivo en Excel llamado **prueba_ejercicio2.xlsx** se muestran de dos días laborales. Para evaluar la estabilidad de la tendencia central se analizará la variación de la media de los datos mediante el gráfico $\bar{X}$, y la de la misma manera media el gráfico $R$ se analizará los rangos para investigar la estabilidad de la variación del diámetro de las punterías. A continuación resuelva:
+
+1. Empleando la función $\textbf{qcc}$ obtenga el gráfico de $\bar{X}$, luego de manera manual calcule los límites de control del gráfico de $\bar{X}$. ¿son similares los valores?
+2. Interpretar el gráfico de medias (puntos fuera, tendencias, ciclos, etcétera).
+3. Empleando la función $\textbf{qcc}$ obtenga el gráfico de $R$, luego de manera manual calcule los límites de control del gráfico de $\bar{X}$ asumiendo que el rango medio es de $26.3$. ¿son similares los valores?
+4. Interpretar el gráfico de rangos (puntos fuera, tendencias, ciclos, etcétera).
+5. Dados los resultados de los incisos anteriores ¿El proceso muestra una estabilidad o estado de control estadístico razonable?
+
+
+**3. Ejercicio gráfico de control por atributos** 
+
+En un proceso se produce por lotes y éstos se prueban al $100\%$. Se lleva un registro de la proporción de artículos defectuosos por diferentes causas. Los datos de los últimos 25 lotes se muestran en el archivo de Excel llamado **prueba_ejercicio3.xlsx**.
+
+a. Obtenga los límites de control de un gráfico $p$ usando el tamaño de subgrupo (lote) promedio. Posteriormente, empleando la función $\textbf{qcc}$ gráficar el correspondiente gráfico de control.
+b. ¿Cómo explicaría los límites de control que obtuvo a alguien que no tiene conocimientos profundos de estadística?
+c. Obtenga un gráfico de control $p$ con límites de control variables.
+d. Suponiendo que todos los lotes tienen el mismo tamaño (el promedio), obtenga un gráfico de control $np$ para tales datos.
+e. ¿Observa alguna diferencia importante entre gráfico de control $p$ y el gráfico $np$?
+f. ¿De qué depende la elección entre el gráfico de control $p$ o $np$?
+g. ¿Qué límites de control usaría para analizar datos futuros mediante las el gráfico $p$ y $np$?
+
+
+**4. Ejercicio gráfico de control por atributos** 
+
+En una empresa se registra el número de quejas por mal servicio. Los datos de las últimas 25 semanas se muestran enseguida (datos en orden cronológico):
+
+$6, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5$.
+
+a. ¿Es adecuado hacer un análisis mediante un gráfico $p$? Argumente.
+b. Calcule los límites de control.
+c. Obtenga el gráfico $c$ y analizar.
+d. ¿El proceso es estable?
+e. ¿El nivel de calidad se puede considerar satisfactorio?
+

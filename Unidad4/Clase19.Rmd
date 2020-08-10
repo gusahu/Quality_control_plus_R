@@ -1,0 +1,241 @@
+---
+title: "Metodología Six Sigma"
+subtitle: "Herramientas para la fase de mejora: Diseño de experimentos con R" 
+author: "Profesor: Gustavo Ahumada"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  theme: united
+  html_notebook: default
+---
+
+# Niveles de factores y replicas
+
+**Ejemplo (Masa para pizza)**. Un fabricante de alimentos está buscando la mejor receta para su producto principal: venta de masa para pizza al por menor a tráves de su área de mercado. Para descubir *la formula magica*, el manager decide realizar un experimento para determinar los niveles óptimos de los tres ingredientes principales en la masa de pizza: harina, sal y levadura en polvo. Los otros ingredientes son fijos ya que no afectan el sabor de la pizza cocida final. El panel de expertos determinará el sabor del producto y le dará una puntuación a cada receta. Por lo tanto, tenemos tres factores que llamaremos harina, sal y bakPow, con dos niveles cada uno ($-$ y $+$). Luego podemos construir una hoja de datos para registrar los datos medidos usando el siguiente código:
+
+```{r}
+Diseno_pizza <- expand.grid(flour = gl(2, 1, labels = c("-",
+"+")),
+sal = gl(2, 1, labels = c("-", "+")),
+polvo_hornear = gl(2, 1, labels = c("-", "+")),
+calificacion = NA)
+Diseno_pizza
+```
+
+# Supuestos del modelo
+
+Recuerde que estamos en la fase de Mejora del ciclo DMAIC, y hemos llegado aquí después de haber definido el proceso y los objetivos del proyecto.
+
+Para validar los resultados, debemos reiterar la importancia de la aleatorización. Una vez que haya corregido los factores y los niveles de un experimento, las mediciones deben tomarse al azar. Por lo tanto, si tenemos un pedido. En la lista de todas las combinaciones de niveles de factores, antes de comenzar a medir la respuesta, debemos establecer el orden aleatorio en el que se van a medir.
+
+La técnica estadística adecuada para analizar experimentos es el análisis de varianza (ANOVA). Existen dos supuestos principales en este tipo de modelo: (1) la normalidad e independencia de los residuos y (2) la homocedasticidad (varianza constante). Una estrategia sistemática para la aleatorización es útil para lograr la primera, mientras que la segunda puede verificarse mediante pruebas de hipótesis.
+
+**Ejemplo (Masa para pizza (continuación))**. Una vez que se ha diseñado un experimento, procederemos con su aleatorización. Podemos agregar una columna a la matriz de diseño con el orden aleatorio de los ensayos y ordenar las filas de la matriz de diseño siguiendo un orden aleatorio:
+
+```{r}
+Diseno_pizza$ord <- sample(1:8, 8)
+Diseno_pizza[order(Diseno_pizza$ord),]
+```
+
+
+# Diseños factoriales $2^{k}$
+
+Diseños factoriales $2^{k}$ son aquellos donde el número de factores para ser estudiados son *k*, cada uno de ellos con 2 niveles. El número total de experimentos que se llevaran a cabo para obtener una completa replica es la la potencia $2^{k}$ (2 a la *k*). Si se quiere $n$ replicas del experimento, entonces el número total de experimentos es $n*2^{k}$.
+
+Usando ANOVA, calcularemos el efecto de cada factor e interacción y evaluaremos cuáles de estos efectos son significativos. Representemos los factores con letras mayúsculas latinas (A, B,...). Los efectos principales generalmente están representados por letras griegas ($\alpha$, $\beta$,...) Correspondientes a la letra latina del factor, y los efectos de las interacciones por la combinación de las letras que representan los factores cuyos efectos interactuan. Por ejemplo, para un experimento $2^{k}$ con tres factores y $n$ repeticiones, el modelo estadístico es:
+
+\begin{equation}
+y_{ijkl} = \mu + \alpha_{i} + \beta_{j} + \gamma_{k} + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\beta \gamma)_{kl} + (\alpha \beta \gamma)_{ijk} + \varepsilon_{ijkl} 
+\end{equation}
+
+\begin{equation}
+i = 1,2; \quad j = 1,2; \quad k = 1,2; \quad l = 1,...,n  \nonumber
+\end{equation}
+
+\begin{equation}
+\varepsilon_{ijkl} \sim N(0, \sigma) \quad independiente  \nonumber
+\end{equation}
+
+donde $\mu$ es la media global de la respuesta,
+
+$\alpha_{i}$ es el efecto del factor A en el nivel $i$;
+
+$\beta_{j}$ es el efecto del factor B en el nivel $j$;
+
+$\gamma_{k}$ es el efecto del factor C en el nivel $k$;
+
+$(\alpha \beta)_{ij}$ es el efecto de la interacción entre el factor A y B en el nivel $i$ y $j$, respectivamente.
+
+$(\alpha \gamma)_{ik}$ es el efecto de la interacción entre el factor A y C en el nivel $i$ y $k$, respectivamente;
+
+$(\beta \gamma)_{jk}$ es el efecto de la interacción entre el factor B y C en el nivel $j$ y $k$, respectivamente;
+
+$(\alpha \beta \gamma)_{ijk}$ es el efecto de la interacción de los factores A, B y C en los niveles $i$, $j$ y $k$, respectivamente.
+
+**Ejemplo (Masa para pizza (continuación))**. El experimento se lleva a cabo preparando las pizzas en la fábrica siguiendo las instrucciones del paquete, que habían sido probadas previamente como las mejores condiciones para preparar la pizza, a saber: "hornee la pizza durante 9 minutos en un horno a 180 grados celsius.
+
+Después de una votación a ciegas, las evaluaciones dadas por los expertos para cada uno de los ocho experimentos ($2^{3}$) en cada una de las replicas.
+
+```{r}
+library(SixSigma)
+ss.data.doe1
+aggregate(score ~ flour + salt + bakPow,
+          FUN = mean, data = ss.data.doe1)
+```
+
+
+```{r}
+doe.model1 <- lm(score ~ flour + salt + bakPow +
+flour * salt + flour * bakPow +
+salt * bakPow + flour * salt * bakPow,
+data = ss.data.doe1)
+summary(doe.model1)
+```
+
+
+```{r}
+doe.model2 <- lm(score ~ flour + bakPow,
+data = ss.data.doe1)
+summary(doe.model2)
+```
+
+```{r}
+coef(doe.model2)
+```
+
+Por lo tanto, el modelo estadístico para el experimento es
+
+\begin{equation}
+\widehat{score} = 4.830625 + 2.453750 \times flour -1.866250 \times backPow,  
+\end{equation}
+
+expresado en términos de los coeficientes del modelo. En la ecuación precedente, los posibles valores para *flour* y *bakPow* son $0$ para un bajo nivel ($-$) y 1 para el mayor nivel ($+$).
+
+Esta codificación de los factores es diferente de la ecuación ($1$), en la cual los posibles valores para los factores son $-1$ para el menor nivel y $+1$ para el mayor nivel. Para calcular los efectos, los coeficientes deberían ser dividimos por dos y el modelo equivalente a ($1$) sería
+
+\begin{equation}
+\widehat{score} = 5.1244 + 1.2269 \times flour -0.9331 \times backPow,
+\end{equation}
+
+donde $5.1244$ es la evaluación promedio. Por ejemplo, en este formulación del modelo, pasando *flour* del nivel $-1$ al nivel $+1$ implica un incremento de $2.453750$ en la evaluación promedio de la receta.
+
+Si queremos cambiar del modelo dado por ($3$) al modelo dado por ($2$), entonces todo lo que tenemos que hacer es calcular los coeficientes duplicando los efectos y calculando la intersección como:
+
+\begin{equation}
+\bar{y} - \alpha_{1} - \beta_{1} = 5.1244 - 1.2269 - (-0.9331) = 4.830625
+\end{equation}
+
+```{r}
+as.numeric(mean(ss.data.doe1$score) - coef(doe.model2)[2]/2 - coef(doe.model2)[3]/2)
+```
+
+Por lo tanto, la receta con un alto nivel de *flour* y un bajo nivel de *baking powder* será la mejor, independientemente del nivel de *salt* (alta o baja). El puntaje estimado para esta receta es $4.8306 + 2.4538 \times 1 + (-1.8662) \times 0 = 7.284$:
+
+```{r}
+coef(doe.model2)[1] + coef(doe.model2)[2]
+```
+
+Obtenemos resultados similares empleando la formula del efecto:
+
+\begin{equation}
+\hat{y} = 5.1244 + 1.2269 \times 1 + (-0.9331) \times (-1) = 7.2844.
+\end{equation}
+
+```{r}
+mean(ss.data.doe1$score) + coef(doe.model2)[2]/2 *(1) + coef(doe.model2)[3]/2 *(-1)
+```
+
+Se puede obtener las estimaciones para todas las condiciones experimentales (incluyendo las replicas) empleando la función *predict*
+
+```{r}
+predict(doe.model2)
+```
+
+La estimación para las condiciones experimentales 2, 4, 10 y 12 son las mismas (7.2844) que el factor de sal se ha eliminado del modelo.
+
+También podemos calcular un intervalo de confianza para cada parámetro
+
+```{r}
+confint(doe.model2)
+```
+
+Para visualizar gráficamente los efectos principales, se puede usar la función *plot*. En este caso, se trazarán los puntos y líneas que muestran los efectos. Por ejemplo, para representar los efectos del factor *flour* (ver figura debajo), escribir
+
+```{r, fig.width=5, fig.height=5}
+plot(c(-1, 1), ylim = range(ss.data.doe1$score),
+coef(doe.model1)[1] + c(-1, 1) * coef(doe.model1)[2],
+type="b", pch=16)
+abline(h=coef(doe.model1)[1])
+```
+
+También podemos trazar gráficos para visualizar los efectos con el paquete *ggplot2*. Usando el siguiente código graficamos los efectos principales de los dos factores en el mismo gráfico (ver figura debajo):
+
+```{r}
+library(ggplot2)
+prinEf <- data.frame(Factor = rep(c("A_Flour",
+"C_Baking Powder"), each = 2),
+Level = rep(c(-1, 1), 2),
+Score = c(aggregate(score ~ flour, FUN = mean, data =
+ss.data.doe1)[,2],
+aggregate(score ~ bakPow, FUN = mean, data =
+ss.data.doe1)[,2]))
+p <- ggplot(prinEf,
+aes(x = Level, y = Score)) +
+geom_point() +
+geom_line() +
+scale_x_continuous(breaks = c(-1, 1)) +
+facet_grid(. ~ Factor) +
+geom_abline(intercept = mean(ss.data.doe1$score),
+slope = 0, linetype = "dashed") +
+theme(plot.background = element_rect(colour="white"))
+print(p)
+```
+
+
+El diagnóstico del modelo debe hacerse analizando los residuos. Podemos trazar los gráficos estándar para modelos lineales (ver gráfico debajo):
+
+```{r, fig.width=5, fig.height=5}
+par(mfrow=c(2,2))
+plot(doe.model2)
+box("outer")
+```
+
+
+```{r}
+shapiro.test(residuals(doe.model2))
+```
+
+
+# Diseño de experimentos para la mejora de procesos
+
+Hemos descrito un Diseño de experimento completo, pero realizar experimentos puede no ser suficiente para mejorar un proceso. Por ejemplo, quizás no se han identificado todas las $X$ del proceso, o algunas $X$ pueden depender de condiciones externas y, por lo tanto, no están bajo nuestro control. En estas circunstancias, una posibilidad es diseñar productos que sean robustos para el medio ambiente (diseño robusto). Esto consiste en incluir factores de ruido dentro del experimento. Estos factores de ruido son aquellos que pueden afectar las características de CTQ, pero no están bajo nuestro control. Debemos identificar todos los posibles factores de ruido. Podemos obtener información valiosa sobre estas condiciones externas del propietario del proceso.
+
+**Ejemplo (Masa para pizza (continuación))**. Después de unas semanas, el administrador de redes sociales del departamento de marketing informó a la junta directiva que se habían recogido algunos malos comentarios de las redes sociales (principalmente Facebook y Twitter) con respecto a una mala experiencia que involucraba a los consumidores de la masa de pizza. El sabor de las pizzas hechas con la masa no fue satisfactorio.
+
+Para investigar las razones, decidieron abordar el problema desde una perspectiva **Six Sigma**. Durante la fase de medición, se realizó una identificación precisa de los posibles factores que afectan el sabor de la pizza. El propietario del proceso proporcionó una información vital (el miembro del equipo que presentó las instrucciones de preparación). Señaló que las condiciones exactas de horneado (temperatura = 180 $°C$ y tiempo = 9 minutos) fueron críticas para lograr el sabor deseado por los clientes.
+
+Investigaciones adicionales sobre cómo los clientes preparaban las pizzas mostraron que no todos (en realidad, casi nadie) seguían con precisión las instrucciones de preparación en la caja. Por lo tanto, el *Black Belt* propuso un nuevo diseño para realizar una nueva investigación sobre la receta de masa de pizza. Decidió incluir dos factores de ruido con dos niveles cada uno: tiempo (7 y 11 min, $-t$ y $+t$, respectivamente) y temperatura ($160$c y $200$c, $-T$ y $+T$, respectivamente). Ahora tenemos un diseño factorial de $2^{5}$, con la siguiente matriz de diseño:
+
+```{r}
+Diseno_pizza2 <- expand.grid(flour = gl(2, 1, labels = c("-", "+")),
+salt = gl(2, 1, labels = c("-", "+")),
+bakPow = gl(2, 1, labels = c("-", "+")),
+temp = gl(2, 1, labels = c("-", "+")),
+time = gl(2, 1, labels = c("-", "+")),
+score = NA)
+Diseno_pizza2
+```
+
+
+```{r}
+library(SixSigma)
+ss.data.doe2
+```
+
+
+
+
+
+
+

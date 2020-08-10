@@ -28,7 +28,7 @@ a. Calcule los límites de control utilizando el tamaño de subgrupo (lote) prom
 
 b. ¿Cómo explicaría los límites de control que obtuvo a alguien que no tiene conocimientos profundos de estadística?
 
-c. Gráficar la proporción de defectuosos e interpréte. ¿El proceso es estable?
+c. Gráficar la proporción de defectuosos e interpretar. ¿El proceso es estable?
 
 d. ¿Se puede considerar que la calidad del proceso es aceptable? Argumente su respuesta.
 
